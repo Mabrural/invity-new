@@ -69,10 +69,11 @@
             -webkit-tap-highlight-color: transparent;
             -webkit-user-select: none;
             user-select: none;
+            contain: layout style;
         }
 
-        /* === BACKGROUND BASE === */
-        .bg-base {
+        /* === OPTIMIZED BACKGROUND === */
+        .animated-bg {
             position: fixed;
             top: 0;
             left: 0;
@@ -82,38 +83,35 @@
             pointer-events: none;
             background: #0a0a0a;
             overflow: hidden;
+            will-change: transform;
         }
 
-        .bg-gradient {
+        .animated-bg::before {
+            content: '';
             position: absolute;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
-            background:
-                radial-gradient(ellipse at 30% 20%, rgba(80, 80, 100, 0.25) 0%, transparent 55%),
-                radial-gradient(ellipse at 70% 60%, rgba(60, 60, 80, 0.2) 0%, transparent 55%),
-                radial-gradient(ellipse at 50% 90%, rgba(50, 50, 70, 0.15) 0%, transparent 50%);
-            animation: gradientShift 18s ease-in-out infinite;
+            background: radial-gradient(ellipse at 20% 50%, rgba(60, 60, 70, 0.3) 0%, transparent 50%),
+                radial-gradient(ellipse at 80% 20%, rgba(50, 50, 60, 0.25) 0%, transparent 50%),
+                radial-gradient(ellipse at 50% 80%, rgba(40, 40, 50, 0.2) 0%, transparent 50%);
+            animation: bgShift 15s ease-in-out infinite;
         }
 
-        @keyframes gradientShift {
+        @keyframes bgShift {
 
             0%,
             100% {
-                opacity: 0.7;
+                opacity: 0.8;
             }
 
-            25% {
+            33% {
                 opacity: 1;
             }
 
-            50% {
+            66% {
                 opacity: 0.6;
-            }
-
-            75% {
-                opacity: 0.9;
             }
         }
 
@@ -125,117 +123,14 @@
             height: 100%;
             z-index: -2;
             pointer-events: none;
-            opacity: 0.035;
+            opacity: 0.04;
             mix-blend-mode: overlay;
-            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='1'/%3E%3C/svg%3E");
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='1'/%3E%3C/svg%3E");
             background-repeat: repeat;
             background-size: 150px 150px;
         }
 
-        /* === FALLING DIAMONDS === */
-        .diamonds-container {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            z-index: -1;
-            pointer-events: none;
-            contain: layout style paint;
-        }
-
-        .diamond {
-            position: absolute;
-            width: 12px;
-            height: 12px;
-            background: rgba(200, 200, 220, 0.25);
-            transform: rotate(45deg);
-            animation: diamondFall linear infinite;
-            will-change: transform, opacity;
-            border: 1px solid rgba(220, 220, 240, 0.15);
-            box-shadow: 0 0 6px rgba(200, 200, 220, 0.2), inset 0 0 4px rgba(255, 255, 255, 0.1);
-        }
-
-        .diamond.small {
-            width: 6px;
-            height: 6px;
-            opacity: 0.5;
-            box-shadow: 0 0 3px rgba(200, 200, 220, 0.15);
-        }
-
-        .diamond.large {
-            width: 18px;
-            height: 18px;
-            opacity: 0.6;
-            box-shadow: 0 0 12px rgba(200, 200, 220, 0.3), inset 0 0 6px rgba(255, 255, 255, 0.15);
-        }
-
-        .diamond.sparkle {
-            width: 4px;
-            height: 4px;
-            background: rgba(240, 240, 255, 0.8);
-            border: none;
-            box-shadow: 0 0 8px rgba(220, 220, 255, 0.7), 0 0 15px rgba(200, 200, 230, 0.4);
-            animation: diamondSparkle linear infinite;
-        }
-
-        @keyframes diamondFall {
-            0% {
-                transform: translateY(-20vh) rotate(45deg) translateX(0);
-                opacity: 0;
-            }
-
-            5% {
-                opacity: 0.7;
-            }
-
-            40% {
-                opacity: 0.5;
-            }
-
-            70% {
-                opacity: 0.2;
-            }
-
-            100% {
-                transform: translateY(110vh) rotate(225deg) translateX(40px);
-                opacity: 0;
-            }
-        }
-
-        @keyframes diamondSparkle {
-            0% {
-                transform: translateY(-10vh) rotate(45deg) scale(0);
-                opacity: 0;
-            }
-
-            3% {
-                opacity: 0.9;
-                transform: translateY(0vh) rotate(45deg) scale(1.2);
-            }
-
-            6% {
-                opacity: 0.7;
-                transform: translateY(5vh) rotate(135deg) scale(0.8);
-            }
-
-            12% {
-                opacity: 0.3;
-                transform: translateY(15vh) rotate(225deg) scale(1);
-            }
-
-            25% {
-                opacity: 0;
-                transform: translateY(40vh) rotate(315deg) scale(0.2);
-            }
-
-            100% {
-                opacity: 0;
-                transform: translateY(60vh) rotate(405deg) scale(0);
-            }
-        }
-
-        /* === FLOATING MIST === */
+        /* === OPTIMIZED MIST === */
         .mist-container {
             position: fixed;
             top: 0;
@@ -250,9 +145,9 @@
         .mist {
             position: absolute;
             border-radius: 50%;
-            background: radial-gradient(ellipse at center, rgba(200, 200, 215, 0.08) 0%, transparent 60%);
+            background: radial-gradient(ellipse at center, rgba(200, 200, 210, 0.1) 0%, transparent 60%);
             animation: mistFloat linear infinite;
-            filter: blur(60px);
+            filter: blur(50px);
             mix-blend-mode: screen;
             will-change: transform, opacity;
             transform: translateZ(0);
@@ -260,24 +155,69 @@
 
         @keyframes mistFloat {
             0% {
-                transform: translate3d(0, 100vh, 0) scale(0.5);
+                transform: translate3d(0, 100vh, 0) scale(0.6);
                 opacity: 0;
             }
 
             10% {
-                opacity: 0.6;
+                opacity: 0.7;
             }
 
             40% {
-                opacity: 0.25;
+                opacity: 0.3;
             }
 
             70% {
-                opacity: 0.08;
+                opacity: 0.1;
             }
 
             100% {
-                transform: translate3d(15vw, -25vh, 0) scale(1.6);
+                transform: translate3d(10vw, -20vh, 0) scale(1.5);
+                opacity: 0;
+            }
+        }
+
+        /* === OPTIMIZED PARTICLES === */
+        .particles-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            pointer-events: none;
+            contain: layout style paint;
+        }
+
+        .particle {
+            position: absolute;
+            background: radial-gradient(circle, rgba(220, 220, 230, 0.4) 0%, transparent 60%);
+            border-radius: 50%;
+            animation: particleFloat linear infinite;
+            will-change: transform, opacity;
+            transform: translateZ(0);
+        }
+
+        @keyframes particleFloat {
+            0% {
+                transform: translate3d(0, 110vh, 0) scale(0);
+                opacity: 0;
+            }
+
+            10% {
+                opacity: 0.8;
+            }
+
+            30% {
+                opacity: 0.4;
+            }
+
+            60% {
+                opacity: 0.1;
+            }
+
+            100% {
+                transform: translate3d(40px, -10vh, 0) scale(2);
                 opacity: 0;
             }
         }
@@ -900,12 +840,10 @@
 <body>
 
     <!-- === BACKGROUND === -->
-    <div class="bg-base">
-        <div class="bg-gradient"></div>
-    </div>
-    <div class="diamonds-container" id="diamondsContainer"></div>
+    <div class="animated-bg"></div>
     <div class="grain-overlay"></div>
     <div class="mist-container" id="mistContainer"></div>
+    <div class="particles-container" id="particlesContainer"></div>
 
     <!-- === MUSIC PLAYER === -->
     <div class="music-player" id="musicPlayer">
@@ -939,7 +877,9 @@
         {{-- SECTION 2: QUOTES --}}
         <section class="fullscreen-section section-quotes" id="sectionQuotes">
             <div class="quotes-content" id="quotesContent">
-                <div class="quotes-icon"><i class="fas fa-feather-alt"></i></div>
+                <div class="quotes-icon">
+                    <i class="fas fa-feather-alt"></i>
+                </div>
                 <p class="quotes-main">
                     "In the tapestry of life, every thread of friendship weaves a story of love, laughter, and cherished
                     memories. Today, we gather not just to celebrate a milestone, but to honor the beautiful soul that
@@ -974,10 +914,12 @@
                             @endforeach
                         </div>
                         @if (count($photos) > 1)
-                            <button class="slider-nav prev" onclick="slidePhoto(-1)" aria-label="Previous"><i
-                                    class="fas fa-chevron-left"></i></button>
-                            <button class="slider-nav next" onclick="slidePhoto(1)" aria-label="Next"><i
-                                    class="fas fa-chevron-right"></i></button>
+                            <button class="slider-nav prev" onclick="slidePhoto(-1)" aria-label="Previous">
+                                <i class="fas fa-chevron-left"></i>
+                            </button>
+                            <button class="slider-nav next" onclick="slidePhoto(1)" aria-label="Next">
+                                <i class="fas fa-chevron-right"></i>
+                            </button>
                         @endif
                     </div>
                     @if (count($photos) > 1)
@@ -997,13 +939,17 @@
         <section class="fullscreen-section section-details" id="sectionDetails">
             <div class="details-grid">
                 <div class="detail-card">
-                    <div class="detail-icon"><i class="far fa-calendar-alt"></i></div>
+                    <div class="detail-icon">
+                        <i class="far fa-calendar-alt"></i>
+                    </div>
                     <p class="detail-label">Date</p>
                     <p class="detail-value">
                         {{ \Carbon\Carbon::parse($guest->event->event_date ?? now())->format('d M Y') }}</p>
                 </div>
                 <div class="detail-card">
-                    <div class="detail-icon"><i class="fas fa-map-marker-alt"></i></div>
+                    <div class="detail-icon">
+                        <i class="fas fa-map-marker-alt"></i>
+                    </div>
                     <p class="detail-label">Venue</p>
                     <p class="detail-value">{{ $guest->event->venue ?? 'Secret Location' }}</p>
                     <p class="detail-value" style="font-size:0.95rem;margin-top:4px;">
@@ -1011,7 +957,9 @@
                 </div>
                 @if ($guest->event->dresscode ?? false)
                     <div class="detail-card">
-                        <div class="detail-icon"><i class="fas fa-tshirt"></i></div>
+                        <div class="detail-icon">
+                            <i class="fas fa-tshirt"></i>
+                        </div>
                         <p class="detail-label">Dress Code</p>
                         <p class="detail-value">{{ $guest->event->dresscode }}</p>
                     </div>
@@ -1023,33 +971,45 @@
         <section class="fullscreen-section section-rsvp" id="sectionRsvp">
             <h2 class="rsvp-title">Confirm Attendance</h2>
             <p class="rsvp-subtitle">We would be honored by your presence</p>
+
             @if ($guest->event->no_wa_confirmation ?? false)
                 <a href="https://wa.me/{{ preg_replace('/[^0-9]/', '', $guest->event->no_wa_confirmation) }}?text={{ urlencode('Hello! I would like to confirm my attendance for ' . ($guest->event->title ?? 'the event') . '. - ' . $guest->name) }}"
                     target="_blank" rel="noopener" class="btn-rsvp">
-                    <i class="fab fa-whatsapp"></i><span>RSVP via WhatsApp</span>
+                    <i class="fab fa-whatsapp"></i>
+                    <span>RSVP via WhatsApp</span>
                 </a>
             @endif
+
             @if ($guest->event->link_googlemaps ?? false)
                 <a href="{{ $guest->event->link_googlemaps }}" target="_blank" rel="noopener"
                     class="btn-location-outline">
-                    <i class="fas fa-map-marked-alt"></i><span>View Location</span><i class="fas fa-external-link-alt"
-                        style="font-size:0.7rem;"></i>
+                    <i class="fas fa-map-marked-alt"></i>
+                    <span>View Location</span>
+                    <i class="fas fa-external-link-alt" style="font-size:0.7rem;"></i>
                 </a>
             @endif
         </section>
 
         {{-- SECTION 6: CLOSING --}}
         <section class="fullscreen-section section-closing" id="sectionClosing">
-            <p class="closing-text"><i class="fas fa-heart" style="margin-right:10px;font-size:0.7em;"></i>With Love
-                & Gratitude<i class="fas fa-heart" style="margin-left:10px;font-size:0.7em;"></i></p>
+            <p class="closing-text">
+                <i class="fas fa-heart" style="margin-right: 10px; font-size: 0.7em;"></i>
+                With Love & Gratitude
+                <i class="fas fa-heart" style="margin-left: 10px; font-size: 0.7em;"></i>
+            </p>
             <p class="closing-name">{{ $guest->event->title ?? 'Belva' }}</p>
-            <p style="color:var(--silver-60);font-size:0.85rem;"><i class="far fa-smile"
-                    style="margin-right:5px;"></i>Thank you for being part of this special moment</p>
+            <p style="color: var(--silver-60); font-size: 0.85rem;">
+                <i class="far fa-smile" style="margin-right: 5px;"></i>
+                Thank you for being part of this special moment
+            </p>
         </section>
 
     </div>
 
     <script>
+        // ============================================
+        // MUSIC PLAYER
+        // ============================================
         var bgMusic = document.getElementById('bgMusic');
         var musicPlayer = document.getElementById('musicPlayer');
         var musicToggle = document.getElementById('musicToggle');
@@ -1120,6 +1080,9 @@
             });
         }
 
+        // ============================================
+        // SMOOTH SCROLL
+        // ============================================
         function smoothScrollTo(id) {
             var s = document.getElementById(id);
             if (s) s.scrollIntoView({
@@ -1128,14 +1091,16 @@
             });
         }
 
+        // ============================================
+        // PHOTO SLIDER
+        // ============================================
         var currentSlide = 0;
         var totalSlides = {{ count($photos) }};
         var autoSlideTimer = null;
 
         function updateSlider() {
             var t = document.getElementById('sliderTrack');
-            var d = document.querySelectorAll(
-                '.slider-dot');
+            var d = document.querySelectorAll('.slider-dot');
             if (t) t.style.transform = 'translateX(-' + (currentSlide * 100) + '%)';
             d.forEach(function(dot, i) {
                 dot.classList.toggle('active', i === currentSlide);
@@ -1156,8 +1121,8 @@
 
         function startAutoSlide() {
             if (totalSlides > 1) autoSlideTimer = setInterval(function() {
-                currentSlide = (
-                    currentSlide + 1) % totalSlides;
+                currentSlide = (currentSlide + 1) %
+                    totalSlides;
                 updateSlider();
             }, 4000);
         }
@@ -1166,6 +1131,7 @@
             if (autoSlideTimer) clearInterval(autoSlideTimer);
             startAutoSlide();
         }
+
         if (totalSlides > 1) startAutoSlide();
         (function() {
             var s = document.getElementById('photoSlider');
@@ -1183,72 +1149,69 @@
                     slidePhoto(sx > ex ? 1 : -1);
             });
         })();
+
+        // ============================================
+        // QUOTES OBSERVER
+        // ============================================
         (function() {
             var q = document.getElementById('quotesContent');
             if (!q) return;
-            new IntersectionObserver(
-                function(e) {
+            new IntersectionObserver(function(e) {
                     if (e[0].isIntersecting) q.classList.add('visible');
                 }, {
                     threshold: 0.4
-                }).observe(
-                q);
+                })
+                .observe(q);
         })();
 
-        // FALLING DIAMONDS GENERATOR
-        (function() {
-            var c = document.getElementById('diamondsContainer');
-            if (!c) return;
-            var frag = document.createDocumentFragment();
-            // Regular diamonds
-            for (var i = 0; i < 20; i++) {
-                var d = document.createElement('div');
-                d.classList.add('diamond');
-                var r = Math.random();
-                if (r < 0.15) d.classList.add('large');
-                else if (r < 0.4) d.classList.add('small');
-                d.style.left = (Math.random() * 95) + '%';
-                d.style.animationDuration = (Math.random() * 18 + 10) + 's';
-                d.style.animationDelay = (Math.random() * 15) + 's';
-                frag.appendChild(d);
-            }
-            // Sparkle diamonds
-            for (var j = 0; j < 12; j++) {
-                var s = document.createElement('div');
-                s.classList.add('diamond', 'sparkle');
-                s.style.left = (Math.random() * 95) + '%';
-                s.style.animationDuration = (Math.random() * 6 + 4) + 's';
-                s.style.animationDelay = (Math.random() * 8) + 's';
-                frag.appendChild(s);
-            }
-            c.appendChild(frag);
-        })();
-
-        // MIST GENERATOR
+        // ============================================
+        // MIST GENERATOR (OPTIMIZED)
+        // ============================================
         (function() {
             var c = document.getElementById('mistContainer');
             if (!c) return;
             var frag = document.createDocumentFragment();
-            for (var i = 0; i < 5; i++) {
+            for (var i = 0; i < 8; i++) {
                 var m = document.createElement('div');
                 m.classList.add('mist');
-                m.style.width = (Math.random() * 200 + 150) + 'px';
+                m.style.width = (Math.random() * 200 + 120) + 'px';
                 m.style.height = m.style.width;
                 m.style.left = (Math.random() * 100) + '%';
-                m.style.animationDuration = (Math.random() * 20 + 16) + 's';
-                m.style.animationDelay = (Math.random() * 16) + 's';
+                m.style.animationDuration = (Math.random() * 18 + 14) + 's';
+                m.style.animationDelay = (Math.random() * 14) + 's';
                 frag.appendChild(m);
             }
             c.appendChild(frag);
         })();
 
+        // ============================================
+        // PARTICLES GENERATOR (OPTIMIZED)
+        // ============================================
+        (function() {
+            var c = document.getElementById('particlesContainer');
+            if (!c) return;
+            var frag = document.createDocumentFragment();
+            for (var i = 0; i < 25; i++) {
+                var p = document.createElement('div');
+                p.classList.add('particle');
+                p.style.width = (Math.random() * 2.5 + 1) + 'px';
+                p.style.height = p.style.width;
+                p.style.left = (Math.random() * 100) + '%';
+                p.style.animationDuration = (Math.random() * 10 + 8) + 's';
+                p.style.animationDelay = (Math.random() * 8) + 's';
+                frag.appendChild(p);
+            }
+            c.appendChild(frag);
+        })();
+
+        // ============================================
         // ANIMATION OBSERVER
+        // ============================================
         (function() {
             var obs = new IntersectionObserver(function(e) {
                 e.forEach(function(en) {
                     if (en.isIntersecting) {
-                        en
-                            .target.style.opacity = '1';
+                        en.target.style.opacity = '1';
                         en.target.style.transform = 'translateY(0)';
                     }
                 });
@@ -1256,22 +1219,27 @@
                 threshold: 0.3
             });
             document.querySelectorAll('.detail-card, .rsvp-title, .rsvp-subtitle, .closing-text, .closing-name')
-                .forEach(
-                    function(el) {
-                        el.style.opacity = '0';
-                        el.style.transform = 'translateY(20px)';
-                        el.style.transition = 'all 0.6s ease';
-                        obs.observe(el);
-                    });
+                .forEach(function(el) {
+                    el.style.opacity = '0';
+                    el.style.transform = 'translateY(20px)';
+                    el.style.transition = 'all 0.6s ease';
+                    obs.observe(el);
+                });
         })();
 
+        // ============================================
+        // KEYBOARD
+        // ============================================
         document.addEventListener('keydown', function(e) {
             if (totalSlides > 1) {
-                if (e.key === 'ArrowRight')
-                    slidePhoto(1);
+                if (e.key === 'ArrowRight') slidePhoto(1);
                 else if (e.key === 'ArrowLeft') slidePhoto(-1);
             }
         });
+
+        // ============================================
+        // INIT
+        // ============================================
         window.addEventListener('load', function() {
             document.body.style.opacity = '0';
             document.body.style.transition = 'opacity 0.5s ease';
