@@ -497,21 +497,21 @@
                 currentShareData.slug = guestSlug;
                 currentShareData.link = window.location.origin + '/invitation/' + guestSlug;
                 // currentShareData.text = 'Halo ' + guestName + ', kamu diundang ke acara {{ $event->title }} 🎉\n\nLihat detail di:\n' + currentShareData.link;
-                currentShareData.text = 
-                    `Shalom,
+                currentShareData.text =
+`Shalom,
 
-                    We are grateful for God's goodness in our lives.
-                    With all due respect, we would like to invite you, ladies and gentlemen;
+We are grateful for God's goodness in our lives.
+With all due respect, we would like to invite you, ladies and gentlemen;
 
-                    ${guestName}
+${guestName}
 
-                    Here is our invitation link:
+Here is our invitation link:
 
-                    ${currentShareData.link}
+${currentShareData.link}
 
-                    It would be an honor and pleasure for us if you could attend and join our celebration event.
+It would be an honor and pleasure for us if you could attend and join our celebration event.
 
-                    Belva Angeline Githa`;
+Belva Angeline Githa`;
 
                 // Update modal content
                 updateShareModal();
