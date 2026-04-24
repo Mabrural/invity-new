@@ -3,15 +3,21 @@
 
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
-    <title>Digital Invitation | {{ $guest->name ?: 'Guest' }}</title>
-    <link rel="icon" type="image/png" sizes="32x32" href="{{ asset('storage/' . $event->favicon) ?? asset('favicon.png') }}">
-    <link rel="icon" type="image/png" sizes="16x16" href="{{ asset('storage/' . $event->favicon) }}">
-    <link rel="apple-touch-icon" href="{{ asset('storage/' . $event->favicon) ?? asset('favicon.png') }}">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <meta property="og:title" content="{{ $event->title }}">
+    <title>Digital Invitation | {{ $guest->name ?? 'Guest' }}</title>
+
+    @php
+        $favicon = $event && $event->favicon ? asset('storage/' . $event->favicon) : asset('favicon.png');
+        $ogImage = $event && $event->event_photo_1 ? asset('storage/' . $event->event_photo_1) : asset('default.png');
+    @endphp
+
+    <link rel="icon" href="{{ $favicon }}">
+    <link rel="apple-touch-icon" href="{{ $favicon }}">
+
+    <meta property="og:title" content="{{ $event->title ?? 'Invitation' }}">
     <meta property="og:description" content="You're invited to our special day">
-    <meta property="og:image" content="{{ asset('storage/' . $event->favicon) ?? asset('favicon.png') }}">
+    <meta property="og:image" content="{{ $ogImage }}">
     <meta property="og:url" content="{{ url()->current() }}">
     <meta property="og:type" content="website">
 
@@ -1067,8 +1073,7 @@
             @endphp
 
             @if (count($photos) > 0)
-                <div
-                    style="display: flex; flex-direction: column; align-items: center; width: 100%; max-width: 700px;">
+                <div style="display: flex; flex-direction: column; align-items: center; width: 100%; max-width: 700px;">
                     <div class="slider-container" id="photoSlider">
                         <div class="slider-track" id="sliderTrack">
                             @foreach ($photos as $photo)
