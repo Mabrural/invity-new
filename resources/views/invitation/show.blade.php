@@ -7,7 +7,7 @@
     <title>Digital Invitation | {{ $guest->name }}</title>
     <meta property="og:title" content="{{ $event->title }}">
     <meta property="og:description" content="You're invited to our special day">
-    <meta property="og:image" content="{{ asset('storage/' . $event->event_photo_1) }}">
+    <meta property="og:image" content="{{ asset('storage/' . $event->favicon) }}">
     <meta property="og:url" content="{{ url()->current() }}">
     <meta property="og:type" content="website">
 
