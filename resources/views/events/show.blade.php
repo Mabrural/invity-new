@@ -503,7 +503,7 @@
 We are grateful for God's goodness in our lives.
 With all due respect, we would like to invite you, ladies and gentlemen;
 
-${guestName}
+*${guestName}*
 
 Here is our invitation link:
 
