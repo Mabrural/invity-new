@@ -1,6 +1,7 @@
 @extends('layouts.main')
 
 @section('container')
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <div class="container-fluid py-2">
 
         {{-- HEADER --}}
@@ -20,9 +21,9 @@
                             <p class="text-sm mb-0">Total Event</p>
                             <h4 class="mb-0">{{ $totalEvents ?? 0 }}</h4>
                         </div>
-                        <div class="icon icon-shape bg-gradient-dark text-white rounded-circle shadow">
+                        {{-- <div class="icon icon-shape bg-gradient-dark text-white rounded-circle shadow">
                             <i class="fas fa-calendar"></i>
-                        </div>
+                        </div> --}}
                     </div>
                 </div>
             </div>
@@ -35,9 +36,9 @@
                             <p class="text-sm mb-0">Total Guest</p>
                             <h4 class="mb-0">{{ $totalGuests ?? 0 }}</h4>
                         </div>
-                        <div class="icon icon-shape bg-gradient-primary text-white rounded-circle shadow">
+                        {{-- <div class="icon icon-shape bg-gradient-primary text-white rounded-circle shadow">
                             <i class="fas fa-users"></i>
-                        </div>
+                        </div> --}}
                     </div>
                 </div>
             </div>
@@ -50,9 +51,9 @@
                             <p class="text-sm mb-0">Event Aktif</p>
                             <h4 class="mb-0">{{ $activeEvents ?? 0 }}</h4>
                         </div>
-                        <div class="icon icon-shape bg-gradient-success text-white rounded-circle shadow">
+                        {{-- <div class="icon icon-shape bg-gradient-success text-white rounded-circle shadow">
                             <i class="fas fa-bolt"></i>
-                        </div>
+                        </div> --}}
                     </div>
                 </div>
             </div>
@@ -65,9 +66,9 @@
                             <p class="text-sm mb-0">Guest Today</p>
                             <h4 class="mb-0">{{ $guestToday ?? 0 }}</h4>
                         </div>
-                        <div class="icon icon-shape bg-gradient-warning text-white rounded-circle shadow">
+                        {{-- <div class="icon icon-shape bg-gradient-warning text-white rounded-circle shadow">
                             <i class="fas fa-user-plus"></i>
-                        </div>
+                        </div> --}}
                     </div>
                 </div>
             </div>
@@ -118,11 +119,11 @@
                     <div class="card-body d-grid gap-2">
 
                         <a href="{{ route('events.create') }}" class="btn btn-dark">
-                            ➕ Create Event
+                            <i class="fas fa-plus"></i> Create Event
                         </a>
 
                         <a href="{{ route('events.index') }}" class="btn btn-outline-dark">
-                            📅 View Events
+                            <i class="fas fa-calendar"></i> View Events
                         </a>
 
 
