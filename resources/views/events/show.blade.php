@@ -134,14 +134,14 @@
             </div>
             <div class="d-flex gap-2">
                 <a href="{{ route('events.edit', $event->id) }}" class="btn bg-gradient-warning btn-sm">
-                    <i class="fas fa-edit"></i> Edit
+                     Edit
                 </a>
                 <form action="{{ route('events.destroy', $event->id) }}" method="POST"
                     onsubmit="return confirm('Yakin ingin menghapus event ini? Data tidak bisa dikembalikan!')">
                     @csrf
                     @method('DELETE')
                     <button type="submit" class="btn btn-danger btn-sm">
-                        <i class="fas fa-trash"></i> Delete
+                         Delete
                     </button>
                 </form>
                 <a href="{{ route('events.index') }}" class="btn btn-light btn-sm">
@@ -286,7 +286,7 @@
                                                 <div class="modal-footer d-flex justify-content-between">
                                                     <button type="button" class="btn btn-danger btn-sm"
                                                         onclick="deleteGuest({{ $guest->id }})">
-                                                        <i class="fas fa-trash"></i> Delete
+                                                         Delete
                                                     </button>
                                                     <div>
                                                         <button type="button" class="btn btn-light btn-sm"
