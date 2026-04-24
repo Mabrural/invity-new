@@ -1027,11 +1027,6 @@
                 <p class="gate-dear">Dear,</p>
                 <h1 class="gate-name">{{ $guest->name }}</h1>
                 <div class="gate-divider-line"></div>
-                <p class="gate-quote">
-                    <i class="fas fa-quote-left" style="margin-right: 8px; font-size: 0.8rem; opacity: 0.5;"></i>
-                    Every moment is a gift, and your presence would make this celebration truly complete.
-                    <i class="fas fa-quote-right" style="margin-left: 8px; font-size: 0.8rem; opacity: 0.5;"></i>
-                </p>
                 <a href="#sectionQuotes" class="btn-open-gate" id="btnOpenGate" onclick="openInvitation(event)">
                     <i class="far fa-envelope-open"></i>
                     <span>Open Invitation</span>
@@ -1117,13 +1112,7 @@
                         <i class="fas fa-map-marker-alt"></i>
                     </div>
                     <p class="detail-label">Venue</p>
-                    <p class="detail-value">{{ $guest->event->venue ?? 'Secret Location' }}</p>
-                </div>
-                <div class="detail-card">
-                    <div class="detail-icon">
-                        <i class="far fa-clock"></i>
-                    </div>
-                    <p class="detail-label">Time</p>
+                    <p class="detail-value">{{ $guest->event->venue ?? 'Secret Location' }}</p><br>
                     <p class="detail-value">{{ $guest->event->event_time ?? 'To be announced' }}</p>
                 </div>
                 @if ($guest->event->dresscode ?? false)
