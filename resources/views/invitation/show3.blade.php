@@ -36,6 +36,10 @@
             --silver-20: #3a3a3c;
             --silver-10: #1c1c1e;
             --silver-0: #000000;
+            --accent: #c0c0c0;
+            --accent-light: #e8e8e8;
+            --accent-dark: #8a8a8a;
+            --gold-subtle: rgba(192, 192, 192, 0.3);
             --glass-bg: rgba(28, 28, 30, 0.5);
             --glass-border: rgba(255, 255, 255, 0.08);
             --transition-smooth: cubic-bezier(0.22, 0.61, 0.36, 1);
@@ -53,7 +57,6 @@
             scroll-snap-type: y mandatory;
             overflow-y: scroll;
             scrollbar-width: none;
-            height: 100%;
         }
 
         html::-webkit-scrollbar {
@@ -68,10 +71,9 @@
             -moz-osx-font-smoothing: grayscale;
             cursor: default;
             overflow-x: hidden;
-            height: 100%;
         }
 
-        /* === BACKGROUND LAYERS === */
+        /* === ENHANCED VIDEO BACKGROUND === */
         .video-background {
             position: fixed;
             top: 0;
@@ -114,6 +116,7 @@
             }
         }
 
+        /* === ENHANCED GRAIN OVERLAY === */
         .grain-overlay {
             position: fixed;
             top: 0;
@@ -129,35 +132,7 @@
             background-size: 150px 150px;
         }
 
-        .light-rays {
-            position: fixed;
-            top: -50%;
-            left: -50%;
-            width: 200%;
-            height: 200%;
-            z-index: -1;
-            pointer-events: none;
-            background: radial-gradient(ellipse at 30% 20%, rgba(200, 200, 210, 0.04) 0%, transparent 50%),
-                radial-gradient(ellipse at 70% 80%, rgba(200, 200, 210, 0.03) 0%, transparent 50%);
-            animation: lightShift 20s ease-in-out infinite;
-        }
-
-        @keyframes lightShift {
-
-            0%,
-            100% {
-                transform: translate(0, 0);
-            }
-
-            33% {
-                transform: translate(2%, -1%);
-            }
-
-            66% {
-                transform: translate(-1%, 2%);
-            }
-        }
-
+        /* === ENHANCED MIST/SMOKE - BALLET STUDIO STYLE === */
         .mist-container {
             position: fixed;
             top: 0;
@@ -166,12 +141,17 @@
             height: 100%;
             z-index: -1;
             pointer-events: none;
+            filter: blur(0.5px);
         }
 
         .mist {
             position: absolute;
             border-radius: 50%;
-            background: radial-gradient(ellipse at center, rgba(200, 200, 210, 0.12) 0%, rgba(180, 180, 190, 0.06) 20%, rgba(160, 160, 170, 0.03) 40%, transparent 70%);
+            background: radial-gradient(ellipse at center,
+                    rgba(200, 200, 210, 0.12) 0%,
+                    rgba(180, 180, 190, 0.06) 20%,
+                    rgba(160, 160, 170, 0.03) 40%,
+                    transparent 70%);
             animation: mistFloat linear infinite;
             filter: blur(60px);
             mix-blend-mode: screen;
@@ -180,7 +160,10 @@
         .mist-layer-2 {
             position: absolute;
             border-radius: 30% 70% 70% 30% / 30% 30% 70% 70%;
-            background: radial-gradient(ellipse at center, rgba(210, 210, 220, 0.1) 0%, rgba(190, 190, 200, 0.05) 30%, transparent 70%);
+            background: radial-gradient(ellipse at center,
+                    rgba(210, 210, 220, 0.1) 0%,
+                    rgba(190, 190, 200, 0.05) 30%,
+                    transparent 70%);
             animation: mistFloat2 linear infinite;
             filter: blur(80px);
             mix-blend-mode: screen;
@@ -234,6 +217,7 @@
             }
         }
 
+        /* === ENHANCED 3D FLOATING PARTICLES === */
         .particles-container {
             position: fixed;
             top: 0;
@@ -247,10 +231,14 @@
 
         .particle {
             position: absolute;
-            background: radial-gradient(circle, rgba(220, 220, 230, 0.6) 0%, rgba(180, 180, 190, 0.3) 40%, transparent 70%);
+            background: radial-gradient(circle,
+                    rgba(220, 220, 230, 0.6) 0%,
+                    rgba(180, 180, 190, 0.3) 40%,
+                    transparent 70%);
             border-radius: 50%;
             animation: particleFloat3D linear infinite;
-            box-shadow: 0 0 15px rgba(200, 200, 210, 0.3), 0 0 30px rgba(180, 180, 190, 0.15);
+            box-shadow: 0 0 15px rgba(200, 200, 210, 0.3),
+                0 0 30px rgba(180, 180, 190, 0.15);
         }
 
         @keyframes particleFloat3D {
@@ -281,6 +269,7 @@
             }
         }
 
+        /* === ENHANCED 3D FLOATING RINGS === */
         .ring-3d {
             position: fixed;
             pointer-events: none;
@@ -288,7 +277,8 @@
             border-radius: 50%;
             animation: ringRotate linear infinite;
             transform-style: preserve-3d;
-            box-shadow: 0 0 40px rgba(192, 192, 200, 0.03), inset 0 0 40px rgba(192, 192, 200, 0.02);
+            box-shadow: 0 0 40px rgba(192, 192, 200, 0.03),
+                inset 0 0 40px rgba(192, 192, 200, 0.02);
         }
 
         .ring-3d.ring-1 {
@@ -334,7 +324,41 @@
             }
         }
 
-        /* === MUSIC PLAYER === */
+        /* === LIGHT RAYS === */
+        .light-rays {
+            position: fixed;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            z-index: -1;
+            pointer-events: none;
+            background: radial-gradient(ellipse at 30% 20%,
+                    rgba(200, 200, 210, 0.04) 0%,
+                    transparent 50%),
+                radial-gradient(ellipse at 70% 80%,
+                    rgba(200, 200, 210, 0.03) 0%,
+                    transparent 50%);
+            animation: lightShift 20s ease-in-out infinite;
+        }
+
+        @keyframes lightShift {
+
+            0%,
+            100% {
+                transform: translate(0, 0);
+            }
+
+            33% {
+                transform: translate(2%, -1%);
+            }
+
+            66% {
+                transform: translate(-1%, 2%);
+            }
+        }
+
+        /* === MUSIC PLAYER FLOATING BUTTON === */
         .music-player {
             position: fixed;
             bottom: 30px;
@@ -434,15 +458,14 @@
             }
         }
 
-        /* === MAIN SCROLL CONTAINER === */
+        /* === MAIN SCROLL SECTIONS === */
         .scroll-container {
             position: relative;
             z-index: 1;
-            height: 100%;
         }
 
         .fullscreen-section {
-            height: 100vh;
+            min-height: 100vh;
             width: 100%;
             display: flex;
             align-items: center;
@@ -450,7 +473,6 @@
             scroll-snap-align: start;
             position: relative;
             padding: 20px;
-            overflow: hidden;
         }
 
         /* === SECTION 1: GATE / COVER === */
@@ -512,7 +534,8 @@
             animation: fadeInUp 1.5s ease forwards;
             animation-delay: 0.9s;
             opacity: 0;
-            text-shadow: 0 0 80px rgba(192, 192, 192, 0.3), 0 0 120px rgba(192, 192, 192, 0.1);
+            text-shadow: 0 0 80px rgba(192, 192, 192, 0.3),
+                0 0 120px rgba(192, 192, 192, 0.1);
         }
 
         .gate-divider-line {
@@ -580,7 +603,8 @@
             border-color: var(--silver-80);
             color: var(--silver-100);
             transform: scale(1.03);
-            box-shadow: 0 20px 60px rgba(192, 192, 192, 0.12), 0 0 100px rgba(192, 192, 192, 0.05);
+            box-shadow: 0 20px 60px rgba(192, 192, 192, 0.12),
+                0 0 100px rgba(192, 192, 192, 0.05);
             letter-spacing: 5px;
         }
 
@@ -633,56 +657,12 @@
             }
         }
 
-        /* === SECTION 2: FULL QUOTES === */
-        .section-quotes {
-            text-align: center;
-            padding: 40px;
-        }
-
-        .quotes-content {
-            max-width: 650px;
-            animation: fadeInUp 1.5s ease forwards;
-            opacity: 0;
-        }
-
-        .quotes-content.visible {
-            opacity: 1;
-        }
-
-        .quotes-icon {
-            font-size: 3rem;
-            color: var(--silver-40);
-            margin-bottom: 30px;
-            opacity: 0.6;
-        }
-
-        .quotes-main {
-            font-family: 'Cormorant Garamond', serif;
-            font-size: clamp(1.3rem, 3vw, 1.8rem);
-            font-style: italic;
-            color: var(--silver-80);
-            line-height: 1.8;
-            margin-bottom: 30px;
-            letter-spacing: 0.5px;
-        }
-
-        .quotes-author {
-            font-family: 'Great Vibes', cursive;
-            font-size: clamp(1.5rem, 3vw, 2rem);
-            color: var(--silver-60);
-            letter-spacing: 1px;
-        }
-
-        .quotes-divider {
-            width: 60px;
-            height: 1px;
-            background: linear-gradient(90deg, transparent, var(--silver-40), transparent);
-            margin: 20px auto;
-        }
-
-        /* === SECTION 3: PHOTO SLIDER === */
-        .section-photos {
-            padding: 20px;
+        /* === SECTION 2: PHOTO SLIDER + DETAILS === */
+        .section-details {
+            flex-direction: column;
+            gap: 30px;
+            padding-top: 60px;
+            padding-bottom: 60px;
         }
 
         .slider-container {
@@ -691,7 +671,8 @@
             position: relative;
             border-radius: 20px;
             overflow: hidden;
-            box-shadow: 0 30px 80px rgba(0, 0, 0, 0.5), 0 0 100px rgba(192, 192, 192, 0.05);
+            box-shadow: 0 30px 80px rgba(0, 0, 0, 0.5),
+                0 0 100px rgba(192, 192, 192, 0.05);
             aspect-ratio: 4/3;
             background: rgba(0, 0, 0, 0.3);
             border: 1px solid rgba(255, 255, 255, 0.05);
@@ -712,24 +693,24 @@
 
         .slider-dots {
             display: flex;
-            gap: 10px;
+            gap: 8px;
             justify-content: center;
-            margin-top: 20px;
+            margin-top: 15px;
         }
 
         .slider-dot {
-            width: 10px;
-            height: 10px;
+            width: 8px;
+            height: 8px;
             border-radius: 50%;
             background: var(--silver-40);
-            border: 1px solid rgba(255, 255, 255, 0.15);
+            border: none;
             cursor: pointer;
             transition: all 0.4s;
         }
 
         .slider-dot.active {
             background: var(--silver-100);
-            width: 28px;
+            width: 24px;
             border-radius: 10px;
         }
 
@@ -741,8 +722,8 @@
             backdrop-filter: blur(15px);
             border: 1px solid rgba(255, 255, 255, 0.1);
             color: white;
-            width: 44px;
-            height: 44px;
+            width: 40px;
+            height: 40px;
             border-radius: 50%;
             display: flex;
             align-items: center;
@@ -750,7 +731,7 @@
             cursor: pointer;
             z-index: 10;
             transition: all 0.3s;
-            font-size: 0.9rem;
+            font-size: 0.8rem;
         }
 
         .slider-nav:hover {
@@ -766,15 +747,10 @@
             right: 15px;
         }
 
-        /* === SECTION 4: DETAILS === */
-        .section-details {
-            padding: 20px;
-        }
-
         .details-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 20px;
+            gap: 15px;
             width: 100%;
             max-width: 700px;
         }
@@ -784,8 +760,8 @@
             backdrop-filter: blur(25px);
             -webkit-backdrop-filter: blur(25px);
             border: 1px solid var(--glass-border);
-            border-radius: 20px;
-            padding: 30px 25px;
+            border-radius: 16px;
+            padding: 25px 20px;
             text-align: center;
             transition: all 0.5s var(--transition-smooth);
             position: relative;
@@ -804,13 +780,14 @@
 
         .detail-card:hover {
             transform: translateY(-5px);
-            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5), 0 0 60px rgba(192, 192, 192, 0.03);
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5),
+                0 0 60px rgba(192, 192, 192, 0.03);
             border-color: rgba(255, 255, 255, 0.15);
         }
 
         .detail-icon {
-            font-size: 2rem;
-            margin-bottom: 15px;
+            font-size: 1.8rem;
+            margin-bottom: 12px;
             color: var(--silver-60);
             transition: color 0.3s;
         }
@@ -820,23 +797,23 @@
         }
 
         .detail-label {
-            font-size: 0.65rem;
+            font-size: 0.6rem;
             font-weight: 600;
             letter-spacing: 3px;
             text-transform: uppercase;
             color: var(--silver-60);
-            margin-bottom: 8px;
+            margin-bottom: 6px;
         }
 
         .detail-value {
             font-family: 'Cormorant Garamond', serif;
-            font-size: 1.2rem;
+            font-size: 1.1rem;
             font-weight: 500;
             color: var(--silver-90);
-            line-height: 1.5;
+            line-height: 1.4;
         }
 
-        /* === SECTION 5: RSVP === */
+        /* === SECTION 3: RSVP & LOCATION === */
         .section-rsvp {
             flex-direction: column;
             gap: 25px;
@@ -875,12 +852,14 @@
             cursor: pointer;
             text-decoration: none;
             transition: all 0.5s var(--transition-bounce);
-            box-shadow: 0 15px 40px rgba(192, 192, 192, 0.2), 0 0 80px rgba(192, 192, 192, 0.08);
+            box-shadow: 0 15px 40px rgba(192, 192, 192, 0.2),
+                0 0 80px rgba(192, 192, 192, 0.08);
         }
 
         .btn-rsvp:hover {
             transform: scale(1.05);
-            box-shadow: 0 25px 60px rgba(192, 192, 192, 0.3), 0 0 120px rgba(192, 192, 192, 0.12);
+            box-shadow: 0 25px 60px rgba(192, 192, 192, 0.3),
+                0 0 120px rgba(192, 192, 192, 0.12);
         }
 
         .btn-location-outline {
@@ -910,7 +889,7 @@
             box-shadow: 0 15px 40px rgba(192, 192, 192, 0.1);
         }
 
-        /* === SECTION 6: CLOSING === */
+        /* === SECTION 4: CLOSING === */
         .section-closing {
             flex-direction: column;
             text-align: center;
@@ -919,7 +898,7 @@
 
         .closing-text {
             font-family: 'Great Vibes', cursive;
-            font-size: clamp(2.5rem, 5vw, 3.5rem);
+            font-size: clamp(2rem, 5vw, 3rem);
             color: var(--silver-80);
             font-weight: 400;
             text-shadow: 0 0 40px rgba(192, 192, 192, 0.15);
@@ -939,18 +918,18 @@
             }
 
             .slider-nav {
-                width: 36px;
-                height: 36px;
+                width: 32px;
+                height: 32px;
                 font-size: 0.7rem;
             }
 
             .details-grid {
                 grid-template-columns: 1fr 1fr;
-                gap: 12px;
+                gap: 10px;
             }
 
             .detail-card {
-                padding: 20px 15px;
+                padding: 18px 14px;
             }
 
             .music-player {
@@ -963,16 +942,11 @@
                 height: 45px;
                 font-size: 1rem;
             }
-
-            .quotes-main {
-                font-size: clamp(1.1rem, 2.5vw, 1.4rem);
-            }
         }
 
         @media (max-width: 480px) {
             .details-grid {
                 grid-template-columns: 1fr;
-                max-width: 350px;
             }
 
             .btn-open-gate,
@@ -989,7 +963,10 @@
 <body>
 
     <!-- === BACKGROUND LAYERS === -->
+    <!-- Light Rays Background -->
     <div class="light-rays"></div>
+
+    <!-- Video Background -->
     <div class="video-background" id="videoBg">
         <iframe
             src="https://www.youtube.com/embed/HPph35tdMP8?autoplay=1&mute=1&controls=0&loop=1&playlist=HPph35tdMP8&showinfo=0&rel=0&enablejsapi=1&modestbranding=1&iv_load_policy=3&playsinline=1"
@@ -998,23 +975,35 @@
             allowfullscreen>
         </iframe>
     </div>
+
+    <!-- Grain Overlay -->
     <div class="grain-overlay"></div>
+
+    <!-- 3D Rings -->
     <div class="ring-3d ring-1"></div>
     <div class="ring-3d ring-2"></div>
     <div class="ring-3d ring-3"></div>
+
+    <!-- Mist/Smoke Layer 1 -->
     <div class="mist-container" id="mistContainer"></div>
+
+    <!-- Mist/Smoke Layer 2 -->
     <div class="mist-container" id="mistContainer2"></div>
+
+    <!-- Particles -->
     <div class="particles-container" id="particlesContainer"></div>
 
-    <!-- === MUSIC PLAYER === -->
+    <!-- === MUSIC PLAYER FLOATING BUTTON === -->
     <div class="music-player" id="musicPlayer">
         <button class="music-toggle paused" id="musicToggle" aria-label="Toggle music">
             <i class="fas fa-music"></i>
         </button>
     </div>
 
+    <!-- Hidden Audio Element -->
     <audio id="bgMusic" preload="auto" loop>
         <source src="{{ asset('assets/blessingmaria.mp3') }}" type="audio/mpeg">
+        Your browser does not support the audio element.
     </audio>
 
     <!-- === MAIN SCROLL CONTAINER === -->
@@ -1023,7 +1012,9 @@
         {{-- SECTION 1: GATE / COVER --}}
         <section class="fullscreen-section section-gate" id="sectionGate">
             <div class="gate-content">
-                <p class="gate-event-label">The Celebration of Belva 17th Birthday</p>
+                <p class="gate-event-label">
+                    The Celebration of Belva 17th Birthday
+                </p>
                 <p class="gate-dear">Dear,</p>
                 <h1 class="gate-name">{{ $guest->name }}</h1>
                 <div class="gate-divider-line"></div>
@@ -1032,32 +1023,21 @@
                     Every moment is a gift, and your presence would make this celebration truly complete.
                     <i class="fas fa-quote-right" style="margin-left: 8px; font-size: 0.8rem; opacity: 0.5;"></i>
                 </p>
-                <a href="#sectionQuotes" class="btn-open-gate" id="btnOpenGate" onclick="openInvitation(event)">
+                <a href="#sectionDetails" class="btn-open-gate" id="btnOpenGate" onclick="openInvitation(event)">
                     <i class="far fa-envelope-open"></i>
                     <span>Open Invitation</span>
                     <i class="fas fa-chevron-down"></i>
                 </a>
             </div>
-        </section>
-
-        {{-- SECTION 2: FULL QUOTES --}}
-        <section class="fullscreen-section section-quotes" id="sectionQuotes">
-            <div class="quotes-content" id="quotesContent">
-                <div class="quotes-icon">
-                    <i class="fas fa-feather-alt"></i>
-                </div>
-                <p class="quotes-main">
-                    "In the tapestry of life, every thread of friendship weaves a story of love, laughter, and cherished
-                    memories. Today, we gather not just to celebrate a milestone, but to honor the beautiful soul that
-                    has touched our hearts in ways words cannot express."
-                </p>
-                <div class="quotes-divider"></div>
-                <p class="quotes-author">— With Love, Belva</p>
+            <div class="scroll-hint">
+                <span>Scroll</span>
+                <i class="fas fa-chevron-down"></i>
             </div>
         </section>
 
-        {{-- SECTION 3: PHOTO SLIDER --}}
-        <section class="fullscreen-section section-photos" id="sectionPhotos">
+        {{-- SECTION 2: PHOTO SLIDER + DETAILS --}}
+        <section class="fullscreen-section section-details" id="sectionDetails">
+            {{-- Photo Slider --}}
             @php
                 $photos = [];
                 if ($guest->event->event_photo_1 ?? false) {
@@ -1072,37 +1052,32 @@
             @endphp
 
             @if (count($photos) > 0)
-                <div
-                    style="display: flex; flex-direction: column; align-items: center; width: 100%; max-width: 700px;">
-                    <div class="slider-container" id="photoSlider">
-                        <div class="slider-track" id="sliderTrack">
-                            @foreach ($photos as $photo)
-                                <img src="{{ $photo }}" alt="Event Photo" loading="lazy">
-                            @endforeach
-                        </div>
-                        @if (count($photos) > 1)
-                            <button class="slider-nav prev" onclick="slidePhoto(-1)">
-                                <i class="fas fa-chevron-left"></i>
-                            </button>
-                            <button class="slider-nav next" onclick="slidePhoto(1)">
-                                <i class="fas fa-chevron-right"></i>
-                            </button>
-                        @endif
+                <div class="slider-container" id="photoSlider">
+                    <div class="slider-track" id="sliderTrack">
+                        @foreach ($photos as $photo)
+                            <img src="{{ $photo }}" alt="Event Photo" loading="lazy">
+                        @endforeach
                     </div>
                     @if (count($photos) > 1)
-                        <div class="slider-dots" id="sliderDots">
-                            @foreach ($photos as $index => $photo)
-                                <button class="slider-dot {{ $index === 0 ? 'active' : '' }}"
-                                    onclick="goToSlide({{ $index }})"></button>
-                            @endforeach
-                        </div>
+                        <button class="slider-nav prev" onclick="slidePhoto(-1)">
+                            <i class="fas fa-chevron-left"></i>
+                        </button>
+                        <button class="slider-nav next" onclick="slidePhoto(1)">
+                            <i class="fas fa-chevron-right"></i>
+                        </button>
                     @endif
                 </div>
+                @if (count($photos) > 1)
+                    <div class="slider-dots" id="sliderDots">
+                        @foreach ($photos as $index => $photo)
+                            <button class="slider-dot {{ $index === 0 ? 'active' : '' }}"
+                                onclick="goToSlide({{ $index }})"></button>
+                        @endforeach
+                    </div>
+                @endif
             @endif
-        </section>
 
-        {{-- SECTION 4: DETAILS --}}
-        <section class="fullscreen-section section-details" id="sectionDetails">
+            {{-- Details --}}
             <div class="details-grid">
                 <div class="detail-card">
                     <div class="detail-icon">
@@ -1116,15 +1091,9 @@
                     <div class="detail-icon">
                         <i class="fas fa-map-marker-alt"></i>
                     </div>
-                    <p class="detail-label">Venue</p>
+                    <p class="detail-label">Venue & Time</p>
                     <p class="detail-value">{{ $guest->event->venue ?? 'Secret Location' }}</p>
-                </div>
-                <div class="detail-card">
-                    <div class="detail-icon">
-                        <i class="far fa-clock"></i>
-                    </div>
-                    <p class="detail-label">Time</p>
-                    <p class="detail-value">{{ $guest->event->event_time ?? 'To be announced' }}</p>
+                    <p class="detail-value"> {{ $guest->event->event_time ?? 'To be announced' }}</p>
                 </div>
                 @if ($guest->event->dresscode ?? false)
                     <div class="detail-card">
@@ -1138,7 +1107,7 @@
             </div>
         </section>
 
-        {{-- SECTION 5: RSVP --}}
+        {{-- SECTION 3: RSVP & LOCATION --}}
         <section class="fullscreen-section section-rsvp" id="sectionRsvp">
             <h2 class="rsvp-title">
                 <i class="far fa-check-circle" style="margin-right: 12px; font-size: 0.8em;"></i>
@@ -1164,7 +1133,7 @@
             @endif
         </section>
 
-        {{-- SECTION 6: CLOSING --}}
+        {{-- SECTION 4: CLOSING --}}
         <section class="fullscreen-section section-closing" id="sectionClosing">
             <p class="closing-text">
                 <i class="fas fa-heart" style="margin-right: 10px; font-size: 0.7em;"></i>
@@ -1202,7 +1171,8 @@
             }
 
             musicPlayer.classList.add('active');
-            smoothScrollTo('sectionQuotes');
+
+            smoothScrollTo('sectionDetails');
         }
 
         function toggleMusic() {
@@ -1347,27 +1317,7 @@
         }
 
         // ============================================
-        // QUOTES VISIBILITY
-        // ============================================
-        (function observeQuotes() {
-            const quotesContent = document.getElementById('quotesContent');
-            if (!quotesContent) return;
-
-            const observer = new IntersectionObserver((entries) => {
-                entries.forEach(entry => {
-                    if (entry.isIntersecting) {
-                        quotesContent.classList.add('visible');
-                    }
-                });
-            }, {
-                threshold: 0.5
-            });
-
-            observer.observe(quotesContent);
-        })();
-
-        // ============================================
-        // MIST/SMOKE GENERATORS
+        // ENHANCED MIST/SMOKE GENERATOR - LAYER 1
         // ============================================
         (function createMistLayer1() {
             const container = document.getElementById('mistContainer');
@@ -1392,6 +1342,9 @@
             }
         })();
 
+        // ============================================
+        // ENHANCED MIST/SMOKE GENERATOR - LAYER 2
+        // ============================================
         (function createMistLayer2() {
             const container = document.getElementById('mistContainer2');
             const mistCount = 8;
@@ -1416,7 +1369,7 @@
         })();
 
         // ============================================
-        // PARTICLES GENERATOR
+        // ENHANCED 3D PARTICLES GENERATOR
         // ============================================
         (function createParticles() {
             const container = document.getElementById('particlesContainer');
@@ -1442,7 +1395,7 @@
         })();
 
         // ============================================
-        // PARALLAX 3D RINGS
+        // ENHANCED PARALLAX 3D RINGS ON MOUSE MOVE
         // ============================================
         (function parallaxRings() {
             document.addEventListener('mousemove', (e) => {
