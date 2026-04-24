@@ -151,67 +151,42 @@
 
         .diamond {
             position: absolute;
-            width: 0;
-            height: 0;
-            border-style: solid;
-            will-change: transform, opacity;
-            animation: diamondFall linear infinite;
-            filter: drop-shadow(0 0 4px rgba(200, 200, 220, 0.3));
-        }
-
-        /* Diamond shape using CSS borders - creates a true diamond/rhombus */
-        .diamond::before {
-            content: '';
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%) rotate(45deg);
+            width: 12px;
+            height: 12px;
             background: rgba(200, 200, 220, 0.25);
-            border: 1px solid rgba(220, 220, 240, 0.2);
-            box-shadow: 0 0 8px rgba(200, 200, 220, 0.2), inset 0 0 5px rgba(255, 255, 255, 0.1);
+            transform: rotate(45deg);
+            animation: diamondFall linear infinite;
+            will-change: transform, opacity;
+            border: 1px solid rgba(220, 220, 240, 0.15);
+            box-shadow: 0 0 6px rgba(200, 200, 220, 0.2), inset 0 0 4px rgba(255, 255, 255, 0.1);
         }
 
-        .diamond.small::before {
-            width: 8px;
-            height: 8px;
-            background: rgba(200, 200, 220, 0.35);
-            box-shadow: 0 0 5px rgba(200, 200, 220, 0.25), inset 0 0 3px rgba(255, 255, 255, 0.1);
+        .diamond.small {
+            width: 6px;
+            height: 6px;
+            opacity: 0.5;
+            box-shadow: 0 0 3px rgba(200, 200, 220, 0.15);
         }
 
-        .diamond.large::before {
-            width: 22px;
-            height: 22px;
-            background: rgba(200, 200, 220, 0.3);
-            border: 1.5px solid rgba(220, 220, 240, 0.25);
-            box-shadow: 0 0 15px rgba(200, 200, 220, 0.35), inset 0 0 8px rgba(255, 255, 255, 0.15);
+        .diamond.large {
+            width: 18px;
+            height: 18px;
+            opacity: 0.6;
+            box-shadow: 0 0 12px rgba(200, 200, 220, 0.3), inset 0 0 6px rgba(255, 255, 255, 0.15);
         }
 
-        .diamond.sparkle::before {
-            width: 5px;
-            height: 5px;
-            background: rgba(240, 240, 255, 0.9);
+        .diamond.sparkle {
+            width: 4px;
+            height: 4px;
+            background: rgba(240, 240, 255, 0.8);
             border: none;
-            box-shadow: 0 0 10px rgba(220, 220, 255, 0.8), 0 0 20px rgba(200, 200, 230, 0.5), 0 0 30px rgba(180, 180, 210, 0.3);
-            animation: sparkleInner 2s ease-in-out infinite;
-        }
-
-        @keyframes sparkleInner {
-
-            0%,
-            100% {
-                transform: translate(-50%, -50%) rotate(45deg) scale(1);
-                opacity: 0.8;
-            }
-
-            50% {
-                transform: translate(-50%, -50%) rotate(45deg) scale(1.5);
-                opacity: 1;
-            }
+            box-shadow: 0 0 8px rgba(220, 220, 255, 0.7), 0 0 15px rgba(200, 200, 230, 0.4);
+            animation: diamondSparkle linear infinite;
         }
 
         @keyframes diamondFall {
             0% {
-                transform: translateY(-20vh) translateX(0) rotate(0deg);
+                transform: translateY(-20vh) rotate(45deg) translateX(0);
                 opacity: 0;
             }
 
@@ -228,44 +203,40 @@
             }
 
             100% {
-                transform: translateY(110vh) translateX(40px) rotate(360deg);
+                transform: translateY(110vh) rotate(225deg) translateX(40px);
                 opacity: 0;
             }
-        }
-
-        .diamond.sparkle {
-            animation: diamondSparkle linear infinite;
         }
 
         @keyframes diamondSparkle {
             0% {
-                transform: translateY(-10vh) translateX(0) rotate(0deg);
+                transform: translateY(-10vh) rotate(45deg) scale(0);
                 opacity: 0;
             }
 
             3% {
-                opacity: 1;
-                transform: translateY(0vh) translateX(5px) rotate(90deg);
+                opacity: 0.9;
+                transform: translateY(0vh) rotate(45deg) scale(1.2);
             }
 
             6% {
-                opacity: 0.8;
-                transform: translateY(5vh) translateX(-5px) rotate(180deg);
+                opacity: 0.7;
+                transform: translateY(5vh) rotate(135deg) scale(0.8);
             }
 
             12% {
-                opacity: 0.4;
-                transform: translateY(15vh) translateX(3px) rotate(270deg);
+                opacity: 0.3;
+                transform: translateY(15vh) rotate(225deg) scale(1);
             }
 
             25% {
                 opacity: 0;
-                transform: translateY(40vh) translateX(-3px) rotate(360deg);
+                transform: translateY(40vh) rotate(315deg) scale(0.2);
             }
 
             100% {
                 opacity: 0;
-                transform: translateY(60vh) translateX(0) rotate(450deg);
+                transform: translateY(60vh) rotate(405deg) scale(0);
             }
         }
 
@@ -1203,6 +1174,7 @@
             var offset = -currentSection * window.innerHeight;
             scrollContainer.style.transform = 'translateY(' + offset + 'px)';
 
+            // Show current section
             updateVisibleSection();
 
             setTimeout(function() {
@@ -1215,6 +1187,7 @@
                 if (i === currentSection) {
                     section.classList.add('visible');
                 }
+                // Keep previously visible sections visible
                 if (i <= currentSection) {
                     setTimeout(function() {
                         section.classList.add('visible');
@@ -1223,6 +1196,7 @@
             });
         }
 
+        // Touch Events for Mobile
         document.addEventListener('touchstart', function(e) {
             touchStartY = e.touches[0].clientY;
             touchStartTime = Date.now();
@@ -1241,8 +1215,10 @@
             var elapsed = Date.now() - touchStartTime;
             var absDelta = Math.abs(touchDeltaY);
 
+            // Fast swipe detection
             if (absDelta > minSwipeDistance && elapsed < maxSwipeTime) {
                 if (touchDeltaY > 0) {
+                    // Swipe down - go to previous
                     if (currentSection > 0) {
                         scrollContainer.classList.add('scrolling-fast');
                         goToSection(currentSection - 1);
@@ -1251,6 +1227,7 @@
                         }, 400);
                     }
                 } else {
+                    // Swipe up - go to next
                     if (currentSection < totalSections - 1) {
                         scrollContainer.classList.add('scrolling-fast');
                         goToSection(currentSection + 1);
@@ -1262,6 +1239,7 @@
                 return;
             }
 
+            // Slow/long drag - snap to nearest
             if (absDelta > 20) {
                 if (touchDeltaY > 0 && currentSection > 0) {
                     goToSection(currentSection - 1);
@@ -1273,19 +1251,29 @@
             passive: true
         });
 
+        // Wheel Events for Desktop
         var wheelAccumulator = 0;
         var wheelTimeout = null;
 
         document.addEventListener('wheel', function(e) {
             e.preventDefault();
+
             wheelAccumulator += e.deltaY;
+
             clearTimeout(wheelTimeout);
+
             wheelTimeout = setTimeout(function() {
                 if (Math.abs(wheelAccumulator) > 30) {
-                    if (wheelAccumulator > 0 && currentSection < totalSections - 1) {
-                        goToSection(currentSection + 1);
-                    } else if (wheelAccumulator < 0 && currentSection > 0) {
-                        goToSection(currentSection - 1);
+                    if (wheelAccumulator > 0) {
+                        // Scroll down
+                        if (currentSection < totalSections - 1) {
+                            goToSection(currentSection + 1);
+                        }
+                    } else {
+                        // Scroll up
+                        if (currentSection > 0) {
+                            goToSection(currentSection - 1);
+                        }
                     }
                 }
                 wheelAccumulator = 0;
@@ -1294,6 +1282,7 @@
             passive: false
         });
 
+        // Keyboard Navigation
         document.addEventListener('keydown', function(e) {
             if (e.key === 'ArrowDown' || e.key === 'PageDown') {
                 e.preventDefault();
@@ -1310,15 +1299,21 @@
             }
         });
 
+        // Prevent default scroll on container
         scrollContainer.addEventListener('touchmove', function(e) {
+            // Only prevent if we're not in the photo slider area
             var sliderTrack = document.getElementById('sliderTrack');
-            if (sliderTrack && sliderTrack.contains(e.target)) return;
+            if (sliderTrack && sliderTrack.contains(e.target)) {
+                return;
+            }
         }, {
             passive: true
         });
 
+        // Initial state
         updateVisibleSection();
 
+        // Handle resize
         window.addEventListener('resize', function() {
             var offset = -currentSection * window.innerHeight;
             scrollContainer.style.transition = 'none';
@@ -1368,7 +1363,6 @@
             startAutoSlide();
         }
         if (totalSlides > 1) startAutoSlide();
-
         (function() {
             var s = document.getElementById('photoSlider');
             if (!s) return;
@@ -1382,8 +1376,7 @@
             });
             s.addEventListener('touchend', function(e) {
                 ex = e.changedTouches[0].screenX;
-                if (Math.abs(sx - ex) >
-                    50) {
+                if (Math.abs(sx - ex) > 50) {
                     slidePhoto(sx > ex ? 1 : -1);
                     e.stopPropagation();
                 }
