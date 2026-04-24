@@ -5,6 +5,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <title>Digital Invitation | {{ $guest->name }}</title>
+    <link rel="icon" type="image/png" sizes="32x32" href="{{ asset('storage/' . $event->favicon) }}">
+    <link rel="icon" type="image/png" sizes="16x16" href="{{ asset('storage/' . $event->favicon) }}">
+    <link rel="apple-touch-icon" href="{{ asset('storage/' . $event->favicon) }}">
+
     <meta property="og:title" content="{{ $event->title }}">
     <meta property="og:description" content="You're invited to our special day">
     <meta property="og:image" content="{{ asset('storage/' . $event->favicon) }}">
@@ -299,9 +303,12 @@
         }
 
         @keyframes musicPulse {
-            0%, 100% {
+
+            0%,
+            100% {
                 transform: scale(1);
             }
+
             50% {
                 transform: scale(1.2);
             }
@@ -347,6 +354,7 @@
                 transform: scale(1);
                 opacity: 1;
             }
+
             100% {
                 transform: scale(1.8);
                 opacity: 0;
@@ -358,7 +366,7 @@
                 bottom: 20px;
                 right: 20px;
             }
-            
+
             .music-toggle {
                 width: 45px;
                 height: 45px;
@@ -846,9 +854,7 @@
     <div class="video-background" id="videoBg">
         <iframe id="ytPlayer"
             src="https://www.youtube.com/embed/HPph35tdMP8?list=PLgtrU8K8jEY_4-WsJJAPeCQcHz3Q7umQT&autoplay=1&mute=1&controls=0&loop=1&playlist=HPph35tdMP8"
-            frameborder="0"
-            allow="autoplay; encrypted-media" 
-            allowfullscreen>
+            frameborder="0" allow="autoplay; encrypted-media" allowfullscreen>
         </iframe>
     </div>
 
@@ -1011,7 +1017,7 @@
 
         function openInvitation(event) {
             event.preventDefault();
-            
+
             // Start playing music
             if (bgMusic) {
                 bgMusic.play().then(() => {
@@ -1021,17 +1027,17 @@
                     console.log('Autoplay was prevented:', error);
                 });
             }
-            
+
             // Show music player
             musicPlayer.classList.add('active');
-            
+
             // Scroll to details section
             smoothScrollTo('sectionDetails');
         }
 
         function toggleMusic() {
             if (!bgMusic) return;
-            
+
             if (isMusicPlaying) {
                 bgMusic.pause();
                 isMusicPlaying = false;
@@ -1043,7 +1049,7 @@
                 });
                 isMusicPlaying = true; // Optimistically set to true
             }
-            
+
             updateMusicButton();
         }
 
@@ -1070,12 +1076,12 @@
                 isMusicPlaying = true;
                 updateMusicButton();
             });
-            
+
             bgMusic.addEventListener('pause', () => {
                 isMusicPlaying = false;
                 updateMusicButton();
             });
-            
+
             bgMusic.addEventListener('ended', () => {
                 isMusicPlaying = false;
                 updateMusicButton();
