@@ -22,12 +22,9 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link
-        href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=Inter:wght@300;400;500;600&family=Playfair+Display:ital,wght@0,500;0,600;0,700;0,800;1,400;1,500&family=Great+Vibes&display=swap"
+        href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&family=Inter:wght@300;400;500;600&family=Playfair+Display:ital,wght@0,500;0,700;1,400&family=Great+Vibes&display=swap"
         rel="stylesheet">
-
-    <!-- Font Awesome - Load CSS only, defer JS -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
-        media="print" onload="this.media='all'">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 
     <style>
         :root {
@@ -36,10 +33,9 @@
             --silver-80: #d1d1d6;
             --silver-60: #a1a1a6;
             --silver-40: #6e6e73;
+            --silver-0: #000000;
             --glass-bg: rgba(28, 28, 30, 0.5);
             --glass-border: rgba(255, 255, 255, 0.08);
-            --transition-smooth: cubic-bezier(0.22, 0.61, 0.36, 1);
-            --transition-bounce: cubic-bezier(0.34, 1.56, 0.64, 1);
         }
 
         * {
@@ -66,28 +62,28 @@
             background: #0a0a0a;
             color: var(--silver-90);
             -webkit-font-smoothing: antialiased;
-            -moz-osx-font-smoothing: grayscale;
+            cursor: default;
             overflow-x: hidden;
             height: 100%;
             position: relative;
             -webkit-tap-highlight-color: transparent;
             -webkit-user-select: none;
             user-select: none;
-            contain: paint;
+            contain: layout style;
         }
 
-        /* === CSS BACKGROUND - OPTIMIZED === */
+        /* === OPTIMIZED BACKGROUND === */
         .animated-bg {
             position: fixed;
             top: 0;
             left: 0;
-            width: 100%;
-            height: 100%;
+            width: 100vw;
+            height: 100vh;
             z-index: -3;
             pointer-events: none;
             background: #0a0a0a;
+            overflow: hidden;
             will-change: transform;
-            transform: translateZ(0);
         }
 
         .animated-bg::before {
@@ -97,8 +93,7 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background:
-                radial-gradient(ellipse at 20% 50%, rgba(60, 60, 70, 0.3) 0%, transparent 50%),
+            background: radial-gradient(ellipse at 20% 50%, rgba(60, 60, 70, 0.3) 0%, transparent 50%),
                 radial-gradient(ellipse at 80% 20%, rgba(50, 50, 60, 0.25) 0%, transparent 50%),
                 radial-gradient(ellipse at 50% 80%, rgba(40, 40, 50, 0.2) 0%, transparent 50%);
             animation: bgShift 15s ease-in-out infinite;
@@ -129,42 +124,13 @@
             z-index: -2;
             pointer-events: none;
             opacity: 0.04;
-            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
-            background-size: 200px 200px;
+            mix-blend-mode: overlay;
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='1'/%3E%3C/svg%3E");
+            background-repeat: repeat;
+            background-size: 150px 150px;
         }
 
-        .light-rays {
-            position: fixed;
-            top: -50%;
-            left: -50%;
-            width: 200%;
-            height: 200%;
-            z-index: -1;
-            pointer-events: none;
-            background: radial-gradient(ellipse at 30% 20%, rgba(200, 200, 210, 0.04) 0%, transparent 50%),
-                radial-gradient(ellipse at 70% 80%, rgba(200, 200, 210, 0.03) 0%, transparent 50%);
-            animation: lightShift 20s ease-in-out infinite;
-            will-change: transform;
-            transform: translateZ(0);
-        }
-
-        @keyframes lightShift {
-
-            0%,
-            100% {
-                transform: translate(0, 0);
-            }
-
-            33% {
-                transform: translate(2%, -1%);
-            }
-
-            66% {
-                transform: translate(-1%, 2%);
-            }
-        }
-
-        /* Reduced mist count via JS */
+        /* === OPTIMIZED MIST === */
         .mist-container {
             position: fixed;
             top: 0;
@@ -173,22 +139,23 @@
             height: 100%;
             z-index: -1;
             pointer-events: none;
-            contain: strict;
+            contain: layout style paint;
         }
 
         .mist {
             position: absolute;
             border-radius: 50%;
-            background: radial-gradient(ellipse at center, rgba(200, 200, 210, 0.1) 0%, rgba(180, 180, 190, 0.05) 20%, transparent 60%);
+            background: radial-gradient(ellipse at center, rgba(200, 200, 210, 0.1) 0%, transparent 60%);
             animation: mistFloat linear infinite;
-            filter: blur(60px);
+            filter: blur(50px);
+            mix-blend-mode: screen;
             will-change: transform, opacity;
             transform: translateZ(0);
         }
 
         @keyframes mistFloat {
             0% {
-                transform: translate(0, 110vh) scale(0.6);
+                transform: translate3d(0, 100vh, 0) scale(0.6);
                 opacity: 0;
             }
 
@@ -197,15 +164,20 @@
             }
 
             40% {
-                opacity: 0.35;
+                opacity: 0.3;
+            }
+
+            70% {
+                opacity: 0.1;
             }
 
             100% {
-                transform: translate(10vw, -20vh) scale(1.6);
+                transform: translate3d(10vw, -20vh, 0) scale(1.5);
                 opacity: 0;
             }
         }
 
+        /* === OPTIMIZED PARTICLES === */
         .particles-container {
             position: fixed;
             top: 0;
@@ -214,12 +186,12 @@
             height: 100%;
             z-index: -1;
             pointer-events: none;
-            contain: strict;
+            contain: layout style paint;
         }
 
         .particle {
             position: absolute;
-            background: radial-gradient(circle, rgba(220, 220, 230, 0.5) 0%, transparent 60%);
+            background: radial-gradient(circle, rgba(220, 220, 230, 0.4) 0%, transparent 60%);
             border-radius: 50%;
             animation: particleFloat linear infinite;
             will-change: transform, opacity;
@@ -228,7 +200,7 @@
 
         @keyframes particleFloat {
             0% {
-                transform: translateY(110vh) scale(0);
+                transform: translate3d(0, 110vh, 0) scale(0);
                 opacity: 0;
             }
 
@@ -236,50 +208,17 @@
                 opacity: 0.8;
             }
 
-            40% {
-                opacity: 0.3;
+            30% {
+                opacity: 0.4;
+            }
+
+            60% {
+                opacity: 0.1;
             }
 
             100% {
-                transform: translateY(-10vh) translateX(40px) scale(2);
+                transform: translate3d(40px, -10vh, 0) scale(2);
                 opacity: 0;
-            }
-        }
-
-        .ring-3d {
-            position: fixed;
-            pointer-events: none;
-            border: 1px solid rgba(192, 192, 200, 0.06);
-            border-radius: 50%;
-            animation: ringRotate linear infinite;
-            will-change: transform;
-            transform: translateZ(0);
-        }
-
-        .ring-3d.ring-1 {
-            width: 70vmin;
-            height: 70vmin;
-            top: -15%;
-            right: -10%;
-            animation-duration: 40s;
-        }
-
-        .ring-3d.ring-2 {
-            width: 50vmin;
-            height: 50vmin;
-            bottom: -10%;
-            left: -5%;
-            animation-duration: 32s;
-            animation-direction: reverse;
-        }
-
-        @keyframes ringRotate {
-            0% {
-                transform: rotate(0deg) rotateX(15deg) rotateY(10deg);
-            }
-
-            100% {
-                transform: rotate(360deg) rotateX(15deg) rotateY(10deg);
             }
         }
 
@@ -291,7 +230,7 @@
             z-index: 1000;
             opacity: 0;
             transform: scale(0);
-            transition: all 0.6s var(--transition-bounce);
+            transition: all 0.6s cubic-bezier(0.34, 1.56, 0.64, 1);
             pointer-events: none;
         }
 
@@ -302,21 +241,28 @@
         }
 
         .music-toggle {
-            width: 46px;
-            height: 46px;
+            width: 50px;
+            height: 50px;
             border-radius: 50%;
             background: var(--glass-bg);
-            backdrop-filter: blur(15px);
-            -webkit-backdrop-filter: blur(15px);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
             border: 1px solid var(--glass-border);
             color: var(--silver-90);
             cursor: pointer;
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 1.1rem;
-            transition: all 0.3s;
-            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
+            font-size: 1.2rem;
+            transition: all 0.4s ease;
+            position: relative;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+            -webkit-tap-highlight-color: transparent;
+            outline: none;
+        }
+
+        .music-toggle:active {
+            transform: scale(0.95);
         }
 
         .music-toggle.playing i {
@@ -339,10 +285,47 @@
             opacity: 0.7;
         }
 
-        /* === MAIN SCROLL CONTAINER === */
+        .music-toggle.paused i {
+            animation: none;
+        }
+
+        .music-toggle::before,
+        .music-toggle::after {
+            content: '';
+            position: absolute;
+            inset: -4px;
+            border-radius: 50%;
+            border: 1px solid rgba(192, 192, 192, 0.15);
+            animation: visualizerRing 2s ease-out infinite;
+            opacity: 0;
+        }
+
+        .music-toggle::after {
+            animation-delay: 1s;
+        }
+
+        .music-toggle.playing::before,
+        .music-toggle.playing::after {
+            opacity: 1;
+        }
+
+        @keyframes visualizerRing {
+            0% {
+                transform: scale(1);
+                opacity: 1;
+            }
+
+            100% {
+                transform: scale(1.6);
+                opacity: 0;
+            }
+        }
+
+        /* === MAIN SCROLL === */
         .scroll-container {
             position: relative;
             z-index: 1;
+            height: 100%;
         }
 
         .fullscreen-section {
@@ -354,8 +337,9 @@
             justify-content: center;
             scroll-snap-align: start;
             position: relative;
-            padding: 16px;
-            contain: content;
+            padding: 20px;
+            overflow: hidden;
+            contain: layout style paint;
         }
 
         /* === SECTION 1: GATE === */
@@ -367,15 +351,16 @@
         .gate-content {
             position: relative;
             z-index: 2;
+            animation: fadeInUp 1.5s ease forwards;
         }
 
         @keyframes fadeInUp {
-            from {
+            0% {
                 opacity: 0;
                 transform: translateY(30px);
             }
 
-            to {
+            100% {
                 opacity: 1;
                 transform: translateY(0);
             }
@@ -383,12 +368,12 @@
 
         .gate-event-label {
             font-family: 'Cormorant Garamond', serif;
-            font-size: clamp(0.85rem, 1.8vw, 1rem);
+            font-size: clamp(0.9rem, 2vw, 1.1rem);
             font-weight: 300;
-            letter-spacing: 6px;
+            letter-spacing: 8px;
             text-transform: uppercase;
             color: var(--silver-60);
-            margin-bottom: 24px;
+            margin-bottom: 30px;
             animation: fadeInUp 1.2s ease forwards;
             animation-delay: 0.2s;
             opacity: 0;
@@ -396,161 +381,201 @@
 
         .gate-dear {
             font-family: 'Great Vibes', cursive;
-            font-size: clamp(1.6rem, 3.5vw, 2.4rem);
+            font-size: clamp(1.8rem, 4vw, 2.6rem);
             color: var(--silver-80);
-            margin-bottom: 8px;
+            margin-bottom: 10px;
             animation: fadeInUp 1.2s ease forwards;
-            animation-delay: 0.5s;
+            animation-delay: 0.4s;
             opacity: 0;
+            font-weight: 400;
         }
 
         .gate-name {
             font-family: 'Playfair Display', serif;
-            font-size: clamp(2.4rem, 6vw, 4.5rem);
+            font-size: clamp(2.8rem, 7vw, 5rem);
             font-weight: 700;
             color: var(--silver-100);
             letter-spacing: -1px;
             line-height: 1.1;
-            margin-bottom: 32px;
+            margin-bottom: 40px;
             animation: fadeInUp 1.2s ease forwards;
-            animation-delay: 0.8s;
+            animation-delay: 0.6s;
             opacity: 0;
-            text-shadow: 0 0 60px rgba(192, 192, 192, 0.25);
+            text-shadow: 0 0 60px rgba(192, 192, 192, 0.2);
         }
 
         .gate-divider-line {
-            width: 60px;
+            width: 80px;
             height: 1px;
             background: linear-gradient(90deg, transparent, var(--silver-40), transparent);
-            margin: 0 auto 32px;
+            margin: 0 auto 40px;
             animation: fadeInUp 1.2s ease forwards;
-            animation-delay: 1s;
+            animation-delay: 0.8s;
             opacity: 0;
         }
 
         .btn-open-gate {
             display: inline-flex;
             align-items: center;
-            gap: 12px;
-            padding: 16px 44px;
+            gap: 14px;
+            padding: 18px 48px;
             background: transparent;
             color: var(--silver-90);
             border: 1px solid rgba(192, 192, 192, 0.25);
             border-radius: 50px;
             font-family: 'Inter', sans-serif;
-            font-size: 0.8rem;
+            font-size: 0.85rem;
             font-weight: 500;
-            letter-spacing: 3px;
+            letter-spacing: 4px;
             text-transform: uppercase;
             cursor: pointer;
             text-decoration: none;
-            transition: all 0.5s var(--transition-smooth);
-            backdrop-filter: blur(8px);
-            -webkit-backdrop-filter: blur(8px);
+            transition: all 0.5s ease;
+            position: relative;
+            overflow: hidden;
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
             animation: fadeInUp 1.2s ease forwards;
-            animation-delay: 1.4s;
+            animation-delay: 1s;
             opacity: 0;
             -webkit-tap-highlight-color: transparent;
+            outline: none;
+        }
+
+        .btn-open-gate:active {
+            transform: scale(0.97);
+        }
+
+        .btn-open-gate:hover {
+            border-color: var(--silver-80);
+            color: var(--silver-100);
+            box-shadow: 0 15px 40px rgba(192, 192, 192, 0.1);
         }
 
         /* === SECTION 2: QUOTES === */
         .section-quotes {
             text-align: center;
-            padding: 32px;
+            padding: 40px;
         }
 
         .quotes-content {
-            max-width: 600px;
+            max-width: 650px;
+            animation: fadeInUp 1s ease forwards;
+            opacity: 0;
+        }
+
+        .quotes-content.visible {
+            opacity: 1;
         }
 
         .quotes-icon {
             font-size: 2.5rem;
             color: var(--silver-40);
-            margin-bottom: 24px;
+            margin-bottom: 25px;
             opacity: 0.5;
         }
 
         .quotes-main {
             font-family: 'Cormorant Garamond', serif;
-            font-size: clamp(1.2rem, 2.5vw, 1.6rem);
+            font-size: clamp(1.3rem, 3vw, 1.8rem);
             font-style: italic;
             color: var(--silver-80);
             line-height: 1.7;
-            margin-bottom: 24px;
+            margin-bottom: 25px;
+            letter-spacing: 0.5px;
         }
 
         .quotes-author {
             font-family: 'Great Vibes', cursive;
-            font-size: clamp(1.3rem, 2.5vw, 1.8rem);
+            font-size: clamp(1.5rem, 3vw, 2rem);
             color: var(--silver-60);
         }
 
         .quotes-divider {
-            width: 50px;
+            width: 60px;
             height: 1px;
             background: linear-gradient(90deg, transparent, var(--silver-40), transparent);
-            margin: 16px auto;
+            margin: 20px auto;
         }
 
-        /* === SECTION 3: PHOTO SLIDER - 9:16 RATIO === */
+        /* === SECTION 3: PHOTO SLIDER 9:16 === */
         .section-photos {
-            padding: 0;
+            padding: 10px;
         }
 
-        .slider-wrapper {
+        .photo-wrapper {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
             width: 100%;
             height: 100%;
-            display: flex;
-            align-items: center;
             justify-content: center;
+            gap: 10px;
         }
 
         .slider-container {
-            width: 100%;
-            max-width: 100%;
-            height: 100%;
+            width: auto;
+            height: 75vh;
+            height: 75dvh;
+            max-height: 85vh;
+            max-height: 85dvh;
             position: relative;
+            border-radius: 16px;
             overflow: hidden;
-            background: #000;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+            aspect-ratio: 9 / 16;
+            background: rgba(0, 0, 0, 0.3);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            contain: layout style paint;
+        }
+
+        @media (min-width: 769px) {
+            .slider-container {
+                height: 80vh;
+                height: 80dvh;
+                max-height: 90vh;
+                max-height: 90dvh;
+            }
         }
 
         .slider-track {
             display: flex;
             height: 100%;
-            transition: transform 0.6s var(--transition-smooth);
+            transition: transform 0.6s cubic-bezier(0.22, 0.61, 0.36, 1);
         }
 
         .slider-track img {
             min-width: 100%;
             height: 100%;
-            object-fit: contain;
-            object-position: center;
-            background: #000;
+            object-fit: cover;
+            object-position: center top;
+            -webkit-user-drag: none;
+            content-visibility: auto;
         }
 
         .slider-dots {
-            position: absolute;
-            bottom: 20px;
-            left: 50%;
-            transform: translateX(-50%);
             display: flex;
             gap: 8px;
-            z-index: 20;
+            justify-content: center;
+            flex-shrink: 0;
         }
 
         .slider-dot {
             width: 8px;
             height: 8px;
             border-radius: 50%;
-            background: rgba(255, 255, 255, 0.3);
-            border: 1px solid rgba(255, 255, 255, 0.2);
+            background: var(--silver-40);
+            border: 1px solid rgba(255, 255, 255, 0.15);
             cursor: pointer;
             transition: all 0.3s;
+            -webkit-tap-highlight-color: transparent;
+            outline: none;
+            padding: 0;
         }
 
         .slider-dot.active {
-            background: #fff;
-            width: 22px;
+            background: var(--silver-100);
+            width: 24px;
             border-radius: 8px;
         }
 
@@ -563,34 +588,40 @@
             -webkit-backdrop-filter: blur(10px);
             border: 1px solid rgba(255, 255, 255, 0.1);
             color: white;
-            width: 40px;
-            height: 40px;
+            width: 38px;
+            height: 38px;
             border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
             cursor: pointer;
-            z-index: 15;
-            transition: all 0.3s;
+            z-index: 10;
+            transition: background 0.3s;
             font-size: 0.8rem;
+            -webkit-tap-highlight-color: transparent;
+            outline: none;
+        }
+
+        .slider-nav:active {
+            background: rgba(0, 0, 0, 0.8);
         }
 
         .slider-nav.prev {
-            left: 12px;
+            left: 10px;
         }
 
         .slider-nav.next {
-            right: 12px;
+            right: 10px;
         }
 
         /* === SECTION 4: DETAILS === */
         .section-details {
-            padding: 16px;
+            padding: 20px;
         }
 
         .details-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
             gap: 16px;
             width: 100%;
             max-width: 650px;
@@ -602,13 +633,26 @@
             -webkit-backdrop-filter: blur(20px);
             border: 1px solid var(--glass-border);
             border-radius: 16px;
-            padding: 24px 20px;
+            padding: 25px 20px;
             text-align: center;
-            transition: transform 0.4s var(--transition-smooth);
+            transition: transform 0.3s ease, border-color 0.3s;
+            position: relative;
+            overflow: hidden;
+            contain: layout style paint;
+        }
+
+        .detail-card::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.1), transparent);
         }
 
         .detail-icon {
-            font-size: 1.7rem;
+            font-size: 1.8rem;
             margin-bottom: 12px;
             color: var(--silver-60);
         }
@@ -639,9 +683,10 @@
 
         .rsvp-title {
             font-family: 'Playfair Display', serif;
-            font-size: clamp(1.8rem, 4vw, 2.6rem);
+            font-size: clamp(2rem, 5vw, 3rem);
             color: var(--silver-100);
             font-weight: 700;
+            text-shadow: 0 0 40px rgba(192, 192, 192, 0.1);
         }
 
         .rsvp-subtitle {
@@ -654,42 +699,55 @@
         .btn-rsvp {
             display: inline-flex;
             align-items: center;
-            gap: 8px;
-            padding: 16px 44px;
+            gap: 10px;
+            padding: 16px 45px;
             background: var(--silver-100);
-            color: #000;
+            color: var(--silver-0);
             border: none;
             border-radius: 50px;
             font-family: 'Inter', sans-serif;
-            font-size: 0.8rem;
+            font-size: 0.85rem;
             font-weight: 600;
             letter-spacing: 2px;
             text-transform: uppercase;
             cursor: pointer;
             text-decoration: none;
-            transition: transform 0.4s var(--transition-bounce);
-            box-shadow: 0 12px 35px rgba(192, 192, 192, 0.15);
+            transition: transform 0.3s ease, box-shadow 0.3s;
+            box-shadow: 0 10px 30px rgba(192, 192, 192, 0.15);
+            -webkit-tap-highlight-color: transparent;
+            outline: none;
+        }
+
+        .btn-rsvp:active {
+            transform: scale(0.96);
         }
 
         .btn-location-outline {
             display: inline-flex;
             align-items: center;
-            gap: 8px;
-            padding: 16px 44px;
+            gap: 10px;
+            padding: 16px 45px;
             background: transparent;
             color: var(--silver-90);
             border: 1px solid rgba(192, 192, 192, 0.25);
             border-radius: 50px;
             font-family: 'Inter', sans-serif;
-            font-size: 0.8rem;
+            font-size: 0.85rem;
             font-weight: 500;
             letter-spacing: 2px;
             text-transform: uppercase;
             cursor: pointer;
             text-decoration: none;
-            transition: all 0.4s;
-            backdrop-filter: blur(8px);
-            -webkit-backdrop-filter: blur(8px);
+            transition: border-color 0.3s, color 0.3s;
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            -webkit-tap-highlight-color: transparent;
+            outline: none;
+        }
+
+        .btn-location-outline:hover {
+            border-color: var(--silver-80);
+            color: var(--silver-100);
         }
 
         /* === SECTION 6: CLOSING === */
@@ -701,13 +759,15 @@
 
         .closing-text {
             font-family: 'Great Vibes', cursive;
-            font-size: clamp(2.2rem, 4vw, 3rem);
+            font-size: clamp(2.5rem, 5vw, 3.5rem);
             color: var(--silver-80);
+            font-weight: 400;
+            text-shadow: 0 0 30px rgba(192, 192, 192, 0.1);
         }
 
         .closing-name {
             font-family: 'Playfair Display', serif;
-            font-size: clamp(1.3rem, 2.5vw, 1.8rem);
+            font-size: clamp(1.5rem, 3vw, 2rem);
             color: var(--silver-100);
             font-weight: 600;
         }
@@ -718,9 +778,18 @@
                 padding: 12px;
             }
 
+            .slider-container {
+                height: 70vh;
+                height: 70dvh;
+                max-height: 80vh;
+                max-height: 80dvh;
+                border-radius: 12px;
+            }
+
             .slider-nav {
-                width: 34px;
-                height: 34px;
+                width: 32px;
+                height: 32px;
+                font-size: 0.7rem;
             }
 
             .details-grid {
@@ -736,9 +805,22 @@
                 bottom: 20px;
                 right: 20px;
             }
+
+            .music-toggle {
+                width: 44px;
+                height: 44px;
+                font-size: 1rem;
+            }
         }
 
         @media (max-width: 480px) {
+            .slider-container {
+                height: 65vh;
+                height: 65dvh;
+                max-height: 75vh;
+                max-height: 75dvh;
+            }
+
             .details-grid {
                 grid-template-columns: 1fr;
                 max-width: 320px;
@@ -747,8 +829,9 @@
             .btn-open-gate,
             .btn-rsvp,
             .btn-location-outline {
-                padding: 14px 32px;
-                font-size: 0.72rem;
+                padding: 14px 30px;
+                font-size: 0.75rem;
+                letter-spacing: 2px;
             }
         }
     </style>
@@ -756,12 +839,9 @@
 
 <body>
 
-    <!-- === BACKGROUND LAYERS (SIMPLIFIED) === -->
+    <!-- === BACKGROUND === -->
     <div class="animated-bg"></div>
-    <div class="light-rays"></div>
     <div class="grain-overlay"></div>
-    <div class="ring-3d ring-1"></div>
-    <div class="ring-3d ring-2"></div>
     <div class="mist-container" id="mistContainer"></div>
     <div class="particles-container" id="particlesContainer"></div>
 
@@ -772,11 +852,11 @@
         </button>
     </div>
 
-    <audio id="bgMusic" preload="none" loop>
+    <audio id="bgMusic" preload="auto" loop>
         <source src="{{ asset('assets/blessingmaria.mp3') }}" type="audio/mpeg">
     </audio>
 
-    <!-- === MAIN SCROLL CONTAINER === -->
+    <!-- === MAIN SCROLL === -->
     <div class="scroll-container" id="scrollContainer">
 
         {{-- SECTION 1: GATE --}}
@@ -796,7 +876,7 @@
 
         {{-- SECTION 2: QUOTES --}}
         <section class="fullscreen-section section-quotes" id="sectionQuotes">
-            <div class="quotes-content">
+            <div class="quotes-content" id="quotesContent">
                 <div class="quotes-icon">
                     <i class="fas fa-feather-alt"></i>
                 </div>
@@ -810,7 +890,7 @@
             </div>
         </section>
 
-        {{-- SECTION 3: PHOTO SLIDER - 9:16 FULLSCREEN --}}
+        {{-- SECTION 3: PHOTO SLIDER 9:16 --}}
         <section class="fullscreen-section section-photos" id="sectionPhotos">
             @php
                 $photos = [];
@@ -826,12 +906,11 @@
             @endphp
 
             @if (count($photos) > 0)
-                <div class="slider-wrapper">
+                <div class="photo-wrapper">
                     <div class="slider-container" id="photoSlider">
                         <div class="slider-track" id="sliderTrack">
                             @foreach ($photos as $photo)
-                                <img src="{{ $photo }}" alt="Event Photo" loading="eager" decoding="async"
-                                    fetchpriority="high">
+                                <img src="{{ $photo }}" alt="Event Photo" loading="lazy" decoding="async">
                             @endforeach
                         </div>
                         @if (count($photos) > 1)
@@ -841,15 +920,17 @@
                             <button class="slider-nav next" onclick="slidePhoto(1)" aria-label="Next">
                                 <i class="fas fa-chevron-right"></i>
                             </button>
-                            <div class="slider-dots" id="sliderDots">
-                                @foreach ($photos as $index => $photo)
-                                    <button class="slider-dot {{ $index === 0 ? 'active' : '' }}"
-                                        onclick="goToSlide({{ $index }})"
-                                        aria-label="Slide {{ $index + 1 }}"></button>
-                                @endforeach
-                            </div>
                         @endif
                     </div>
+                    @if (count($photos) > 1)
+                        <div class="slider-dots" id="sliderDots">
+                            @foreach ($photos as $index => $photo)
+                                <button class="slider-dot {{ $index === 0 ? 'active' : '' }}"
+                                    onclick="goToSlide({{ $index }})"
+                                    aria-label="Slide {{ $index + 1 }}"></button>
+                            @endforeach
+                        </div>
+                    @endif
                 </div>
             @endif
         </section>
@@ -858,20 +939,27 @@
         <section class="fullscreen-section section-details" id="sectionDetails">
             <div class="details-grid">
                 <div class="detail-card">
-                    <div class="detail-icon"><i class="far fa-calendar-alt"></i></div>
+                    <div class="detail-icon">
+                        <i class="far fa-calendar-alt"></i>
+                    </div>
                     <p class="detail-label">Date</p>
                     <p class="detail-value">
                         {{ \Carbon\Carbon::parse($guest->event->event_date ?? now())->format('d M Y') }}</p>
                 </div>
                 <div class="detail-card">
-                    <div class="detail-icon"><i class="fas fa-map-marker-alt"></i></div>
-                    <p class="detail-label">Venue & Time</p>
+                    <div class="detail-icon">
+                        <i class="fas fa-map-marker-alt"></i>
+                    </div>
+                    <p class="detail-label">Venue</p>
                     <p class="detail-value">{{ $guest->event->venue ?? 'Secret Location' }}</p>
-                    <p class="detail-value">{{ $guest->event->event_time ?? 'To be announced' }}</p>
+                    <p class="detail-value" style="font-size:0.95rem;margin-top:4px;">
+                        {{ $guest->event->event_time ?? 'To be announced' }}</p>
                 </div>
                 @if ($guest->event->dresscode ?? false)
                     <div class="detail-card">
-                        <div class="detail-icon"><i class="fas fa-tshirt"></i></div>
+                        <div class="detail-icon">
+                            <i class="fas fa-tshirt"></i>
+                        </div>
                         <p class="detail-label">Dress Code</p>
                         <p class="detail-value">{{ $guest->event->dresscode }}</p>
                     </div>
@@ -905,13 +993,13 @@
         {{-- SECTION 6: CLOSING --}}
         <section class="fullscreen-section section-closing" id="sectionClosing">
             <p class="closing-text">
-                <i class="fas fa-heart" style="margin-right: 8px; font-size: 0.65em;"></i>
+                <i class="fas fa-heart" style="margin-right: 10px; font-size: 0.7em;"></i>
                 With Love & Gratitude
-                <i class="fas fa-heart" style="margin-left: 8px; font-size: 0.65em;"></i>
+                <i class="fas fa-heart" style="margin-left: 10px; font-size: 0.7em;"></i>
             </p>
             <p class="closing-name">{{ $guest->event->title ?? 'Belva' }}</p>
-            <p style="color: var(--silver-60); font-size: 0.8rem;">
-                <i class="far fa-smile" style="margin-right: 4px;"></i>
+            <p style="color: var(--silver-60); font-size: 0.85rem;">
+                <i class="far fa-smile" style="margin-right: 5px;"></i>
                 Thank you for being part of this special moment
             </p>
         </section>
@@ -920,7 +1008,7 @@
 
     <script>
         // ============================================
-        // OPTIMIZED MUSIC PLAYER
+        // MUSIC PLAYER
         // ============================================
         var bgMusic = document.getElementById('bgMusic');
         var musicPlayer = document.getElementById('musicPlayer');
@@ -930,21 +1018,19 @@
         function openInvitation(e) {
             e.preventDefault();
             if (bgMusic) {
-                bgMusic.load();
                 var p = bgMusic.play();
-                if (p) p.then(function() {
-                    isMusicPlaying = true;
-                    updateBtn();
-                }).catch(function() {
-                    isMusicPlaying = false;
-                    updateBtn();
-                });
+                if (p) {
+                    p.then(function() {
+                        isMusicPlaying = true;
+                        updateMusicBtn();
+                    }).catch(function() {
+                        isMusicPlaying = false;
+                        updateMusicBtn();
+                    });
+                }
             }
             musicPlayer.classList.add('active');
-            document.getElementById('sectionQuotes').scrollIntoView({
-                behavior: 'smooth',
-                block: 'start'
-            });
+            smoothScrollTo('sectionQuotes');
         }
 
         function toggleMusic() {
@@ -954,17 +1040,20 @@
                 isMusicPlaying = false;
             } else {
                 var p = bgMusic.play();
-                if (p) p.then(function() {
-                    isMusicPlaying = true;
-                }).catch(function() {
-                    isMusicPlaying = false;
-                });
+                if (p) {
+                    p.then(function() {
+                        isMusicPlaying =
+                            true;
+                    }).catch(function() {
+                        isMusicPlaying = false;
+                    });
+                }
                 isMusicPlaying = true;
             }
-            updateBtn();
+            updateMusicBtn();
         }
 
-        function updateBtn() {
+        function updateMusicBtn() {
             if (isMusicPlaying) {
                 musicToggle.classList.remove('paused');
                 musicToggle.classList.add('playing');
@@ -975,37 +1064,51 @@
                 musicToggle.innerHTML = '<i class="fas fa-play"></i>';
             }
         }
-
-        musicToggle && musicToggle.addEventListener('click', toggleMusic);
-        bgMusic && bgMusic.addEventListener('play', function() {
-            isMusicPlaying = true;
-            updateBtn();
-        });
-        bgMusic && bgMusic.addEventListener('pause', function() {
-            isMusicPlaying = false;
-            updateBtn();
-        });
+        if (musicToggle) musicToggle.addEventListener('click', toggleMusic);
+        if (bgMusic) {
+            bgMusic.addEventListener('play', function() {
+                isMusicPlaying = true;
+                updateMusicBtn();
+            });
+            bgMusic.addEventListener('pause', function() {
+                isMusicPlaying = false;
+                updateMusicBtn();
+            });
+            bgMusic.addEventListener('ended', function() {
+                isMusicPlaying = false;
+                updateMusicBtn();
+            });
+        }
 
         // ============================================
-        // OPTIMIZED PHOTO SLIDER
+        // SMOOTH SCROLL
+        // ============================================
+        function smoothScrollTo(id) {
+            var s = document.getElementById(id);
+            if (s) s.scrollIntoView({
+                behavior: 'smooth',
+                block: 'start'
+            });
+        }
+
+        // ============================================
+        // PHOTO SLIDER
         // ============================================
         var currentSlide = 0;
         var totalSlides = {{ count($photos) }};
-        var autoSlideInterval = null;
+        var autoSlideTimer = null;
 
         function updateSlider() {
-            var track = document.getElementById('sliderTrack');
-            var dots = document.querySelectorAll('.slider-dot');
-            if (track) track.style.transform = 'translateX(-' + (currentSlide * 100) + '%)';
-            if (dots.length) {
-                for (var i = 0; i < dots.length; i++) {
-                    dots[i].classList.toggle('active', i === currentSlide);
-                }
-            }
+            var t = document.getElementById('sliderTrack');
+            var d = document.querySelectorAll('.slider-dot');
+            if (t) t.style.transform = 'translateX(-' + (currentSlide * 100) + '%)';
+            d.forEach(function(dot, i) {
+                dot.classList.toggle('active', i === currentSlide);
+            });
         }
 
-        function slidePhoto(d) {
-            currentSlide = (currentSlide + d + totalSlides) % totalSlides;
+        function slidePhoto(dir) {
+            currentSlide = (currentSlide + dir + totalSlides) % totalSlides;
             updateSlider();
             resetAutoSlide();
         }
@@ -1017,99 +1120,133 @@
         }
 
         function startAutoSlide() {
-            if (totalSlides > 1) {
-                autoSlideInterval = setInterval(function() {
-                    currentSlide = (currentSlide + 1) % totalSlides;
-                    updateSlider();
-                }, 4500);
-            }
+            if (totalSlides > 1) autoSlideTimer = setInterval(function() {
+                currentSlide = (currentSlide + 1) %
+                    totalSlides;
+                updateSlider();
+            }, 4000);
         }
 
         function resetAutoSlide() {
-            if (autoSlideInterval) clearInterval(autoSlideInterval);
+            if (autoSlideTimer) clearInterval(autoSlideTimer);
             startAutoSlide();
         }
 
-        // Touch swipe
+        if (totalSlides > 1) startAutoSlide();
         (function() {
             var s = document.getElementById('photoSlider');
             if (!s) return;
-            var sx = 0;
+            var sx = 0,
+                ex = 0;
             s.addEventListener('touchstart', function(e) {
                 sx = e.changedTouches[0].screenX;
             }, {
                 passive: true
             });
             s.addEventListener('touchend', function(e) {
-                var d = sx - e.changedTouches[0].screenX;
-                if (Math.abs(d) > 40) slidePhoto(d > 0 ? 1 : -1);
+                ex = e.changedTouches[0].screenX;
+                if (Math.abs(sx - ex) > 50)
+                    slidePhoto(sx > ex ? 1 : -1);
             });
         })();
 
-        if (totalSlides > 1) startAutoSlide();
+        // ============================================
+        // QUOTES OBSERVER
+        // ============================================
+        (function() {
+            var q = document.getElementById('quotesContent');
+            if (!q) return;
+            new IntersectionObserver(function(e) {
+                    if (e[0].isIntersecting) q.classList.add('visible');
+                }, {
+                    threshold: 0.4
+                })
+                .observe(q);
+        })();
 
         // ============================================
-        // LIGHTWEIGHT MIST & PARTICLES
+        // MIST GENERATOR (OPTIMIZED)
         // ============================================
         (function() {
             var c = document.getElementById('mistContainer');
-            if (c)
-                for (var i = 0; i < 6; i++) {
-                    var m = document.createElement('div');
-                    m.className = 'mist';
-                    m.style.cssText = 'width:' + (Math.random() * 200 + 120) + 'px;height:' + (Math.random() * 200 +
-                        120) + 'px;left:' + (Math.random() * 90) + '%;animation-duration:' + (Math.random() * 18 +
-                        14) + 's;animation-delay:' + (Math.random() * 12) + 's;';
-                    c.appendChild(m);
-                }
+            if (!c) return;
+            var frag = document.createDocumentFragment();
+            for (var i = 0; i < 8; i++) {
+                var m = document.createElement('div');
+                m.classList.add('mist');
+                m.style.width = (Math.random() * 200 + 120) + 'px';
+                m.style.height = m.style.width;
+                m.style.left = (Math.random() * 100) + '%';
+                m.style.animationDuration = (Math.random() * 18 + 14) + 's';
+                m.style.animationDelay = (Math.random() * 14) + 's';
+                frag.appendChild(m);
+            }
+            c.appendChild(frag);
         })();
 
+        // ============================================
+        // PARTICLES GENERATOR (OPTIMIZED)
+        // ============================================
         (function() {
             var c = document.getElementById('particlesContainer');
-            if (c)
-                for (var i = 0; i < 25; i++) {
-                    var p = document.createElement('div');
-                    p.className = 'particle';
-                    p.style.cssText = 'width:' + (Math.random() * 2.5 + 1) + 'px;height:' + (Math.random() * 2.5 + 1) +
-                        'px;left:' + (Math.random() * 95) + '%;animation-duration:' + (Math.random() * 10 + 8) +
-                        's;animation-delay:' + (Math.random() * 8) + 's;';
-                    c.appendChild(p);
-                }
+            if (!c) return;
+            var frag = document.createDocumentFragment();
+            for (var i = 0; i < 25; i++) {
+                var p = document.createElement('div');
+                p.classList.add('particle');
+                p.style.width = (Math.random() * 2.5 + 1) + 'px';
+                p.style.height = p.style.width;
+                p.style.left = (Math.random() * 100) + '%';
+                p.style.animationDuration = (Math.random() * 10 + 8) + 's';
+                p.style.animationDelay = (Math.random() * 8) + 's';
+                frag.appendChild(p);
+            }
+            c.appendChild(frag);
         })();
 
         // ============================================
-        // PARALLAX RINGS (throttled)
+        // ANIMATION OBSERVER
         // ============================================
         (function() {
-            var ticking = false;
-            document.addEventListener('mousemove', function(e) {
-                if (!ticking) {
-                    requestAnimationFrame(function() {
-                        var rings = document.querySelectorAll('.ring-3d');
-                        var x = (e.clientX / window.innerWidth - 0.5) * 30;
-                        var y = (e.clientY / window.innerHeight - 0.5) * 30;
-                        for (var i = 0; i < rings.length; i++) {
-                            var f = (i + 1) * 0.4;
-                            rings[i].style.transform = 'translate(' + (x * f) + 'px, ' + (y * f) +
-                                'px) rotateX(15deg) rotateY(10deg)';
-                        }
-                        ticking = false;
-                    });
-                    ticking = true;
-                }
+            var obs = new IntersectionObserver(function(e) {
+                e.forEach(function(en) {
+                    if (en.isIntersecting) {
+                        en.target.style.opacity = '1';
+                        en.target.style.transform = 'translateY(0)';
+                    }
+                });
             }, {
-                passive: true
+                threshold: 0.3
             });
+            document.querySelectorAll('.detail-card, .rsvp-title, .rsvp-subtitle, .closing-text, .closing-name')
+                .forEach(function(el) {
+                    el.style.opacity = '0';
+                    el.style.transform = 'translateY(20px)';
+                    el.style.transition = 'all 0.6s ease';
+                    obs.observe(el);
+                });
         })();
 
         // ============================================
-        // INITIAL LOAD
+        // KEYBOARD
+        // ============================================
+        document.addEventListener('keydown', function(e) {
+            if (totalSlides > 1) {
+                if (e.key === 'ArrowRight') slidePhoto(1);
+                else if (e.key === 'ArrowLeft') slidePhoto(-1);
+            }
+        });
+
+        // ============================================
+        // INIT
         // ============================================
         window.addEventListener('load', function() {
-            document.body.style.opacity = '1';
+            document.body.style.opacity = '0';
+            document.body.style.transition = 'opacity 0.5s ease';
+            requestAnimationFrame(function() {
+                document.body.style.opacity = '1';
+            });
         });
-        document.body.style.opacity = '0';
-        document.body.style.transition = 'opacity 0.6s ease';
     </script>
 
 </body>
