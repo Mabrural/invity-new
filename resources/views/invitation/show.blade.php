@@ -1038,7 +1038,7 @@
                     <div class="detail-icon"><i class="fas fa-map-marker-alt"></i></div>
                     <p class="detail-label">Venue</p>
                     <p class="detail-value">{{ $guest->event->venue ?? 'Secret Location' }}</p>
-                    <p class="detail-value" style="font-size:0.95rem;margin-top:4px;">
+                    <p class="detail-value" style="font-size:1rem;margin-top:4px;">
                         {{ $guest->event->event_time ?? 'To be announced' }}</p>
                 </div>
                 @if ($guest->event->dresscode ?? false)
