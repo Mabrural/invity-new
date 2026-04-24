@@ -3,21 +3,15 @@
 
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <title>Digital Invitation | {{ $guest->name }}</title>
+    <link rel="icon" type="image/png" sizes="32x32" href="{{ asset('storage/' . $event->favicon) }}">
+    <link rel="icon" type="image/png" sizes="16x16" href="{{ asset('storage/' . $event->favicon) }}">
+    <link rel="apple-touch-icon" href="{{ asset('storage/' . $event->favicon) }}">
 
-    <title>Digital Invitation | {{ $guest->name ?? 'Guest' }}</title>
-
-    @php
-        $favicon = $event && $event->favicon ? asset('storage/' . $event->favicon) : asset('favicon.png');
-        $ogImage = $event && $event->event_photo_1 ? asset('storage/' . $event->event_photo_1) : asset('default.png');
-    @endphp
-
-    <link rel="icon" href="{{ $favicon }}">
-    <link rel="apple-touch-icon" href="{{ $favicon }}">
-
-    <meta property="og:title" content="{{ $event->title ?? 'Invitation' }}">
+    <meta property="og:title" content="{{ $event->title }}">
     <meta property="og:description" content="You're invited to our special day">
-    <meta property="og:image" content="{{ $ogImage }}">
+    <meta property="og:image" content="{{ asset('storage/' . $event->favicon) }}">
     <meta property="og:url" content="{{ url()->current() }}">
     <meta property="og:type" content="website">
 
