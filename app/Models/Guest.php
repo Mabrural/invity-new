@@ -24,10 +24,19 @@ class Guest extends Model
     {
         static::creating(function ($guest) {
             $slug = Str::slug($guest->name);
-
-            // HANDLE DUPLICATE SLUG
             $count = Guest::where('slug', 'LIKE', "{$slug}%")->count();
             $guest->slug = $count ? "{$slug}-{$count}" : $slug;
+        });
+
+        static::updating(function ($guest) {
+            if ($guest->isDirty('name')) {
+                $slug = Str::slug($guest->name);
+                $count = Guest::where('slug', 'LIKE', "{$slug}%")
+                    ->where('id', '!=', $guest->id)
+                    ->count();
+
+                $guest->slug = $count ? "{$slug}-{$count}" : $slug;
+            }
         });
     }
 }
