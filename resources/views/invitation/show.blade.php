@@ -250,6 +250,122 @@
             }
         }
 
+        /* === MUSIC PLAYER FLOATING BUTTON === */
+        .music-player {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            z-index: 1000;
+            opacity: 0;
+            transform: scale(0);
+            transition: all 0.6s var(--transition-bounce);
+            pointer-events: none;
+        }
+
+        .music-player.active {
+            opacity: 1;
+            transform: scale(1);
+            pointer-events: auto;
+        }
+
+        .music-toggle {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background: var(--glass-bg);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border: 1px solid var(--glass-border);
+            color: var(--silver-90);
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+            transition: all 0.4s var(--transition-smooth);
+            position: relative;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+        }
+
+        .music-toggle:hover {
+            border-color: var(--silver-80);
+            color: var(--silver-100);
+            transform: scale(1.1);
+            box-shadow: 0 15px 40px rgba(192, 192, 192, 0.15);
+        }
+
+        .music-toggle.playing i {
+            animation: musicPulse 1.5s ease-in-out infinite;
+        }
+
+        @keyframes musicPulse {
+            0%, 100% {
+                transform: scale(1);
+            }
+            50% {
+                transform: scale(1.2);
+            }
+        }
+
+        .music-toggle.paused {
+            opacity: 0.7;
+        }
+
+        .music-toggle.paused i {
+            animation: none;
+        }
+
+        /* Visualizer rings */
+        .music-toggle::before,
+        .music-toggle::after {
+            content: '';
+            position: absolute;
+            inset: -4px;
+            border-radius: 50%;
+            border: 1px solid rgba(192, 192, 192, 0.2);
+            animation: visualizerRing 2s ease-out infinite;
+            opacity: 0;
+        }
+
+        .music-toggle::after {
+            animation-delay: 1s;
+        }
+
+        .music-toggle.playing::before,
+        .music-toggle.playing::after {
+            opacity: 1;
+        }
+
+        .music-toggle.paused::before,
+        .music-toggle.paused::after {
+            animation: none;
+            opacity: 0;
+        }
+
+        @keyframes visualizerRing {
+            0% {
+                transform: scale(1);
+                opacity: 1;
+            }
+            100% {
+                transform: scale(1.8);
+                opacity: 0;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .music-player {
+                bottom: 20px;
+                right: 20px;
+            }
+            
+            .music-toggle {
+                width: 45px;
+                height: 45px;
+                font-size: 1rem;
+            }
+        }
+
         /* === MAIN SCROLL SECTIONS === */
         .scroll-container {
             position: relative;
@@ -729,8 +845,10 @@
     <!-- === BACKGROUND LAYERS === -->
     <div class="video-background" id="videoBg">
         <iframe id="ytPlayer"
-            src="hhttps://www.youtube.com/watch?v=HPph35tdMP8&list=PLgtrU8K8jEY_4-WsJJAPeCQcHz3Q7umQT" frameborder="0"
-            allow="autoplay; encrypted-media" allowfullscreen>
+            src="https://www.youtube.com/embed/HPph35tdMP8?list=PLgtrU8K8jEY_4-WsJJAPeCQcHz3Q7umQT&autoplay=1&mute=1&controls=0&loop=1&playlist=HPph35tdMP8"
+            frameborder="0"
+            allow="autoplay; encrypted-media" 
+            allowfullscreen>
         </iframe>
     </div>
 
@@ -747,6 +865,19 @@
     <!-- Particles -->
     <div class="particles-container" id="particlesContainer"></div>
 
+    <!-- === MUSIC PLAYER FLOATING BUTTON === -->
+    <div class="music-player" id="musicPlayer">
+        <button class="music-toggle paused" id="musicToggle" aria-label="Toggle music">
+            <i class="fas fa-music"></i>
+        </button>
+    </div>
+
+    <!-- Hidden Audio Element -->
+    <audio id="bgMusic" preload="auto" loop>
+        <source src="{{ asset('assets/blessingmaria.mp3') }}" type="audio/mpeg">
+        Your browser does not support the audio element.
+    </audio>
+
     <!-- === MAIN SCROLL CONTAINER === -->
     <div class="scroll-container" id="scrollContainer">
 
@@ -760,7 +891,7 @@
                 <p class="gate-quote">
                     "Every moment is a gift, and your presence would make this celebration truly complete."
                 </p>
-                <a href="#sectionDetails" class="btn-open-gate" onclick="smoothScrollTo('sectionDetails')">
+                <a href="#sectionDetails" class="btn-open-gate" id="btnOpenGate" onclick="openInvitation(event)">
                     <span>Open Invitation</span>
                     <i class="fas fa-chevron-down"></i>
                 </a>
@@ -870,6 +1001,87 @@
     </div>
 
     <script>
+        // ============================================
+        // MUSIC PLAYER CONTROLS
+        // ============================================
+        const bgMusic = document.getElementById('bgMusic');
+        const musicPlayer = document.getElementById('musicPlayer');
+        const musicToggle = document.getElementById('musicToggle');
+        let isMusicPlaying = false;
+
+        function openInvitation(event) {
+            event.preventDefault();
+            
+            // Start playing music
+            if (bgMusic) {
+                bgMusic.play().then(() => {
+                    isMusicPlaying = true;
+                    updateMusicButton();
+                }).catch(error => {
+                    console.log('Autoplay was prevented:', error);
+                });
+            }
+            
+            // Show music player
+            musicPlayer.classList.add('active');
+            
+            // Scroll to details section
+            smoothScrollTo('sectionDetails');
+        }
+
+        function toggleMusic() {
+            if (!bgMusic) return;
+            
+            if (isMusicPlaying) {
+                bgMusic.pause();
+                isMusicPlaying = false;
+            } else {
+                bgMusic.play().then(() => {
+                    isMusicPlaying = true;
+                }).catch(error => {
+                    console.log('Play prevented:', error);
+                });
+                isMusicPlaying = true; // Optimistically set to true
+            }
+            
+            updateMusicButton();
+        }
+
+        function updateMusicButton() {
+            if (isMusicPlaying) {
+                musicToggle.classList.remove('paused');
+                musicToggle.classList.add('playing');
+                musicToggle.innerHTML = '<i class="fas fa-pause"></i>';
+            } else {
+                musicToggle.classList.remove('playing');
+                musicToggle.classList.add('paused');
+                musicToggle.innerHTML = '<i class="fas fa-play"></i>';
+            }
+        }
+
+        // Music toggle click event
+        if (musicToggle) {
+            musicToggle.addEventListener('click', toggleMusic);
+        }
+
+        // Update button state when audio ends or is paused externally
+        if (bgMusic) {
+            bgMusic.addEventListener('play', () => {
+                isMusicPlaying = true;
+                updateMusicButton();
+            });
+            
+            bgMusic.addEventListener('pause', () => {
+                isMusicPlaying = false;
+                updateMusicButton();
+            });
+            
+            bgMusic.addEventListener('ended', () => {
+                isMusicPlaying = false;
+                updateMusicButton();
+            });
+        }
+
         // ============================================
         // SMOOTH SCROLL TO SECTION
         // ============================================
