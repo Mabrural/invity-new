@@ -40,8 +40,8 @@
             --accent-light: #e8e8e8;
             --accent-dark: #8a8a8a;
             --gold-subtle: rgba(192, 192, 192, 0.3);
-            --glass-bg: rgba(28, 28, 30, 0.5);
-            --glass-border: rgba(255, 255, 255, 0.08);
+            --glass-bg: rgba(28, 28, 30, 0.4);
+            --glass-border: rgba(255, 255, 255, 0.06);
             --transition-smooth: cubic-bezier(0.22, 0.61, 0.36, 1);
             --transition-bounce: cubic-bezier(0.34, 1.56, 0.64, 1);
         }
@@ -65,7 +65,7 @@
 
         body {
             font-family: 'Inter', sans-serif;
-            background: #0a0a0a;
+            background: var(--silver-0);
             color: var(--silver-90);
             -webkit-font-smoothing: antialiased;
             -moz-osx-font-smoothing: grayscale;
@@ -73,7 +73,7 @@
             overflow-x: hidden;
         }
 
-        /* === ENHANCED VIDEO BACKGROUND === */
+        /* === AMBIENT VIDEO BACKGROUND === */
         .video-background {
             position: fixed;
             top: 0;
@@ -85,38 +85,27 @@
             pointer-events: none;
         }
 
-        .video-background::after {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: radial-gradient(ellipse at center, transparent 0%, rgba(0, 0, 0, 0.4) 100%);
-            z-index: 1;
-        }
-
         .video-background iframe {
             position: absolute;
             top: 50%;
             left: 50%;
-            width: 130vw;
-            height: 130vh;
+            width: 120vw;
+            height: 120vh;
             transform: translate(-50%, -50%);
             pointer-events: none;
             object-fit: cover;
-            opacity: 0.35;
-            filter: grayscale(100%) brightness(0.5) contrast(1.4) blur(0.5px);
+            opacity: 0.2;
+            filter: grayscale(100%) brightness(0.4) contrast(1.3) blur(1px);
         }
 
         @media (min-aspect-ratio: 16/9) {
             .video-background iframe {
                 width: 200vh;
-                height: 130vh;
+                height: 120vh;
             }
         }
 
-        /* === ENHANCED GRAIN OVERLAY === */
+        /* === GRAIN OVERLAY === */
         .grain-overlay {
             position: fixed;
             top: 0;
@@ -125,14 +114,13 @@
             height: 100%;
             z-index: -2;
             pointer-events: none;
-            opacity: 0.05;
-            mix-blend-mode: overlay;
-            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='6' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='1'/%3E%3C/svg%3E");
+            opacity: 0.03;
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='1'/%3E%3C/svg%3E");
             background-repeat: repeat;
-            background-size: 150px 150px;
+            background-size: 200px 200px;
         }
 
-        /* === ENHANCED MIST/SMOKE - BALLET STUDIO STYLE === */
+        /* === FLOATING MIST/SMOKE === */
         .mist-container {
             position: fixed;
             top: 0;
@@ -141,83 +129,41 @@
             height: 100%;
             z-index: -1;
             pointer-events: none;
-            filter: blur(0.5px);
         }
 
         .mist {
             position: absolute;
             border-radius: 50%;
-            background: radial-gradient(ellipse at center,
-                    rgba(200, 200, 210, 0.12) 0%,
-                    rgba(180, 180, 190, 0.06) 20%,
-                    rgba(160, 160, 170, 0.03) 40%,
-                    transparent 70%);
+            background: radial-gradient(ellipse at center, rgba(192, 192, 192, 0.08) 0%, transparent 70%);
             animation: mistFloat linear infinite;
-            filter: blur(60px);
-            mix-blend-mode: screen;
-        }
-
-        .mist-layer-2 {
-            position: absolute;
-            border-radius: 30% 70% 70% 30% / 30% 30% 70% 70%;
-            background: radial-gradient(ellipse at center,
-                    rgba(210, 210, 220, 0.1) 0%,
-                    rgba(190, 190, 200, 0.05) 30%,
-                    transparent 70%);
-            animation: mistFloat2 linear infinite;
-            filter: blur(80px);
-            mix-blend-mode: screen;
+            filter: blur(40px);
         }
 
         @keyframes mistFloat {
             0% {
-                transform: translate(0, 100vh) scale(0.6) rotate(0deg);
+                transform: translate(0, 100vh) scale(0.8);
                 opacity: 0;
             }
 
             10% {
-                opacity: 0.8;
+                opacity: 0.6;
             }
 
-            40% {
-                opacity: 0.4;
-            }
-
-            70% {
-                opacity: 0.15;
-            }
-
-            100% {
-                transform: translate(10vw, -20vh) scale(1.8) rotate(15deg);
-                opacity: 0;
-            }
-        }
-
-        @keyframes mistFloat2 {
-            0% {
-                transform: translate(50vw, 120vh) scale(0.5) rotate(0deg);
-                opacity: 0;
-            }
-
-            15% {
-                opacity: 0.7;
-            }
-
-            45% {
+            50% {
                 opacity: 0.3;
             }
 
-            80% {
+            90% {
                 opacity: 0.1;
             }
 
             100% {
-                transform: translate(-10vw, -30vh) scale(2) rotate(-10deg);
+                transform: translate(20vw, -20vh) scale(1.5);
                 opacity: 0;
             }
         }
 
-        /* === ENHANCED 3D FLOATING PARTICLES === */
+        /* === FLOATING PARTICLES === */
         .particles-container {
             position: fixed;
             top: 0;
@@ -226,135 +172,85 @@
             height: 100%;
             z-index: -1;
             pointer-events: none;
-            perspective: 1000px;
         }
 
         .particle {
             position: absolute;
-            background: radial-gradient(circle,
-                    rgba(220, 220, 230, 0.6) 0%,
-                    rgba(180, 180, 190, 0.3) 40%,
-                    transparent 70%);
+            background: var(--silver-80);
             border-radius: 50%;
-            animation: particleFloat3D linear infinite;
-            box-shadow: 0 0 15px rgba(200, 200, 210, 0.3),
-                0 0 30px rgba(180, 180, 190, 0.15);
+            animation: particleFloat linear infinite;
+            box-shadow: 0 0 6px rgba(192, 192, 192, 0.5);
         }
 
-        @keyframes particleFloat3D {
+        @keyframes particleFloat {
             0% {
-                transform: translateY(110vh) translateX(0) translateZ(-200px) scale(0);
+                transform: translateY(110vh) translateX(0) scale(0);
                 opacity: 0;
             }
 
-            10% {
-                opacity: 0.9;
+            15% {
+                opacity: 0.8;
             }
 
-            30% {
-                opacity: 0.5;
-            }
-
-            60% {
+            40% {
                 opacity: 0.2;
             }
 
-            90% {
+            85% {
                 opacity: 0.05;
             }
 
             100% {
-                transform: translateY(-10vh) translateX(60px) translateZ(100px) scale(2.5);
+                transform: translateY(-10vh) translateX(40px) scale(1.8);
                 opacity: 0;
             }
         }
 
-        /* === ENHANCED 3D FLOATING RINGS === */
+        /* === 3D FLOATING RINGS === */
         .ring-3d {
             position: fixed;
             pointer-events: none;
-            border: 1.5px solid rgba(192, 192, 200, 0.08);
+            border: 1px solid rgba(192, 192, 192, 0.04);
             border-radius: 50%;
             animation: ringRotate linear infinite;
             transform-style: preserve-3d;
-            box-shadow: 0 0 40px rgba(192, 192, 200, 0.03),
-                inset 0 0 40px rgba(192, 192, 200, 0.02);
         }
 
         .ring-3d.ring-1 {
-            width: 80vmin;
-            height: 80vmin;
-            top: -20%;
-            right: -15%;
-            animation-duration: 40s;
-            border-color: rgba(200, 200, 210, 0.06);
+            width: 70vmin;
+            height: 70vmin;
+            top: -15%;
+            right: -10%;
+            animation-duration: 35s;
         }
 
         .ring-3d.ring-2 {
-            width: 60vmin;
-            height: 60vmin;
-            bottom: -15%;
-            left: -10%;
-            animation-duration: 32s;
+            width: 50vmin;
+            height: 50vmin;
+            bottom: -10%;
+            left: -5%;
+            animation-duration: 28s;
             animation-direction: reverse;
-            border-color: rgba(200, 200, 210, 0.08);
+            border-color: rgba(192, 192, 192, 0.06);
         }
 
         .ring-3d.ring-3 {
-            width: 45vmin;
-            height: 45vmin;
-            top: 35%;
-            left: 45%;
-            animation-duration: 25s;
-            border-color: rgba(200, 200, 210, 0.05);
+            width: 35vmin;
+            height: 35vmin;
+            top: 40%;
+            left: 50%;
+            animation-duration: 22s;
+            border-color: rgba(192, 192, 192, 0.03);
             animation-direction: alternate;
         }
 
         @keyframes ringRotate {
             0% {
-                transform: rotate(0deg) rotateX(20deg) rotateY(12deg);
-            }
-
-            50% {
-                transform: rotate(180deg) rotateX(22deg) rotateY(15deg);
+                transform: rotate(0deg) rotateX(25deg) rotateY(15deg);
             }
 
             100% {
-                transform: rotate(360deg) rotateX(20deg) rotateY(12deg);
-            }
-        }
-
-        /* === LIGHT RAYS === */
-        .light-rays {
-            position: fixed;
-            top: -50%;
-            left: -50%;
-            width: 200%;
-            height: 200%;
-            z-index: -1;
-            pointer-events: none;
-            background: radial-gradient(ellipse at 30% 20%,
-                    rgba(200, 200, 210, 0.04) 0%,
-                    transparent 50%),
-                radial-gradient(ellipse at 70% 80%,
-                    rgba(200, 200, 210, 0.03) 0%,
-                    transparent 50%);
-            animation: lightShift 20s ease-in-out infinite;
-        }
-
-        @keyframes lightShift {
-
-            0%,
-            100% {
-                transform: translate(0, 0);
-            }
-
-            33% {
-                transform: translate(2%, -1%);
-            }
-
-            66% {
-                transform: translate(-1%, 2%);
+                transform: rotate(360deg) rotateX(25deg) rotateY(15deg);
             }
         }
 
@@ -426,6 +322,7 @@
             animation: none;
         }
 
+        /* Visualizer rings */
         .music-toggle::before,
         .music-toggle::after {
             content: '';
@@ -446,6 +343,12 @@
             opacity: 1;
         }
 
+        .music-toggle.paused::before,
+        .music-toggle.paused::after {
+            animation: none;
+            opacity: 0;
+        }
+
         @keyframes visualizerRing {
             0% {
                 transform: scale(1);
@@ -455,6 +358,19 @@
             100% {
                 transform: scale(1.8);
                 opacity: 0;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .music-player {
+                bottom: 20px;
+                right: 20px;
+            }
+
+            .music-toggle {
+                width: 45px;
+                height: 45px;
+                font-size: 1rem;
             }
         }
 
@@ -503,7 +419,7 @@
             font-family: 'Cormorant Garamond', serif;
             font-size: clamp(0.9rem, 2vw, 1.1rem);
             font-weight: 300;
-            letter-spacing: 8px;
+            letter-spacing: 6px;
             text-transform: uppercase;
             color: var(--silver-60);
             margin-bottom: 30px;
@@ -534,8 +450,7 @@
             animation: fadeInUp 1.5s ease forwards;
             animation-delay: 0.9s;
             opacity: 0;
-            text-shadow: 0 0 80px rgba(192, 192, 192, 0.3),
-                0 0 120px rgba(192, 192, 192, 0.1);
+            text-shadow: 0 0 80px rgba(192, 192, 192, 0.2);
         }
 
         .gate-divider-line {
@@ -570,12 +485,12 @@
             padding: 18px 48px;
             background: transparent;
             color: var(--silver-90);
-            border: 1px solid rgba(192, 192, 192, 0.25);
+            border: 1px solid rgba(192, 192, 192, 0.3);
             border-radius: 50px;
             font-family: 'Inter', sans-serif;
             font-size: 0.85rem;
             font-weight: 500;
-            letter-spacing: 4px;
+            letter-spacing: 3px;
             text-transform: uppercase;
             cursor: pointer;
             text-decoration: none;
@@ -593,7 +508,7 @@
             content: '';
             position: absolute;
             inset: 0;
-            background: linear-gradient(135deg, rgba(192, 192, 192, 0.12), rgba(255, 255, 255, 0.06));
+            background: linear-gradient(135deg, rgba(192, 192, 192, 0.1), rgba(255, 255, 255, 0.05));
             opacity: 0;
             transition: opacity 0.6s;
             border-radius: 50px;
@@ -603,9 +518,8 @@
             border-color: var(--silver-80);
             color: var(--silver-100);
             transform: scale(1.03);
-            box-shadow: 0 20px 60px rgba(192, 192, 192, 0.12),
-                0 0 100px rgba(192, 192, 192, 0.05);
-            letter-spacing: 5px;
+            box-shadow: 0 20px 60px rgba(192, 192, 192, 0.1);
+            letter-spacing: 4px;
         }
 
         .btn-open-gate:hover::before {
@@ -671,11 +585,9 @@
             position: relative;
             border-radius: 20px;
             overflow: hidden;
-            box-shadow: 0 30px 80px rgba(0, 0, 0, 0.5),
-                0 0 100px rgba(192, 192, 192, 0.05);
+            box-shadow: 0 30px 80px rgba(0, 0, 0, 0.5);
             aspect-ratio: 4/3;
             background: rgba(0, 0, 0, 0.3);
-            border: 1px solid rgba(255, 255, 255, 0.05);
         }
 
         .slider-track {
@@ -718,8 +630,8 @@
             position: absolute;
             top: 50%;
             transform: translateY(-50%);
-            background: rgba(0, 0, 0, 0.6);
-            backdrop-filter: blur(15px);
+            background: rgba(0, 0, 0, 0.5);
+            backdrop-filter: blur(10px);
             border: 1px solid rgba(255, 255, 255, 0.1);
             color: white;
             width: 40px;
@@ -736,7 +648,6 @@
 
         .slider-nav:hover {
             background: rgba(0, 0, 0, 0.8);
-            border-color: rgba(255, 255, 255, 0.2);
         }
 
         .slider-nav.prev {
@@ -757,8 +668,8 @@
 
         .detail-card {
             background: var(--glass-bg);
-            backdrop-filter: blur(25px);
-            -webkit-backdrop-filter: blur(25px);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
             border: 1px solid var(--glass-border);
             border-radius: 16px;
             padding: 25px 20px;
@@ -775,25 +686,19 @@
             left: 0;
             right: 0;
             height: 1px;
-            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.12), transparent);
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.1), transparent);
         }
 
         .detail-card:hover {
             transform: translateY(-5px);
-            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5),
-                0 0 60px rgba(192, 192, 192, 0.03);
-            border-color: rgba(255, 255, 255, 0.15);
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.4);
+            border-color: rgba(255, 255, 255, 0.12);
         }
 
         .detail-icon {
             font-size: 1.8rem;
             margin-bottom: 12px;
             color: var(--silver-60);
-            transition: color 0.3s;
-        }
-
-        .detail-card:hover .detail-icon {
-            color: var(--silver-80);
         }
 
         .detail-label {
@@ -825,7 +730,6 @@
             font-size: clamp(2rem, 5vw, 3rem);
             color: var(--silver-100);
             font-weight: 700;
-            text-shadow: 0 0 60px rgba(192, 192, 192, 0.15);
         }
 
         .rsvp-subtitle {
@@ -852,14 +756,12 @@
             cursor: pointer;
             text-decoration: none;
             transition: all 0.5s var(--transition-bounce);
-            box-shadow: 0 15px 40px rgba(192, 192, 192, 0.2),
-                0 0 80px rgba(192, 192, 192, 0.08);
+            box-shadow: 0 15px 40px rgba(192, 192, 192, 0.15);
         }
 
         .btn-rsvp:hover {
             transform: scale(1.05);
-            box-shadow: 0 25px 60px rgba(192, 192, 192, 0.3),
-                0 0 120px rgba(192, 192, 192, 0.12);
+            box-shadow: 0 25px 60px rgba(192, 192, 192, 0.25);
         }
 
         .btn-location-outline {
@@ -869,7 +771,7 @@
             padding: 18px 50px;
             background: transparent;
             color: var(--silver-90);
-            border: 1px solid rgba(192, 192, 192, 0.25);
+            border: 1px solid rgba(192, 192, 192, 0.3);
             border-radius: 50px;
             font-family: 'Inter', sans-serif;
             font-size: 0.85rem;
@@ -879,14 +781,12 @@
             cursor: pointer;
             text-decoration: none;
             transition: all 0.5s var(--transition-smooth);
-            backdrop-filter: blur(10px);
-            -webkit-backdrop-filter: blur(10px);
         }
 
         .btn-location-outline:hover {
             border-color: var(--silver-80);
             color: var(--silver-100);
-            box-shadow: 0 15px 40px rgba(192, 192, 192, 0.1);
+            box-shadow: 0 15px 40px rgba(192, 192, 192, 0.08);
         }
 
         /* === SECTION 4: CLOSING === */
@@ -901,7 +801,6 @@
             font-size: clamp(2rem, 5vw, 3rem);
             color: var(--silver-80);
             font-weight: 400;
-            text-shadow: 0 0 40px rgba(192, 192, 192, 0.15);
         }
 
         .closing-name {
@@ -931,17 +830,6 @@
             .detail-card {
                 padding: 18px 14px;
             }
-
-            .music-player {
-                bottom: 20px;
-                right: 20px;
-            }
-
-            .music-toggle {
-                width: 45px;
-                height: 45px;
-                font-size: 1rem;
-            }
         }
 
         @media (max-width: 480px) {
@@ -963,20 +851,13 @@
 <body>
 
     <!-- === BACKGROUND LAYERS === -->
-    <!-- Light Rays Background -->
-    <div class="light-rays"></div>
-
-    <!-- Video Background -->
     <div class="video-background" id="videoBg">
-        <iframe
-            src="https://www.youtube.com/embed/HPph35tdMP8?autoplay=1&mute=1&controls=0&loop=1&playlist=HPph35tdMP8&showinfo=0&rel=0&enablejsapi=1&modestbranding=1&iv_load_policy=3&playsinline=1"
-            frameborder="0"
-            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-            allowfullscreen>
+        <iframe id="ytPlayer"
+            src="https://www.youtube.com/embed/HPph35tdMP8?list=PLgtrU8K8jEY_4-WsJJAPeCQcHz3Q7umQT&autoplay=1&mute=1&controls=0&loop=1&playlist=HPph35tdMP8"
+            frameborder="0" allow="autoplay; encrypted-media" allowfullscreen>
         </iframe>
     </div>
 
-    <!-- Grain Overlay -->
     <div class="grain-overlay"></div>
 
     <!-- 3D Rings -->
@@ -984,11 +865,8 @@
     <div class="ring-3d ring-2"></div>
     <div class="ring-3d ring-3"></div>
 
-    <!-- Mist/Smoke Layer 1 -->
+    <!-- Mist/Smoke -->
     <div class="mist-container" id="mistContainer"></div>
-
-    <!-- Mist/Smoke Layer 2 -->
-    <div class="mist-container" id="mistContainer2"></div>
 
     <!-- Particles -->
     <div class="particles-container" id="particlesContainer"></div>
@@ -1012,19 +890,14 @@
         {{-- SECTION 1: GATE / COVER --}}
         <section class="fullscreen-section section-gate" id="sectionGate">
             <div class="gate-content">
-                <p class="gate-event-label">
-                    The Celebration of Belva 17th Birthday
-                </p>
+                <p class="gate-event-label">The Celebration of Belva 17th Birthday</p>
                 <p class="gate-dear">Dear,</p>
                 <h1 class="gate-name">{{ $guest->name }}</h1>
                 <div class="gate-divider-line"></div>
                 <p class="gate-quote">
-                    <i class="fas fa-quote-left" style="margin-right: 8px; font-size: 0.8rem; opacity: 0.5;"></i>
-                    Every moment is a gift, and your presence would make this celebration truly complete.
-                    <i class="fas fa-quote-right" style="margin-left: 8px; font-size: 0.8rem; opacity: 0.5;"></i>
+                    "Every moment is a gift, and your presence would make this celebration truly complete."
                 </p>
                 <a href="#sectionDetails" class="btn-open-gate" id="btnOpenGate" onclick="openInvitation(event)">
-                    <i class="far fa-envelope-open"></i>
                     <span>Open Invitation</span>
                     <i class="fas fa-chevron-down"></i>
                 </a>
@@ -1059,12 +932,8 @@
                         @endforeach
                     </div>
                     @if (count($photos) > 1)
-                        <button class="slider-nav prev" onclick="slidePhoto(-1)">
-                            <i class="fas fa-chevron-left"></i>
-                        </button>
-                        <button class="slider-nav next" onclick="slidePhoto(1)">
-                            <i class="fas fa-chevron-right"></i>
-                        </button>
+                        <button class="slider-nav prev" onclick="slidePhoto(-1)">❮</button>
+                        <button class="slider-nav next" onclick="slidePhoto(1)">❯</button>
                     @endif
                 </div>
                 @if (count($photos) > 1)
@@ -1080,26 +949,24 @@
             {{-- Details --}}
             <div class="details-grid">
                 <div class="detail-card">
-                    <div class="detail-icon">
-                        <i class="far fa-calendar-alt"></i>
-                    </div>
+                    <div class="detail-icon">📅</div>
                     <p class="detail-label">Date</p>
                     <p class="detail-value">
                         {{ \Carbon\Carbon::parse($guest->event->event_date ?? now())->format('d M Y') }}</p>
                 </div>
                 <div class="detail-card">
-                    <div class="detail-icon">
-                        <i class="fas fa-map-marker-alt"></i>
-                    </div>
-                    <p class="detail-label">Venue & Time</p>
+                    <div class="detail-icon">⏰</div>
+                    <p class="detail-label">Time</p>
+                    <p class="detail-value">{{ $guest->event->event_time ?? 'To be announced' }}</p>
+                </div>
+                <div class="detail-card">
+                    <div class="detail-icon">📍</div>
+                    <p class="detail-label">Venue</p>
                     <p class="detail-value">{{ $guest->event->venue ?? 'Secret Location' }}</p>
-                    <p class="detail-value"> {{ $guest->event->event_time ?? 'To be announced' }}</p>
                 </div>
                 @if ($guest->event->dresscode ?? false)
                     <div class="detail-card">
-                        <div class="detail-icon">
-                            <i class="fas fa-tshirt"></i>
-                        </div>
+                        <div class="detail-icon">👔</div>
                         <p class="detail-label">Dress Code</p>
                         <p class="detail-value">{{ $guest->event->dresscode }}</p>
                     </div>
@@ -1109,10 +976,7 @@
 
         {{-- SECTION 3: RSVP & LOCATION --}}
         <section class="fullscreen-section section-rsvp" id="sectionRsvp">
-            <h2 class="rsvp-title">
-                <i class="far fa-check-circle" style="margin-right: 12px; font-size: 0.8em;"></i>
-                Confirm Attendance
-            </h2>
+            <h2 class="rsvp-title">Confirm Attendance</h2>
             <p class="rsvp-subtitle">We would be honored by your presence</p>
 
             @if ($guest->event->no_wa_confirmation ?? false)
@@ -1126,7 +990,7 @@
             @if ($guest->event->link_googlemaps ?? false)
                 <a href="{{ $guest->event->link_googlemaps }}" target="_blank" rel="noopener"
                     class="btn-location-outline">
-                    <i class="fas fa-map-marked-alt"></i>
+                    <i class="fas fa-map-marker-alt"></i>
                     <span>View Location</span>
                     <i class="fas fa-external-link-alt" style="font-size:0.7rem;"></i>
                 </a>
@@ -1135,16 +999,9 @@
 
         {{-- SECTION 4: CLOSING --}}
         <section class="fullscreen-section section-closing" id="sectionClosing">
-            <p class="closing-text">
-                <i class="fas fa-heart" style="margin-right: 10px; font-size: 0.7em;"></i>
-                With Love & Gratitude
-                <i class="fas fa-heart" style="margin-left: 10px; font-size: 0.7em;"></i>
-            </p>
+            <p class="closing-text">With Love & Gratitude</p>
             <p class="closing-name">{{ $guest->event->title ?? 'Belva' }}</p>
-            <p style="color: var(--silver-60); font-size: 0.85rem;">
-                <i class="far fa-smile" style="margin-right: 5px;"></i>
-                Thank you for being part of this special moment
-            </p>
+            <p style="color: var(--silver-60); font-size: 0.85rem;">Thank you for being part of this special moment</p>
         </section>
 
     </div>
@@ -1161,6 +1018,7 @@
         function openInvitation(event) {
             event.preventDefault();
 
+            // Start playing music
             if (bgMusic) {
                 bgMusic.play().then(() => {
                     isMusicPlaying = true;
@@ -1170,8 +1028,10 @@
                 });
             }
 
+            // Show music player
             musicPlayer.classList.add('active');
 
+            // Scroll to details section
             smoothScrollTo('sectionDetails');
         }
 
@@ -1187,7 +1047,7 @@
                 }).catch(error => {
                     console.log('Play prevented:', error);
                 });
-                isMusicPlaying = true;
+                isMusicPlaying = true; // Optimistically set to true
             }
 
             updateMusicButton();
@@ -1205,10 +1065,12 @@
             }
         }
 
+        // Music toggle click event
         if (musicToggle) {
             musicToggle.addEventListener('click', toggleMusic);
         }
 
+        // Update button state when audio ends or is paused externally
         if (bgMusic) {
             bgMusic.addEventListener('play', () => {
                 isMusicPlaying = true;
@@ -1285,6 +1147,7 @@
             startAutoSlide();
         }
 
+        // Touch swipe support
         (function initSwipe() {
             const slider = document.getElementById('photoSlider');
             if (!slider) return;
@@ -1304,59 +1167,34 @@
 
                 if (Math.abs(diff) > 50) {
                     if (diff > 0) {
-                        slidePhoto(1);
+                        slidePhoto(1); // Swipe left -> next
                     } else {
-                        slidePhoto(-1);
+                        slidePhoto(-1); // Swipe right -> prev
                     }
                 }
             });
         })();
 
+        // Start auto slide
         if (totalSlides > 1) {
             startAutoSlide();
         }
 
         // ============================================
-        // ENHANCED MIST/SMOKE GENERATOR - LAYER 1
+        // MIST/SMOKE GENERATOR
         // ============================================
-        (function createMistLayer1() {
+        (function createMist() {
             const container = document.getElementById('mistContainer');
-            const mistCount = 12;
+            const mistCount = 8;
 
             for (let i = 0; i < mistCount; i++) {
                 const mist = document.createElement('div');
                 mist.classList.add('mist');
 
-                const size = Math.random() * 250 + 150;
-                const left = Math.random() * 100;
-                const duration = Math.random() * 20 + 15;
-                const delay = Math.random() * 15;
-
-                mist.style.width = size + 'px';
-                mist.style.height = size + 'px';
-                mist.style.left = left + '%';
-                mist.style.animationDuration = duration + 's';
-                mist.style.animationDelay = delay + 's';
-
-                container.appendChild(mist);
-            }
-        })();
-
-        // ============================================
-        // ENHANCED MIST/SMOKE GENERATOR - LAYER 2
-        // ============================================
-        (function createMistLayer2() {
-            const container = document.getElementById('mistContainer2');
-            const mistCount = 8;
-
-            for (let i = 0; i < mistCount; i++) {
-                const mist = document.createElement('div');
-                mist.classList.add('mist-layer-2');
-
                 const size = Math.random() * 300 + 200;
                 const left = Math.random() * 100;
-                const duration = Math.random() * 25 + 18;
-                const delay = Math.random() * 18;
+                const duration = Math.random() * 25 + 20;
+                const delay = Math.random() * 20;
 
                 mist.style.width = size + 'px';
                 mist.style.height = size + 'px';
@@ -1369,19 +1207,19 @@
         })();
 
         // ============================================
-        // ENHANCED 3D PARTICLES GENERATOR
+        // FLOATING PARTICLES GENERATOR
         // ============================================
         (function createParticles() {
             const container = document.getElementById('particlesContainer');
-            const count = 50;
+            const count = 40;
 
             for (let i = 0; i < count; i++) {
                 const particle = document.createElement('div');
                 particle.classList.add('particle');
 
-                const size = Math.random() * 3 + 1.5;
+                const size = Math.random() * 2 + 1;
                 const left = Math.random() * 100;
-                const duration = Math.random() * 12 + 8;
+                const duration = Math.random() * 15 + 10;
                 const delay = Math.random() * 10;
 
                 particle.style.width = size + 'px';
@@ -1395,20 +1233,18 @@
         })();
 
         // ============================================
-        // ENHANCED PARALLAX 3D RINGS ON MOUSE MOVE
+        // PARALLAX 3D RINGS ON MOUSE MOVE
         // ============================================
         (function parallaxRings() {
             document.addEventListener('mousemove', (e) => {
                 const rings = document.querySelectorAll('.ring-3d');
-                const x = (e.clientX / window.innerWidth - 0.5) * 40;
-                const y = (e.clientY / window.innerHeight - 0.5) * 40;
+                const x = (e.clientX / window.innerWidth - 0.5) * 30;
+                const y = (e.clientY / window.innerHeight - 0.5) * 30;
 
                 rings.forEach((ring, index) => {
-                    const factor = (index + 1) * 0.5;
-                    const rotX = 20 + (e.clientY / window.innerHeight) * 10;
-                    const rotY = 12 + (e.clientX / window.innerWidth) * 8;
+                    const factor = (index + 1) * 0.4;
                     ring.style.transform =
-                        `translate(${x * factor}px, ${y * factor}px) rotateX(${rotX}deg) rotateY(${rotY}deg)`;
+                        `translate(${x * factor}px, ${y * factor}px) rotateX(25deg) rotateY(15deg)`;
                 });
             });
         })();
