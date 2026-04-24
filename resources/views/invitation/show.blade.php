@@ -1130,7 +1130,6 @@
         {{-- SECTION 5: RSVP --}}
         <section class="fullscreen-section section-rsvp" id="sectionRsvp">
             <h2 class="rsvp-title">
-                <i class="far fa-check-circle" style="margin-right: 12px; font-size: 0.8em;"></i>
                 Confirm Attendance
             </h2>
             <p class="rsvp-subtitle">We would be honored by your presence</p>
