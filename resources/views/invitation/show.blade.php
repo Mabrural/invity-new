@@ -1,14 +1,24 @@
 <!DOCTYPE html>
 <html lang="id">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <title>Digital Invitation | {{ $guest->name }}</title>
-    
+    <meta property="og:title" content="{{ $event->title }}">
+    <meta property="og:description" content="You're invited to our special day 💍">
+    <meta property="og:image" content="{{ asset('storage/' . $event->event_photo_1) }}">
+    <meta property="og:url" content="{{ url()->current() }}">
+    <meta property="og:type" content="website">
+
+    <meta name="twitter:card" content="summary_large_image">
+
     <!-- Fonts & Icons -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500&family=Inter:wght@200;300;400;500;600&family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400;1,500&family=Great+Vibes&display=swap" rel="stylesheet">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500&family=Inter:wght@200;300;400;500;600&family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400;1,500&family=Great+Vibes&display=swap"
+        rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 
     <style>
@@ -130,15 +140,19 @@
                 transform: translate(0, 100vh) scale(0.8);
                 opacity: 0;
             }
+
             10% {
                 opacity: 0.6;
             }
+
             50% {
                 opacity: 0.3;
             }
+
             90% {
                 opacity: 0.1;
             }
+
             100% {
                 transform: translate(20vw, -20vh) scale(1.5);
                 opacity: 0;
@@ -169,15 +183,19 @@
                 transform: translateY(110vh) translateX(0) scale(0);
                 opacity: 0;
             }
+
             15% {
                 opacity: 0.8;
             }
+
             40% {
                 opacity: 0.2;
             }
+
             85% {
                 opacity: 0.05;
             }
+
             100% {
                 transform: translateY(-10vh) translateX(40px) scale(1.8);
                 opacity: 0;
@@ -223,8 +241,13 @@
         }
 
         @keyframes ringRotate {
-            0% { transform: rotate(0deg) rotateX(25deg) rotateY(15deg); }
-            100% { transform: rotate(360deg) rotateX(25deg) rotateY(15deg); }
+            0% {
+                transform: rotate(0deg) rotateX(25deg) rotateY(15deg);
+            }
+
+            100% {
+                transform: rotate(360deg) rotateX(25deg) rotateY(15deg);
+            }
         }
 
         /* === MAIN SCROLL SECTIONS === */
@@ -261,6 +284,7 @@
                 opacity: 0;
                 transform: translateY(40px);
             }
+
             100% {
                 opacity: 1;
                 transform: translateY(0);
@@ -360,7 +384,7 @@
             content: '';
             position: absolute;
             inset: 0;
-            background: linear-gradient(135deg, rgba(192,192,192,0.1), rgba(255,255,255,0.05));
+            background: linear-gradient(135deg, rgba(192, 192, 192, 0.1), rgba(255, 255, 255, 0.05));
             opacity: 0;
             transition: opacity 0.6s;
             border-radius: 50px;
@@ -412,8 +436,15 @@
         }
 
         @keyframes bounceDown {
-            0%, 100% { transform: translateX(-50%) translateY(0); }
-            50% { transform: translateX(-50%) translateY(12px); }
+
+            0%,
+            100% {
+                transform: translateX(-50%) translateY(0);
+            }
+
+            50% {
+                transform: translateX(-50%) translateY(12px);
+            }
         }
 
         /* === SECTION 2: PHOTO SLIDER + DETAILS === */
@@ -432,7 +463,7 @@
             overflow: hidden;
             box-shadow: 0 30px 80px rgba(0, 0, 0, 0.5);
             aspect-ratio: 4/3;
-            background: rgba(0,0,0,0.3);
+            background: rgba(0, 0, 0, 0.3);
         }
 
         .slider-track {
@@ -475,9 +506,9 @@
             position: absolute;
             top: 50%;
             transform: translateY(-50%);
-            background: rgba(0,0,0,0.5);
+            background: rgba(0, 0, 0, 0.5);
             backdrop-filter: blur(10px);
-            border: 1px solid rgba(255,255,255,0.1);
+            border: 1px solid rgba(255, 255, 255, 0.1);
             color: white;
             width: 40px;
             height: 40px;
@@ -492,7 +523,7 @@
         }
 
         .slider-nav:hover {
-            background: rgba(0,0,0,0.8);
+            background: rgba(0, 0, 0, 0.8);
         }
 
         .slider-nav.prev {
@@ -531,13 +562,13 @@
             left: 0;
             right: 0;
             height: 1px;
-            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.1), transparent);
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.1), transparent);
         }
 
         .detail-card:hover {
             transform: translateY(-5px);
-            box-shadow: 0 20px 50px rgba(0,0,0,0.4);
-            border-color: rgba(255,255,255,0.12);
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.4);
+            border-color: rgba(255, 255, 255, 0.12);
         }
 
         .detail-icon {
@@ -660,15 +691,18 @@
             .fullscreen-section {
                 padding: 15px;
             }
+
             .slider-nav {
                 width: 32px;
                 height: 32px;
                 font-size: 0.7rem;
             }
+
             .details-grid {
                 grid-template-columns: 1fr 1fr;
                 gap: 10px;
             }
+
             .detail-card {
                 padding: 18px 14px;
             }
@@ -678,6 +712,7 @@
             .details-grid {
                 grid-template-columns: 1fr;
             }
+
             .btn-open-gate,
             .btn-rsvp,
             .btn-location-outline {
@@ -688,15 +723,14 @@
         }
     </style>
 </head>
+
 <body>
 
     <!-- === BACKGROUND LAYERS === -->
     <div class="video-background" id="videoBg">
         <iframe id="ytPlayer"
-                src="hhttps://www.youtube.com/watch?v=HPph35tdMP8&list=PLgtrU8K8jEY_4-WsJJAPeCQcHz3Q7umQT"
-                frameborder="0"
-                allow="autoplay; encrypted-media"
-                allowfullscreen>
+            src="hhttps://www.youtube.com/watch?v=HPph35tdMP8&list=PLgtrU8K8jEY_4-WsJJAPeCQcHz3Q7umQT" frameborder="0"
+            allow="autoplay; encrypted-media" allowfullscreen>
         </iframe>
     </div>
 
@@ -742,30 +776,37 @@
             {{-- Photo Slider --}}
             @php
                 $photos = [];
-                if($guest->event->event_photo_1 ?? false) $photos[] = asset('storage/' . $guest->event->event_photo_1);
-                if($guest->event->event_photo_2 ?? false) $photos[] = asset('storage/' . $guest->event->event_photo_2);
-                if($guest->event->event_photo_3 ?? false) $photos[] = asset('storage/' . $guest->event->event_photo_3);
+                if ($guest->event->event_photo_1 ?? false) {
+                    $photos[] = asset('storage/' . $guest->event->event_photo_1);
+                }
+                if ($guest->event->event_photo_2 ?? false) {
+                    $photos[] = asset('storage/' . $guest->event->event_photo_2);
+                }
+                if ($guest->event->event_photo_3 ?? false) {
+                    $photos[] = asset('storage/' . $guest->event->event_photo_3);
+                }
             @endphp
 
-            @if(count($photos) > 0)
-            <div class="slider-container" id="photoSlider">
-                <div class="slider-track" id="sliderTrack">
-                    @foreach($photos as $photo)
-                        <img src="{{ $photo }}" alt="Event Photo" loading="lazy">
-                    @endforeach
+            @if (count($photos) > 0)
+                <div class="slider-container" id="photoSlider">
+                    <div class="slider-track" id="sliderTrack">
+                        @foreach ($photos as $photo)
+                            <img src="{{ $photo }}" alt="Event Photo" loading="lazy">
+                        @endforeach
+                    </div>
+                    @if (count($photos) > 1)
+                        <button class="slider-nav prev" onclick="slidePhoto(-1)">❮</button>
+                        <button class="slider-nav next" onclick="slidePhoto(1)">❯</button>
+                    @endif
                 </div>
-                @if(count($photos) > 1)
-                <button class="slider-nav prev" onclick="slidePhoto(-1)">❮</button>
-                <button class="slider-nav next" onclick="slidePhoto(1)">❯</button>
+                @if (count($photos) > 1)
+                    <div class="slider-dots" id="sliderDots">
+                        @foreach ($photos as $index => $photo)
+                            <button class="slider-dot {{ $index === 0 ? 'active' : '' }}"
+                                onclick="goToSlide({{ $index }})"></button>
+                        @endforeach
+                    </div>
                 @endif
-            </div>
-            @if(count($photos) > 1)
-            <div class="slider-dots" id="sliderDots">
-                @foreach($photos as $index => $photo)
-                    <button class="slider-dot {{ $index === 0 ? 'active' : '' }}" onclick="goToSlide({{ $index }})"></button>
-                @endforeach
-            </div>
-            @endif
             @endif
 
             {{-- Details --}}
@@ -773,7 +814,8 @@
                 <div class="detail-card">
                     <div class="detail-icon">📅</div>
                     <p class="detail-label">Date</p>
-                    <p class="detail-value">{{ \Carbon\Carbon::parse($guest->event->event_date ?? now())->format('d M Y') }}</p>
+                    <p class="detail-value">
+                        {{ \Carbon\Carbon::parse($guest->event->event_date ?? now())->format('d M Y') }}</p>
                 </div>
                 <div class="detail-card">
                     <div class="detail-icon">⏰</div>
@@ -785,12 +827,12 @@
                     <p class="detail-label">Venue</p>
                     <p class="detail-value">{{ $guest->event->venue ?? 'Secret Location' }}</p>
                 </div>
-                @if($guest->event->dresscode ?? false)
-                <div class="detail-card">
-                    <div class="detail-icon">👔</div>
-                    <p class="detail-label">Dress Code</p>
-                    <p class="detail-value">{{ $guest->event->dresscode }}</p>
-                </div>
+                @if ($guest->event->dresscode ?? false)
+                    <div class="detail-card">
+                        <div class="detail-icon">👔</div>
+                        <p class="detail-label">Dress Code</p>
+                        <p class="detail-value">{{ $guest->event->dresscode }}</p>
+                    </div>
                 @endif
             </div>
         </section>
@@ -800,22 +842,21 @@
             <h2 class="rsvp-title">Confirm Attendance</h2>
             <p class="rsvp-subtitle">We would be honored by your presence</p>
 
-            @if($guest->event->no_wa_confirmation ?? false)
-            <a href="https://wa.me/{{ preg_replace('/[^0-9]/', '', $guest->event->no_wa_confirmation) }}?text={{ urlencode('Hello! I would like to confirm my attendance for ' . ($guest->event->title ?? 'the event') . '. - ' . $guest->name) }}" 
-               target="_blank" 
-               rel="noopener"
-               class="btn-rsvp">
-                <i class="fab fa-whatsapp"></i>
-                <span>RSVP via WhatsApp</span>
-            </a>
+            @if ($guest->event->no_wa_confirmation ?? false)
+                <a href="https://wa.me/{{ preg_replace('/[^0-9]/', '', $guest->event->no_wa_confirmation) }}?text={{ urlencode('Hello! I would like to confirm my attendance for ' . ($guest->event->title ?? 'the event') . '. - ' . $guest->name) }}"
+                    target="_blank" rel="noopener" class="btn-rsvp">
+                    <i class="fab fa-whatsapp"></i>
+                    <span>RSVP via WhatsApp</span>
+                </a>
             @endif
 
-            @if($guest->event->link_googlemaps ?? false)
-            <a href="{{ $guest->event->link_googlemaps }}" target="_blank" rel="noopener" class="btn-location-outline">
-                <i class="fas fa-map-marker-alt"></i>
-                <span>View Location</span>
-                <i class="fas fa-external-link-alt" style="font-size:0.7rem;"></i>
-            </a>
+            @if ($guest->event->link_googlemaps ?? false)
+                <a href="{{ $guest->event->link_googlemaps }}" target="_blank" rel="noopener"
+                    class="btn-location-outline">
+                    <i class="fas fa-map-marker-alt"></i>
+                    <span>View Location</span>
+                    <i class="fas fa-external-link-alt" style="font-size:0.7rem;"></i>
+                </a>
             @endif
         </section>
 
@@ -835,7 +876,10 @@
         function smoothScrollTo(sectionId) {
             const section = document.getElementById(sectionId);
             if (section) {
-                section.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                section.scrollIntoView({
+                    behavior: 'smooth',
+                    block: 'start'
+                });
             }
         }
 
@@ -849,11 +893,11 @@
         function updateSlider() {
             const track = document.getElementById('sliderTrack');
             const dots = document.querySelectorAll('.slider-dot');
-            
+
             if (track) {
                 track.style.transform = `translateX(-${currentSlide * 100}%)`;
             }
-            
+
             dots.forEach((dot, index) => {
                 dot.classList.toggle('active', index === currentSlide);
             });
@@ -895,12 +939,14 @@
 
             slider.addEventListener('touchstart', (e) => {
                 touchStartX = e.changedTouches[0].screenX;
-            }, { passive: true });
+            }, {
+                passive: true
+            });
 
             slider.addEventListener('touchend', (e) => {
                 touchEndX = e.changedTouches[0].screenX;
                 const diff = touchStartX - touchEndX;
-                
+
                 if (Math.abs(diff) > 50) {
                     if (diff > 0) {
                         slidePhoto(1); // Swipe left -> next
@@ -926,18 +972,18 @@
             for (let i = 0; i < mistCount; i++) {
                 const mist = document.createElement('div');
                 mist.classList.add('mist');
-                
+
                 const size = Math.random() * 300 + 200;
                 const left = Math.random() * 100;
                 const duration = Math.random() * 25 + 20;
                 const delay = Math.random() * 20;
-                
+
                 mist.style.width = size + 'px';
                 mist.style.height = size + 'px';
                 mist.style.left = left + '%';
                 mist.style.animationDuration = duration + 's';
                 mist.style.animationDelay = delay + 's';
-                
+
                 container.appendChild(mist);
             }
         })();
@@ -952,18 +998,18 @@
             for (let i = 0; i < count; i++) {
                 const particle = document.createElement('div');
                 particle.classList.add('particle');
-                
+
                 const size = Math.random() * 2 + 1;
                 const left = Math.random() * 100;
                 const duration = Math.random() * 15 + 10;
                 const delay = Math.random() * 10;
-                
+
                 particle.style.width = size + 'px';
                 particle.style.height = size + 'px';
                 particle.style.left = left + '%';
                 particle.style.animationDuration = duration + 's';
                 particle.style.animationDelay = delay + 's';
-                
+
                 container.appendChild(particle);
             }
         })();
@@ -976,10 +1022,11 @@
                 const rings = document.querySelectorAll('.ring-3d');
                 const x = (e.clientX / window.innerWidth - 0.5) * 30;
                 const y = (e.clientY / window.innerHeight - 0.5) * 30;
-                
+
                 rings.forEach((ring, index) => {
                     const factor = (index + 1) * 0.4;
-                    ring.style.transform = `translate(${x * factor}px, ${y * factor}px) rotateX(25deg) rotateY(15deg)`;
+                    ring.style.transform =
+                        `translate(${x * factor}px, ${y * factor}px) rotateX(25deg) rotateY(15deg)`;
                 });
             });
         })();
@@ -1002,12 +1049,13 @@
                 });
             }, observerOptions);
 
-            document.querySelectorAll('.detail-card, .rsvp-title, .rsvp-subtitle, .closing-text, .closing-name').forEach(el => {
-                el.style.opacity = '0';
-                el.style.transform = 'translateY(30px)';
-                el.style.transition = 'all 0.8s cubic-bezier(0.22, 0.61, 0.36, 1)';
-                observer.observe(el);
-            });
+            document.querySelectorAll('.detail-card, .rsvp-title, .rsvp-subtitle, .closing-text, .closing-name')
+                .forEach(el => {
+                    el.style.opacity = '0';
+                    el.style.transform = 'translateY(30px)';
+                    el.style.transition = 'all 0.8s cubic-bezier(0.22, 0.61, 0.36, 1)';
+                    observer.observe(el);
+                });
         })();
 
         // ============================================
@@ -1034,4 +1082,5 @@
     </script>
 
 </body>
+
 </html>
