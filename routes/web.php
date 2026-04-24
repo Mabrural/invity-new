@@ -46,9 +46,11 @@ Route::get('/events/{event}/guests', [GuestController::class, 'index'])->name('g
 
 Route::get('/invitation/{slug}', function ($slug) {
 
-    $guest = Guest::where('slug', $slug)->firstOrFail();
+    $guest = Guest::with('event')->where('slug', $slug)->firstOrFail();
 
-    return view('invitation.show', compact('guest'));
+    $event = $guest->event;
+
+    return view('invitation.show', compact('guest', 'event'));
 
 })->name('invitation.show');
 
