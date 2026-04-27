@@ -539,77 +539,50 @@
             transform: scale(0.97);
         }
 
-        /* === SECTION 2: QUOTES - FULLSCREEN WITH IMAGE BACKGROUND === */
+        /* === SECTION 2: QUOTES - FULLSCREEN === */
         .section-quotes {
             text-align: center;
-            position: relative;
-            display: flex;
-            align-items: flex-end;
-            justify-content: center;
-            padding-bottom: 10%;
-            background: url('{{ asset('assets/img/section2.png') }}') center/cover no-repeat;
-        }
-
-        .section-quotes::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(0deg,
-                    rgba(26, 10, 46, 0.85) 0%,
-                    rgba(26, 10, 46, 0.5) 35%,
-                    rgba(45, 27, 78, 0.3) 55%,
-                    rgba(26, 10, 46, 0.5) 75%,
-                    rgba(26, 10, 46, 0.7) 100%);
-            z-index: 1;
+            background: radial-gradient(ellipse at center, rgba(45, 27, 78, 0.4) 0%, rgba(26, 10, 46, 0.6) 100%);
         }
 
         .quotes-content {
-            position: relative;
-            z-index: 2;
             max-width: 700px;
-            padding: 30px 30px 40px;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
+            padding: 40px 30px;
         }
 
         .quotes-icon {
-            font-size: 2.5rem;
+            font-size: 3rem;
             color: var(--soft-purple);
-            margin-bottom: 20px;
-            opacity: 0.7;
+            margin-bottom: 30px;
+            opacity: 0.6;
             text-shadow: 0 0 20px rgba(167, 139, 250, 0.4);
         }
 
         .quotes-main {
             font-family: 'Cormorant Garamond', serif;
-            font-size: clamp(1.2rem, 2.8vw, 1.6rem);
+            font-size: clamp(1.3rem, 3vw, 1.8rem);
             font-style: italic;
             color: var(--ice-white);
-            line-height: 1.8;
-            margin-bottom: 20px;
+            line-height: 1.9;
+            margin-bottom: 30px;
             letter-spacing: 0.5px;
-            text-shadow: 0 0 20px rgba(200, 180, 240, 0.3);
+            text-shadow: 0 0 20px rgba(200, 180, 240, 0.2);
         }
 
         .quotes-author {
             font-family: 'Great Vibes', cursive;
-            font-size: clamp(1.4rem, 2.8vw, 1.8rem);
+            font-size: clamp(1.5rem, 3vw, 2rem);
             color: var(--gold-light);
             position: relative;
             display: inline-block;
-            text-shadow: 0 0 20px rgba(212, 167, 116, 0.2);
         }
 
         .quotes-author::before {
             content: '';
             position: absolute;
             top: 50%;
-            left: -45px;
-            width: 25px;
+            left: -50px;
+            width: 30px;
             height: 1px;
             background: rgba(167, 139, 250, 0.4);
         }
@@ -618,8 +591,8 @@
             content: '';
             position: absolute;
             top: 50%;
-            right: -45px;
-            width: 25px;
+            right: -50px;
+            width: 30px;
             height: 1px;
             background: rgba(167, 139, 250, 0.4);
         }
@@ -1074,10 +1047,6 @@
                 padding: 20px;
             }
 
-            .section-quotes {
-                padding-bottom: 12%;
-            }
-
             .gate-logo {
                 width: clamp(70px, 15vw, 110px);
                 margin-bottom: 15px;
@@ -1117,10 +1086,6 @@
                 max-width: 350px;
             }
 
-            .section-quotes {
-                padding-bottom: 15%;
-            }
-
             .gate-logo {
                 width: clamp(65px, 14vw, 90px);
                 margin-bottom: 12px;
@@ -1143,11 +1108,6 @@
             .gate-content {
                 max-width: 650px;
                 padding: 30px 40px;
-            }
-
-            .quotes-content {
-                max-width: 700px;
-                padding: 40px 40px 50px;
             }
         }
 
@@ -1211,6 +1171,7 @@
         {{-- SECTION 2: QUOTES --}}
         <div class="fullscreen-section section-quotes fade-section" data-index="1">
             <div class="quotes-content">
+                <div class="quotes-icon"><i class="fas fa-feather-alt"></i></div>
                 <p class="quotes-main">
                     "For you formed my inward parts;<br>
                     you knitted me together in<br>
