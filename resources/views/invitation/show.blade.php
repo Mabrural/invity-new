@@ -26,6 +26,8 @@
         rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 
+    <link href="https://fonts.cdnfonts.com/css/sloop" rel="stylesheet">
+
     <style>
         :root {
             --deep-purple: #1a0a2e;
@@ -1319,7 +1321,7 @@
                 <p class="closing-text"><i class="fas fa-heart" style="margin-right:10px;font-size:0.7em;"></i>With
                     Love & Gratitude<i class="fas fa-heart" style="margin-left:10px;font-size:0.7em;"></i></p>
                 <div class="closing-divider"></div>
-                <p class="closing-name">{{ $guest->event->title ?? 'Belva' }}</p>
+                <p class="closing-name" style="font-family: 'Sloop', sans-serif;">{{ $guest->event->title ?? 'Belva' }}</p>
                 <p class="closing-thanks"><i class="far fa-smile" style="margin-right:5px;"></i>Thank you for being
                     part of this special moment</p>
             </div>
