@@ -351,12 +351,21 @@
             opacity: 1;
         }
 
-        /* === SECTION 1: GATE - FULLSCREEN WITH BACKGROUND IMAGE === */
+        /* === SECTION 1: GATE - FULLSCREEN WITH VIDEO BACKGROUND === */
         .section-gate {
             flex-direction: column;
             text-align: center;
-            background: url('{{ asset('assets/img/section1.png') }}') center/cover no-repeat;
             position: relative;
+        }
+
+        .section-gate-video {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            z-index: 0;
         }
 
         .section-gate::before {
@@ -391,7 +400,6 @@
         }
 
         @keyframes logoGlow {
-
             0%,
             100% {
                 filter: drop-shadow(0 0 20px rgba(180, 150, 240, 0.4));
@@ -1123,6 +1131,9 @@
 
         {{-- SECTION 1: GATE --}}
         <div class="fullscreen-section section-gate fade-section" data-index="0">
+            <video class="section-gate-video" autoplay muted loop playsinline>
+                <source src="{{ asset('assets/img/section-1.mp4') }}" type="video/mp4">
+            </video>
             <div class="gate-content">
                 <img src="{{ asset('assets/img/logo-b.png') }}" alt="Logo" class="gate-logo">
                 <p class="gate-subtitle-top">The Celebration of Belva 17th Birthday</p>
