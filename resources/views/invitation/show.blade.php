@@ -1132,7 +1132,7 @@
         {{-- SECTION 1: GATE --}}
         <div class="fullscreen-section section-gate fade-section" data-index="0">
             <video class="section-gate-video" autoplay muted loop playsinline>
-                <source src="{{ asset('assets/img/section-1.mp4') }}" type="video/mp4">
+                <source src="{{ asset('assets/img/section1.mp4') }}" type="video/mp4">
             </video>
             <div class="gate-content">
                 <img src="{{ asset('assets/img/logo-b.png') }}" alt="Logo" class="gate-logo">
