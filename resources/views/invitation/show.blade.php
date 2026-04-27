@@ -377,6 +377,29 @@
             position: relative;
             z-index: 2;
             padding: 40px 30px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .gate-logo {
+            width: clamp(100px, 20vw, 160px);
+            height: auto;
+            margin-bottom: 25px;
+            filter: drop-shadow(0 0 20px rgba(180, 150, 240, 0.4));
+            animation: logoGlow 3s ease-in-out infinite;
+        }
+
+        @keyframes logoGlow {
+
+            0%,
+            100% {
+                filter: drop-shadow(0 0 20px rgba(180, 150, 240, 0.4));
+            }
+
+            50% {
+                filter: drop-shadow(0 0 35px rgba(200, 180, 255, 0.7));
+            }
         }
 
         .gate-subtitle-top {
@@ -1008,6 +1031,11 @@
                 padding: 30px 20px;
             }
 
+            .gate-logo {
+                width: clamp(80px, 18vw, 120px);
+                margin-bottom: 20px;
+            }
+
             .slider-nav {
                 width: 36px;
                 height: 36px;
@@ -1040,6 +1068,11 @@
             .details-grid {
                 grid-template-columns: 1fr;
                 max-width: 350px;
+            }
+
+            .gate-logo {
+                width: clamp(70px, 15vw, 100px);
+                margin-bottom: 18px;
             }
 
             .btn-open-gate,
@@ -1091,6 +1124,7 @@
         {{-- SECTION 1: GATE --}}
         <div class="fullscreen-section section-gate fade-section" data-index="0">
             <div class="gate-content">
+                <img src="{{ asset('assets/img/logo-b.png') }}" alt="Logo" class="gate-logo">
                 <p class="gate-subtitle-top">The Celebration of Belva 17th Birthday</p>
                 <p class="gate-dear">Dear</p>
                 <h1 class="gate-name">{{ $guest->name }}</h1>
