@@ -351,11 +351,26 @@
             opacity: 1;
         }
 
-        /* === SECTION 1: GATE - FULLSCREEN === */
+        /* === SECTION 1: GATE - FULLSCREEN WITH BACKGROUND IMAGE === */
         .section-gate {
             flex-direction: column;
             text-align: center;
-            background: radial-gradient(ellipse at center, rgba(45, 27, 78, 0.4) 0%, rgba(26, 10, 46, 0.6) 100%);
+            background: url('{{ asset('assets/img/section1.png') }}') center/cover no-repeat;
+            position: relative;
+        }
+
+        .section-gate::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(180deg,
+                    rgba(26, 10, 46, 0.7) 0%,
+                    rgba(45, 27, 78, 0.5) 50%,
+                    rgba(26, 10, 46, 0.7) 100%);
+            z-index: 1;
         }
 
         .gate-content {
