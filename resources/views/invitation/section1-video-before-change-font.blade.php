@@ -22,7 +22,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link
-        href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&family=Inter:wght@300;400;500;600&family=Playfair+Display:ital,wght@0,500;0,700;1,400&family=Great+Vibes&family=Tangerine:wght@400;700&family=Alex+Brush&family=Parisienne&display=swap"
+        href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&family=Inter:wght@300;400;500;600&family=Playfair+Display:ital,wght@0,500;0,700;1,400&family=Great+Vibes&display=swap"
         rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 
@@ -356,9 +356,6 @@
             flex-direction: column;
             text-align: center;
             position: relative;
-            display: flex;
-            align-items: center;
-            justify-content: center;
         }
 
         .section-gate-video {
@@ -388,19 +385,16 @@
         .gate-content {
             position: relative;
             z-index: 2;
-            padding: 20px 30px;
+            padding: 40px 30px;
             display: flex;
             flex-direction: column;
             align-items: center;
-            justify-content: center;
-            width: 100%;
-            max-width: 600px;
         }
 
         .gate-logo {
-            width: clamp(90px, 18vw, 150px);
+            width: clamp(100px, 20vw, 160px);
             height: auto;
-            margin-bottom: 20px;
+            margin-bottom: 25px;
             filter: drop-shadow(0 0 20px rgba(180, 150, 240, 0.4));
             animation: logoGlow 3s ease-in-out infinite;
         }
@@ -419,12 +413,12 @@
 
         .gate-subtitle-top {
             font-family: 'Cormorant Garamond', serif;
-            font-size: clamp(0.8rem, 1.5vw, 0.95rem);
+            font-size: clamp(0.85rem, 1.5vw, 1rem);
             font-weight: 400;
             letter-spacing: 6px;
             text-transform: uppercase;
             color: var(--pale-purple);
-            margin-bottom: 15px;
+            margin-bottom: 20px;
             position: relative;
             display: inline-block;
         }
@@ -449,36 +443,35 @@
 
         .gate-dear {
             font-family: 'Great Vibes', cursive;
-            font-size: clamp(1.8rem, 3.5vw, 2.5rem);
+            font-size: clamp(2rem, 4vw, 3rem);
             color: var(--gold-light);
-            margin-bottom: 0px;
+            margin-bottom: 5px;
             font-weight: 400;
             text-shadow: 0 0 30px rgba(212, 167, 116, 0.3);
-            line-height: 1;
         }
 
         .gate-name {
-            font-family: 'Parisienne', 'Tangerine', 'Great Vibes', cursive;
-            font-size: clamp(2.8rem, 7vw, 5.5rem);
-            font-weight: 400;
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(3rem, 8vw, 6rem);
+            font-weight: 700;
             color: var(--diamond-white);
-            letter-spacing: 2px;
-            line-height: 1.2;
-            margin-bottom: 25px;
+            letter-spacing: -2px;
+            line-height: 1.1;
+            margin-bottom: 35px;
             text-shadow:
-                0 0 40px rgba(180, 150, 240, 0.5),
-                0 0 80px rgba(140, 100, 220, 0.4),
-                0 0 120px rgba(120, 80, 200, 0.3);
+                0 0 40px rgba(180, 150, 240, 0.4),
+                0 0 80px rgba(140, 100, 220, 0.3),
+                0 0 120px rgba(120, 80, 200, 0.2);
             position: relative;
         }
 
         .gate-name::after {
             content: '';
             position: absolute;
-            bottom: -12px;
+            bottom: -15px;
             left: 50%;
             transform: translateX(-50%);
-            width: 80px;
+            width: 100px;
             height: 1px;
             background: linear-gradient(90deg,
                     transparent,
@@ -491,8 +484,8 @@
         .btn-open-gate {
             display: inline-flex;
             align-items: center;
-            gap: 12px;
-            padding: 16px 42px;
+            gap: 14px;
+            padding: 20px 50px;
             background: linear-gradient(135deg,
                     rgba(107, 63, 160, 0.6),
                     rgba(139, 92, 246, 0.5),
@@ -501,7 +494,7 @@
             border: 1px solid rgba(180, 150, 240, 0.4);
             border-radius: 50px;
             font-family: 'Inter', sans-serif;
-            font-size: 0.8rem;
+            font-size: 0.85rem;
             font-weight: 500;
             letter-spacing: 4px;
             text-transform: uppercase;
@@ -1044,12 +1037,12 @@
             .quotes-content,
             .rsvp-content,
             .closing-content {
-                padding: 20px;
+                padding: 30px 20px;
             }
 
             .gate-logo {
-                width: clamp(70px, 15vw, 110px);
-                margin-bottom: 15px;
+                width: clamp(80px, 18vw, 120px);
+                margin-bottom: 20px;
             }
 
             .slider-nav {
@@ -1087,33 +1080,20 @@
             }
 
             .gate-logo {
-                width: clamp(65px, 14vw, 90px);
-                margin-bottom: 12px;
+                width: clamp(70px, 15vw, 100px);
+                margin-bottom: 18px;
             }
 
             .btn-open-gate,
             .btn-rsvp,
             .btn-location-outline {
-                padding: 14px 30px;
-                font-size: 0.75rem;
+                padding: 16px 35px;
+                font-size: 0.8rem;
                 letter-spacing: 2px;
             }
 
             .gate-name {
-                font-size: clamp(2.4rem, 6vw, 3.5rem);
-            }
-        }
-
-        @media (min-width: 1024px) {
-            .gate-content {
-                max-width: 650px;
-                padding: 30px 40px;
-            }
-        }
-
-        @media (min-height: 900px) {
-            .gate-content {
-                padding: 40px 30px;
+                font-size: clamp(2.5rem, 7vw, 4rem);
             }
         }
     </style>
@@ -1187,43 +1167,42 @@
         {{-- SECTION 3: PHOTO SLIDER --}}
         <div class="fullscreen-section section-photos fade-section" data-index="2">
             @php
-                $photos = [];
-                if ($guest->event->event_photo_1 ?? false) {
-                    $photos[] = asset('storage/' . $guest->event->event_photo_1);
-                }
-                if ($guest->event->event_photo_2 ?? false) {
-                    $photos[] = asset('storage/' . $guest->event->event_photo_2);
-                }
-                if ($guest->event->event_photo_3 ?? false) {
-                    $photos[] = asset('storage/' . $guest->event->event_photo_3);
-                }
+            $photos = [];
+            if ($guest->event->event_photo_1 ?? false) {
+            $photos[] = asset('storage/' . $guest->event->event_photo_1);
+            }
+            if ($guest->event->event_photo_2 ?? false) {
+            $photos[] = asset('storage/' . $guest->event->event_photo_2);
+            }
+            if ($guest->event->event_photo_3 ?? false) {
+            $photos[] = asset('storage/' . $guest->event->event_photo_3);
+            }
             @endphp
 
             @if (count($photos) > 0)
-                <div class="photo-wrapper">
-                    <div class="slider-container" id="photoSlider">
-                        <div class="slider-track" id="sliderTrack">
-                            @foreach ($photos as $photo)
-                                <img src="{{ $photo }}" alt="Event Photo" loading="lazy" decoding="async">
-                            @endforeach
-                        </div>
-                        @if (count($photos) > 1)
-                            <button class="slider-nav prev" onclick="slidePhoto(-1)" aria-label="Previous"><i
-                                    class="fas fa-chevron-left"></i></button>
-                            <button class="slider-nav next" onclick="slidePhoto(1)" aria-label="Next"><i
-                                    class="fas fa-chevron-right"></i></button>
-                        @endif
-                        @if (count($photos) > 1)
-                            <div class="slider-dots" id="sliderDots">
-                                @foreach ($photos as $index => $photo)
-                                    <button class="slider-dot {{ $index === 0 ? 'active' : '' }}"
-                                        onclick="goToSlide({{ $index }})"
-                                        aria-label="Slide {{ $index + 1 }}"></button>
-                                @endforeach
-                            </div>
-                        @endif
+            <div class="photo-wrapper">
+                <div class="slider-container" id="photoSlider">
+                    <div class="slider-track" id="sliderTrack">
+                        @foreach ($photos as $photo)
+                        <img src="{{ $photo }}" alt="Event Photo" loading="lazy" decoding="async">
+                        @endforeach
                     </div>
+                    @if (count($photos) > 1)
+                    <button class="slider-nav prev" onclick="slidePhoto(-1)" aria-label="Previous"><i
+                            class="fas fa-chevron-left"></i></button>
+                    <button class="slider-nav next" onclick="slidePhoto(1)" aria-label="Next"><i
+                            class="fas fa-chevron-right"></i></button>
+                    @endif
+                    @if (count($photos) > 1)
+                    <div class="slider-dots" id="sliderDots">
+                        @foreach ($photos as $index => $photo)
+                        <button class="slider-dot {{ $index === 0 ? 'active' : '' }}" onclick="goToSlide({{ $index }})"
+                            aria-label="Slide {{ $index + 1 }}"></button>
+                        @endforeach
+                    </div>
+                    @endif
                 </div>
+            </div>
             @endif
         </div>
 
@@ -1244,11 +1223,11 @@
                         {{ $guest->event->event_time ?? 'To be announced' }}</p>
                 </div>
                 @if ($guest->event->dresscode ?? false)
-                    <div class="detail-card">
-                        <div class="detail-icon"><i class="fas fa-tshirt"></i></div>
-                        <p class="detail-label">Dress Code</p>
-                        <p class="detail-value">{{ $guest->event->dresscode }}</p>
-                    </div>
+                <div class="detail-card">
+                    <div class="detail-icon"><i class="fas fa-tshirt"></i></div>
+                    <p class="detail-label">Dress Code</p>
+                    <p class="detail-value">{{ $guest->event->dresscode }}</p>
+                </div>
                 @endif
             </div>
         </div>
@@ -1259,17 +1238,17 @@
                 <h2 class="rsvp-title">Confirm Attendance</h2>
                 <p class="rsvp-subtitle">We would be honored by your presence</p>
                 @if ($guest->event->no_wa_confirmation ?? false)
-                    <a href="https://wa.me/{{ preg_replace('/[^0-9]/', '', $guest->event->no_wa_confirmation) }}?text={{ urlencode('Hello! I would like to confirm my attendance for ' . ($guest->event->title ?? 'the event') . '. - ' . $guest->name) }}"
-                        target="_blank" rel="noopener" class="btn-rsvp">
-                        <i class="fab fa-whatsapp"></i><span>RSVP via WhatsApp</span>
-                    </a>
+                <a href="https://wa.me/{{ preg_replace('/[^0-9]/', '', $guest->event->no_wa_confirmation) }}?text={{ urlencode('Hello! I would like to confirm my attendance for ' . ($guest->event->title ?? 'the event') . '. - ' . $guest->name) }}"
+                    target="_blank" rel="noopener" class="btn-rsvp">
+                    <i class="fab fa-whatsapp"></i><span>RSVP via WhatsApp</span>
+                </a>
                 @endif
                 @if ($guest->event->link_googlemaps ?? false)
-                    <a href="{{ $guest->event->link_googlemaps }}" target="_blank" rel="noopener"
-                        class="btn-location-outline">
-                        <i class="fas fa-map-marked-alt"></i><span>View Location</span><i
-                            class="fas fa-external-link-alt" style="font-size:0.7rem;"></i>
-                    </a>
+                <a href="{{ $guest->event->link_googlemaps }}" target="_blank" rel="noopener"
+                    class="btn-location-outline">
+                    <i class="fas fa-map-marked-alt"></i><span>View Location</span><i class="fas fa-external-link-alt"
+                        style="font-size:0.7rem;"></i>
+                </a>
                 @endif
             </div>
         </div>
@@ -1290,7 +1269,7 @@
 
     <script>
         // Generate sparkles
-        (function() {
+        (function () {
             var container = document.getElementById('sparkleContainer');
             if (!container) return;
             var frag = document.createDocumentFragment();
@@ -1316,10 +1295,10 @@
             if (bgMusic) {
                 var p = bgMusic.play();
                 if (p) {
-                    p.then(function() {
+                    p.then(function () {
                         isMusicPlaying = true;
                         updateMusicBtn();
-                    }).catch(function() {
+                    }).catch(function () {
                         isMusicPlaying = false;
                         updateMusicBtn();
                     });
@@ -1337,9 +1316,9 @@
             } else {
                 var p = bgMusic.play();
                 if (p) {
-                    p.then(function() {
+                    p.then(function () {
                         isMusicPlaying = true;
-                    }).catch(function() {
+                    }).catch(function () {
                         isMusicPlaying = false;
                     });
                 }
@@ -1361,15 +1340,15 @@
         }
         if (musicToggle) musicToggle.addEventListener('click', toggleMusic);
         if (bgMusic) {
-            bgMusic.addEventListener('play', function() {
+            bgMusic.addEventListener('play', function () {
                 isMusicPlaying = true;
                 updateMusicBtn();
             });
-            bgMusic.addEventListener('pause', function() {
+            bgMusic.addEventListener('pause', function () {
                 isMusicPlaying = false;
                 updateMusicBtn();
             });
-            bgMusic.addEventListener('ended', function() {
+            bgMusic.addEventListener('ended', function () {
                 isMusicPlaying = false;
                 updateMusicBtn();
             });
@@ -1400,25 +1379,25 @@
 
             updateVisibleSection();
 
-            setTimeout(function() {
+            setTimeout(function () {
                 isTransitioning = false;
             }, 500);
         }
 
         function updateVisibleSection() {
-            sections.forEach(function(section, i) {
+            sections.forEach(function (section, i) {
                 if (i === currentSection) {
                     section.classList.add('visible');
                 }
                 if (i <= currentSection) {
-                    setTimeout(function() {
+                    setTimeout(function () {
                         section.classList.add('visible');
                     }, i === currentSection ? 100 : 0);
                 }
             });
         }
 
-        document.addEventListener('touchstart', function(e) {
+        document.addEventListener('touchstart', function (e) {
             touchStartY = e.touches[0].clientY;
             touchStartTime = Date.now();
             touchDeltaY = 0;
@@ -1426,13 +1405,13 @@
             passive: true
         });
 
-        document.addEventListener('touchmove', function(e) {
+        document.addEventListener('touchmove', function (e) {
             touchDeltaY = e.touches[0].clientY - touchStartY;
         }, {
             passive: true
         });
 
-        document.addEventListener('touchend', function(e) {
+        document.addEventListener('touchend', function (e) {
             var elapsed = Date.now() - touchStartTime;
             var absDelta = Math.abs(touchDeltaY);
 
@@ -1459,11 +1438,11 @@
         var wheelAccumulator = 0;
         var wheelTimeout = null;
 
-        document.addEventListener('wheel', function(e) {
+        document.addEventListener('wheel', function (e) {
             e.preventDefault();
             wheelAccumulator += e.deltaY;
             clearTimeout(wheelTimeout);
-            wheelTimeout = setTimeout(function() {
+            wheelTimeout = setTimeout(function () {
                 if (Math.abs(wheelAccumulator) > 30) {
                     if (wheelAccumulator > 0 && currentSection < totalSections - 1) {
                         goToSection(currentSection + 1);
@@ -1477,7 +1456,7 @@
             passive: false
         });
 
-        document.addEventListener('keydown', function(e) {
+        document.addEventListener('keydown', function (e) {
             if (e.key === 'ArrowDown' || e.key === 'PageDown') {
                 e.preventDefault();
                 if (currentSection < totalSections - 1) goToSection(currentSection + 1);
@@ -1493,7 +1472,7 @@
             }
         });
 
-        scrollContainer.addEventListener('touchmove', function(e) {
+        scrollContainer.addEventListener('touchmove', function (e) {
             var sliderTrack = document.getElementById('sliderTrack');
             if (sliderTrack && sliderTrack.contains(e.target)) return;
         }, {
@@ -1502,11 +1481,11 @@
 
         updateVisibleSection();
 
-        window.addEventListener('resize', function() {
+        window.addEventListener('resize', function () {
             var offset = -currentSection * window.innerHeight;
             scrollContainer.style.transition = 'none';
             scrollContainer.style.transform = 'translateY(' + offset + 'px)';
-            setTimeout(function() {
+            setTimeout(function () {
                 scrollContainer.style.transition = 'transform 0.45s cubic-bezier(0.25, 0.46, 0.45, 0.94)';
             }, 50);
         });
@@ -1522,7 +1501,7 @@
             var t = document.getElementById('sliderTrack');
             var d = document.querySelectorAll('.slider-dot');
             if (t) t.style.transform = 'translateX(-' + (currentSlide * 100) + '%)';
-            d.forEach(function(dot, i) {
+            d.forEach(function (dot, i) {
                 dot.classList.toggle('active', i === currentSlide);
             });
         }
@@ -1540,7 +1519,7 @@
         }
 
         function startAutoSlide() {
-            if (totalSlides > 1) autoSlideTimer = setInterval(function() {
+            if (totalSlides > 1) autoSlideTimer = setInterval(function () {
                 currentSlide = (currentSlide + 1) % totalSlides;
                 updateSlider();
             }, 4000);
@@ -1552,18 +1531,18 @@
         }
         if (totalSlides > 1) startAutoSlide();
 
-        (function() {
+        (function () {
             var s = document.getElementById('photoSlider');
             if (!s) return;
             var sx = 0,
                 ex = 0;
-            s.addEventListener('touchstart', function(e) {
+            s.addEventListener('touchstart', function (e) {
                 sx = e.changedTouches[0].screenX;
                 e.stopPropagation();
             }, {
                 passive: true
             });
-            s.addEventListener('touchend', function(e) {
+            s.addEventListener('touchend', function (e) {
                 ex = e.changedTouches[0].screenX;
                 if (Math.abs(sx - ex) > 50) {
                     slidePhoto(sx > ex ? 1 : -1);
@@ -1572,10 +1551,10 @@
             });
         })();
 
-        window.addEventListener('load', function() {
+        window.addEventListener('load', function () {
             document.body.style.opacity = '0';
             document.body.style.transition = 'opacity 0.4s ease';
-            requestAnimationFrame(function() {
+            requestAnimationFrame(function () {
                 document.body.style.opacity = '1';
             });
         });
