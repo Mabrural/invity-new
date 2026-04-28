@@ -964,7 +964,8 @@
         }
 
         .detail-value {
-            font-family: 'Cormorant Garamond', serif;
+            /* font-family: 'Cormorant Garamond', serif; */
+            font-family: 'Big Caslon', 'Libre Caslon Text', serif;
             font-size: 1.2rem;
             font-weight: 500;
             color: var(--ice-white);
