@@ -82,15 +82,6 @@
             touch-action: pan-y;
         }
 
-        /* Video optimizations */
-        video {
-            will-change: transform;
-            transform: translateZ(0);
-            -webkit-transform: translateZ(0);
-            backface-visibility: hidden;
-            -webkit-backface-visibility: hidden;
-        }
-
         /* === DIAMOND BACKGROUND === */
         .diamond-bg {
             position: fixed;
@@ -1381,7 +1372,7 @@
         </button>
     </div>
 
-    <audio id="bgMusic" preload="none">
+    <audio id="bgMusic" preload="auto" loop>
         <source src="{{ asset('assets/blessingmaria.mp3') }}" type="audio/mpeg">
     </audio>
 
@@ -1390,13 +1381,11 @@
 
         {{-- SECTION 1: GATE --}}
         <div class="fullscreen-section section-gate fade-section" data-index="0">
-            <video class="section-gate-video" autoplay muted loop playsinline preload="auto"
-                poster="{{ asset('assets/img/logo-b.png') }}">
+            <video class="section-gate-video" autoplay muted loop playsinline>
                 <source src="{{ asset('assets/img/section1.mp4') }}" type="video/mp4">
             </video>
             <div class="gate-content">
-                <img src="{{ asset('assets/img/logo-b.png') }}" alt="Logo" class="gate-logo" loading="eager"
-                    fetchpriority="high">
+                <img src="{{ asset('assets/img/logo-b.png') }}" alt="Logo" class="gate-logo">
                 <p class="gate-subtitle-top">The Celebration of Belva 17th Birthday</p>
                 <p class="gate-dear">Dear</p>
                 <h1 class="gate-name">{{ $guest->name }}</h1>
@@ -1410,8 +1399,8 @@
 
         {{-- SECTION 2: QUOTES --}}
         <div class="fullscreen-section section-quotes fade-section" data-index="1">
-            <video class="section-quotes-video" autoplay muted loop playsinline preload="none" data-lazy-video>
-                <source data-src="{{ asset('assets/img/section2new.mp4') }}" type="video/mp4">
+            <video class="section-quotes-video" autoplay muted loop playsinline>
+                <source src="{{ asset('assets/img/section2new.mp4') }}" type="video/mp4">
             </video>
             <div class="quotes-content">
                 <p class="quotes-main">
@@ -1445,10 +1434,8 @@
                 <div class="photo-wrapper">
                     <div class="slider-container" id="photoSlider">
                         <div class="slider-track" id="sliderTrack">
-                            @foreach ($photos as $index => $photo)
-                                <img src="{{ $photo }}" alt="Event Photo"
-                                    loading="{{ $index === 0 ? 'eager' : 'lazy' }}" decoding="async"
-                                    fetchpriority="{{ $index === 0 ? 'high' : 'low' }}">
+                            @foreach ($photos as $photo)
+                                <img src="{{ $photo }}" alt="Event Photo" loading="lazy" decoding="async">
                             @endforeach
                         </div>
                         @if (count($photos) > 1)
@@ -1473,8 +1460,8 @@
 
         {{-- SECTION 4: DETAILS --}}
         <div class="fullscreen-section section-details fade-section" data-index="3">
-            <video class="section-details-video" autoplay muted loop playsinline preload="none" data-lazy-video>
-                <source data-src="{{ asset('assets/img/section-purple.mp4') }}" type="video/mp4">
+            <video class="section-details-video" autoplay muted loop playsinline>
+                <source src="{{ asset('assets/img/section-purple.mp4') }}" type="video/mp4">
             </video>
             <div class="details-grid">
                 <div class="detail-card">
@@ -1502,8 +1489,8 @@
 
         {{-- SECTION 5: RSVP --}}
         <div class="fullscreen-section section-rsvp fade-section" data-index="4">
-            <video class="section-rsvp-video" autoplay muted loop playsinline preload="none" data-lazy-video>
-                <source data-src="{{ asset('assets/img/section-purple.mp4') }}" type="video/mp4">
+            <video class="section-rsvp-video" autoplay muted loop playsinline>
+                <source src="{{ asset('assets/img/section-purple.mp4') }}" type="video/mp4">
             </video>
             <div class="rsvp-content">
                 <h2 class="rsvp-title">Confirm Attendance</h2>
@@ -1526,8 +1513,8 @@
 
         {{-- SECTION 6: CLOSING --}}
         <div class="fullscreen-section section-closing fade-section" data-index="5">
-            <video class="section-closing-video" autoplay muted loop playsinline preload="none" data-lazy-video>
-                <source data-src="{{ asset('assets/img/section-purple.mp4') }}" type="video/mp4">
+            <video class="section-closing-video" autoplay muted loop playsinline>
+                <source src="{{ asset('assets/img/section-purple.mp4') }}" type="video/mp4">
             </video>
             <div class="closing-content">
                 <p class="closing-text"><i class="fas fa-heart" style="margin-right:10px;font-size:0.7em;"></i>With
@@ -1628,30 +1615,6 @@
                 updateMusicBtn();
             });
         }
-
-        // ============================================
-        // LAZY LOAD VIDEO
-        // ============================================
-        var lazyVideoObserver = new IntersectionObserver(function(entries) {
-            entries.forEach(function(entry) {
-                if (entry.isIntersecting) {
-                    var video = entry.target;
-                    var source = video.querySelector('source');
-                    if (source && source.dataset.src) {
-                        source.src = source.dataset.src;
-                        video.load();
-                        video.play().catch(function() {});
-                    }
-                    lazyVideoObserver.unobserve(video);
-                }
-            });
-        }, {
-            rootMargin: '100px 0px'
-        });
-
-        document.querySelectorAll('video[data-lazy-video]').forEach(function(video) {
-            lazyVideoObserver.observe(video);
-        });
 
         // ============================================
         // SCROLL SYSTEM
