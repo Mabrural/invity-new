@@ -870,22 +870,10 @@
             }
         }
 
-        /* === SECTION 4: DETAILS - FULLSCREEN WITH VIDEO BACKGROUND === */
+        /* === SECTION 4: DETAILS - FULLSCREEN WITH IMAGE BACKGROUND === */
         .section-details {
             position: relative;
-        }
-
-        .section-details-video {
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            min-width: 120%;
-            min-height: 120%;
-            width: auto;
-            height: auto;
-            transform: translate(-50%, -50%) scale(1.15);
-            object-fit: cover;
-            z-index: 0;
+            background: url('{{ asset('assets/img/section4.png') }}') center/cover no-repeat;
         }
 
         .section-details::before {
@@ -1003,25 +991,13 @@
             text-shadow: 0 0 10px rgba(200, 180, 240, 0.2);
         }
 
-        /* === SECTION 5: RSVP - FULLSCREEN WITH VIDEO BACKGROUND === */
+        /* === SECTION 5: RSVP - FULLSCREEN WITH IMAGE BACKGROUND === */
         .section-rsvp {
             flex-direction: column;
             gap: 25px;
             text-align: center;
             position: relative;
-        }
-
-        .section-rsvp-video {
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            min-width: 120%;
-            min-height: 120%;
-            width: auto;
-            height: auto;
-            transform: translate(-50%, -50%) scale(1.15);
-            object-fit: cover;
-            z-index: 0;
+            background: url('{{ asset('assets/img/section4.png') }}') center/cover no-repeat;
         }
 
         .section-rsvp::before {
@@ -1171,25 +1147,13 @@
             transform: translateY(-2px);
         }
 
-        /* === SECTION 6: CLOSING - FULLSCREEN WITH VIDEO BACKGROUND === */
+        /* === SECTION 6: CLOSING - FULLSCREEN WITH IMAGE BACKGROUND === */
         .section-closing {
             flex-direction: column;
             text-align: center;
             gap: 25px;
             position: relative;
-        }
-
-        .section-closing-video {
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            min-width: 120%;
-            min-height: 120%;
-            width: auto;
-            height: auto;
-            transform: translate(-50%, -50%) scale(1.15);
-            object-fit: cover;
-            z-index: 0;
+            background: url('{{ asset('assets/img/section4.png') }}') center/cover no-repeat;
         }
 
         .section-closing::before {
@@ -1460,9 +1424,6 @@
 
         {{-- SECTION 4: DETAILS --}}
         <div class="fullscreen-section section-details fade-section" data-index="3">
-            <video class="section-details-video" autoplay muted loop playsinline>
-                <source src="{{ asset('assets/img/section-new.mp4') }}" type="video/mp4">
-            </video>
             <div class="details-grid">
                 <div class="detail-card">
                     <div class="detail-icon"><i class="far fa-calendar-alt"></i></div>
@@ -1489,9 +1450,6 @@
 
         {{-- SECTION 5: RSVP --}}
         <div class="fullscreen-section section-rsvp fade-section" data-index="4">
-            <video class="section-rsvp-video" autoplay muted loop playsinline>
-                <source src="{{ asset('assets/img/section-new.mp4') }}" type="video/mp4">
-            </video>
             <div class="rsvp-content">
                 <h2 class="rsvp-title">Confirm Attendance</h2>
                 <p class="rsvp-subtitle">We would be honored by your presence</p>
@@ -1513,9 +1471,6 @@
 
         {{-- SECTION 6: CLOSING --}}
         <div class="fullscreen-section section-closing fade-section" data-index="5">
-            <video class="section-closing-video" autoplay muted loop playsinline>
-                <source src="{{ asset('assets/img/section-new.mp4') }}" type="video/mp4">
-            </video>
             <div class="closing-content">
                 <p class="closing-text"><i class="fas fa-heart" style="margin-right:10px;font-size:0.7em;"></i>With
                     Love & Gratitude<i class="fas fa-heart" style="margin-left:10px;font-size:0.7em;"></i></p>
