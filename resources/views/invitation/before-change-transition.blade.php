@@ -336,7 +336,7 @@
             width: 100%;
             height: 100%;
             z-index: 1;
-            transition: transform 0.7s cubic-bezier(0.16, 1, 0.3, 1);
+            transition: transform 0.45s cubic-bezier(0.25, 0.46, 0.45, 0.94);
             will-change: transform;
         }
 
@@ -355,7 +355,7 @@
         /* === FADE TRANSITION === */
         .fade-section {
             opacity: 0;
-            transition: opacity 1s ease;
+            transition: opacity 0.8s ease;
         }
 
         .fade-section.visible {
@@ -1461,45 +1461,43 @@
                 <source data-src="{{ asset('assets/img/section-purple.mp4') }}" type="video/mp4">
             </video>
             @php
-                $photos = [];
-                if ($guest->event->event_photo_1 ?? false) {
-                    $photos[] = asset('storage/' . $guest->event->event_photo_1);
-                }
-                if ($guest->event->event_photo_2 ?? false) {
-                    $photos[] = asset('storage/' . $guest->event->event_photo_2);
-                }
-                if ($guest->event->event_photo_3 ?? false) {
-                    $photos[] = asset('storage/' . $guest->event->event_photo_3);
-                }
+            $photos = [];
+            if ($guest->event->event_photo_1 ?? false) {
+            $photos[] = asset('storage/' . $guest->event->event_photo_1);
+            }
+            if ($guest->event->event_photo_2 ?? false) {
+            $photos[] = asset('storage/' . $guest->event->event_photo_2);
+            }
+            if ($guest->event->event_photo_3 ?? false) {
+            $photos[] = asset('storage/' . $guest->event->event_photo_3);
+            }
             @endphp
 
             @if (count($photos) > 0)
-                <div class="photo-wrapper">
-                    <div class="slider-container" id="photoSlider">
-                        <div class="slider-track" id="sliderTrack">
-                            @foreach ($photos as $index => $photo)
-                                <img src="{{ $photo }}" alt="Event Photo"
-                                    loading="{{ $index === 0 ? 'eager' : 'lazy' }}" decoding="async"
-                                    fetchpriority="{{ $index === 0 ? 'high' : 'low' }}">
-                            @endforeach
-                        </div>
-                        @if (count($photos) > 1)
-                            <button class="slider-nav prev" onclick="slidePhoto(-1)" aria-label="Previous"><i
-                                    class="fas fa-chevron-left"></i></button>
-                            <button class="slider-nav next" onclick="slidePhoto(1)" aria-label="Next"><i
-                                    class="fas fa-chevron-right"></i></button>
-                        @endif
-                        @if (count($photos) > 1)
-                            <div class="slider-dots" id="sliderDots">
-                                @foreach ($photos as $index => $photo)
-                                    <button class="slider-dot {{ $index === 0 ? 'active' : '' }}"
-                                        onclick="goToSlide({{ $index }})"
-                                        aria-label="Slide {{ $index + 1 }}"></button>
-                                @endforeach
-                            </div>
-                        @endif
+            <div class="photo-wrapper">
+                <div class="slider-container" id="photoSlider">
+                    <div class="slider-track" id="sliderTrack">
+                        @foreach ($photos as $index => $photo)
+                        <img src="{{ $photo }}" alt="Event Photo" loading="{{ $index === 0 ? 'eager' : 'lazy' }}"
+                            decoding="async" fetchpriority="{{ $index === 0 ? 'high' : 'low' }}">
+                        @endforeach
                     </div>
+                    @if (count($photos) > 1)
+                    <button class="slider-nav prev" onclick="slidePhoto(-1)" aria-label="Previous"><i
+                            class="fas fa-chevron-left"></i></button>
+                    <button class="slider-nav next" onclick="slidePhoto(1)" aria-label="Next"><i
+                            class="fas fa-chevron-right"></i></button>
+                    @endif
+                    @if (count($photos) > 1)
+                    <div class="slider-dots" id="sliderDots">
+                        @foreach ($photos as $index => $photo)
+                        <button class="slider-dot {{ $index === 0 ? 'active' : '' }}" onclick="goToSlide({{ $index }})"
+                            aria-label="Slide {{ $index + 1 }}"></button>
+                        @endforeach
+                    </div>
+                    @endif
                 </div>
+            </div>
             @endif
         </div>
 
@@ -1523,11 +1521,11 @@
                         {{ $guest->event->event_time ?? 'To be announced' }}</p>
                 </div>
                 @if ($guest->event->dresscode ?? false)
-                    <div class="detail-card">
-                        <div class="detail-icon"><i class="fas fa-tshirt"></i></div>
-                        <p class="detail-label">Dress Code</p>
-                        <p class="detail-value">{{ $guest->event->dresscode }}</p>
-                    </div>
+                <div class="detail-card">
+                    <div class="detail-icon"><i class="fas fa-tshirt"></i></div>
+                    <p class="detail-label">Dress Code</p>
+                    <p class="detail-value">{{ $guest->event->dresscode }}</p>
+                </div>
                 @endif
             </div>
         </div>
@@ -1541,17 +1539,17 @@
                 <h2 class="rsvp-title">Confirm Attendance</h2>
                 <p class="rsvp-subtitle">We would be honored by your presence</p>
                 @if ($guest->event->no_wa_confirmation ?? false)
-                    <a href="https://wa.me/{{ preg_replace('/[^0-9]/', '', $guest->event->no_wa_confirmation) }}?text={{ urlencode('Hello! I would like to confirm my attendance for ' . ($guest->event->title ?? 'the event') . '. - ' . $guest->name) }}"
-                        target="_blank" rel="noopener" class="btn-rsvp">
-                        <i class="fab fa-whatsapp"></i><span>RSVP via WhatsApp</span>
-                    </a>
+                <a href="https://wa.me/{{ preg_replace('/[^0-9]/', '', $guest->event->no_wa_confirmation) }}?text={{ urlencode('Hello! I would like to confirm my attendance for ' . ($guest->event->title ?? 'the event') . '. - ' . $guest->name) }}"
+                    target="_blank" rel="noopener" class="btn-rsvp">
+                    <i class="fab fa-whatsapp"></i><span>RSVP via WhatsApp</span>
+                </a>
                 @endif
                 @if ($guest->event->link_googlemaps ?? false)
-                    <a href="{{ $guest->event->link_googlemaps }}" target="_blank" rel="noopener"
-                        class="btn-location-outline">
-                        <i class="fas fa-map-marked-alt"></i><span>View Location</span><i
-                            class="fas fa-external-link-alt" style="font-size:0.7rem;"></i>
-                    </a>
+                <a href="{{ $guest->event->link_googlemaps }}" target="_blank" rel="noopener"
+                    class="btn-location-outline">
+                    <i class="fas fa-map-marked-alt"></i><span>View Location</span><i class="fas fa-external-link-alt"
+                        style="font-size:0.7rem;"></i>
+                </a>
                 @endif
             </div>
         </div>
@@ -1576,7 +1574,7 @@
 
     <script>
         // Generate sparkles
-        (function() {
+        (function () {
             var container = document.getElementById('sparkleContainer');
             if (!container) return;
             var frag = document.createDocumentFragment();
@@ -1602,10 +1600,10 @@
             if (bgMusic) {
                 var p = bgMusic.play();
                 if (p) {
-                    p.then(function() {
+                    p.then(function () {
                         isMusicPlaying = true;
                         updateMusicBtn();
-                    }).catch(function() {
+                    }).catch(function () {
                         isMusicPlaying = false;
                         updateMusicBtn();
                     });
@@ -1623,9 +1621,9 @@
             } else {
                 var p = bgMusic.play();
                 if (p) {
-                    p.then(function() {
+                    p.then(function () {
                         isMusicPlaying = true;
-                    }).catch(function() {
+                    }).catch(function () {
                         isMusicPlaying = false;
                     });
                 }
@@ -1647,15 +1645,15 @@
         }
         if (musicToggle) musicToggle.addEventListener('click', toggleMusic);
         if (bgMusic) {
-            bgMusic.addEventListener('play', function() {
+            bgMusic.addEventListener('play', function () {
                 isMusicPlaying = true;
                 updateMusicBtn();
             });
-            bgMusic.addEventListener('pause', function() {
+            bgMusic.addEventListener('pause', function () {
                 isMusicPlaying = false;
                 updateMusicBtn();
             });
-            bgMusic.addEventListener('ended', function() {
+            bgMusic.addEventListener('ended', function () {
                 isMusicPlaying = false;
                 updateMusicBtn();
             });
@@ -1664,15 +1662,15 @@
         // ============================================
         // LAZY LOAD VIDEO
         // ============================================
-        var lazyVideoObserver = new IntersectionObserver(function(entries) {
-            entries.forEach(function(entry) {
+        var lazyVideoObserver = new IntersectionObserver(function (entries) {
+            entries.forEach(function (entry) {
                 if (entry.isIntersecting) {
                     var video = entry.target;
                     var source = video.querySelector('source');
                     if (source && source.dataset.src) {
                         source.src = source.dataset.src;
                         video.load();
-                        video.play().catch(function() {});
+                        video.play().catch(function () { });
                     }
                     lazyVideoObserver.unobserve(video);
                 }
@@ -1681,12 +1679,12 @@
             rootMargin: '100px 0px'
         });
 
-        document.querySelectorAll('video[data-lazy-video]').forEach(function(video) {
+        document.querySelectorAll('video[data-lazy-video]').forEach(function (video) {
             lazyVideoObserver.observe(video);
         });
 
         // ============================================
-        // SCROLL SYSTEM WITH SMOOTH EASING & OVERFLOW BOUNCE
+        // SCROLL SYSTEM
         // ============================================
         var scrollContainer = document.getElementById('scrollContainer');
         var sections = document.querySelectorAll('.fullscreen-section');
@@ -1696,11 +1694,8 @@
         var touchStartY = 0;
         var touchDeltaY = 0;
         var touchStartTime = 0;
-        var minSwipeDistance = 50;
-        var maxSwipeTime = 600;
-        var velocity = 0;
-        var lastTouchY = 0;
-        var lastTouchTime = 0;
+        var minSwipeDistance = 40;
+        var maxSwipeTime = 500;
 
         function goToSection(index) {
             if (index < 0 || index >= totalSections || isTransitioning) return;
@@ -1713,69 +1708,56 @@
 
             updateVisibleSection();
 
-            setTimeout(function() {
+            setTimeout(function () {
                 isTransitioning = false;
-            }, 700);
+            }, 500);
         }
 
         function updateVisibleSection() {
-            sections.forEach(function(section, i) {
+            sections.forEach(function (section, i) {
                 if (i === currentSection) {
                     section.classList.add('visible');
                 }
                 if (i <= currentSection) {
-                    setTimeout(function() {
+                    setTimeout(function () {
                         section.classList.add('visible');
                     }, i === currentSection ? 100 : 0);
                 }
             });
         }
 
-        scrollContainer.addEventListener('touchstart', function(e) {
+        document.addEventListener('touchstart', function (e) {
             touchStartY = e.touches[0].clientY;
             touchStartTime = Date.now();
             touchDeltaY = 0;
-            lastTouchY = touchStartY;
-            lastTouchTime = touchStartTime;
-            velocity = 0;
         }, {
             passive: true
         });
 
-        scrollContainer.addEventListener('touchmove', function(e) {
-            var currentY = e.touches[0].clientY;
-            touchDeltaY = currentY - touchStartY;
-
-            var now = Date.now();
-            var timeDelta = now - lastTouchTime;
-            if (timeDelta > 0) {
-                velocity = (currentY - lastTouchY) / timeDelta;
-            }
-            lastTouchY = currentY;
-            lastTouchTime = now;
+        document.addEventListener('touchmove', function (e) {
+            touchDeltaY = e.touches[0].clientY - touchStartY;
         }, {
             passive: true
         });
 
-        scrollContainer.addEventListener('touchend', function(e) {
+        document.addEventListener('touchend', function (e) {
             var elapsed = Date.now() - touchStartTime;
             var absDelta = Math.abs(touchDeltaY);
-            var absVelocity = Math.abs(velocity);
 
             if (absDelta > minSwipeDistance && elapsed < maxSwipeTime) {
-                if (touchDeltaY > 0 && currentSection > 0) {
-                    goToSection(currentSection - 1);
-                } else if (touchDeltaY < 0 && currentSection < totalSections - 1) {
-                    goToSection(currentSection + 1);
+                if (touchDeltaY > 0) {
+                    if (currentSection > 0) goToSection(currentSection - 1);
+                } else {
+                    if (currentSection < totalSections - 1) goToSection(currentSection + 1);
                 }
                 return;
             }
 
-            if (absDelta > 30 && absVelocity > 0.3) {
-                if (velocity < -0.3 && currentSection < totalSections - 1) {
-                    goToSection(currentSection + 1);
-                } else if (velocity > 0.3 && currentSection > 0) {
+            if (absDelta > 20) {
+                if (touchDeltaY > 0 && currentSection > 0) {
                     goToSection(currentSection - 1);
+                } else if (touchDeltaY < 0 && currentSection < totalSections - 1) {
+                    goToSection(currentSection + 1);
                 }
             }
         }, {
@@ -1785,12 +1767,12 @@
         var wheelAccumulator = 0;
         var wheelTimeout = null;
 
-        document.addEventListener('wheel', function(e) {
+        document.addEventListener('wheel', function (e) {
             e.preventDefault();
             wheelAccumulator += e.deltaY;
             clearTimeout(wheelTimeout);
-            wheelTimeout = setTimeout(function() {
-                if (Math.abs(wheelAccumulator) > 40) {
+            wheelTimeout = setTimeout(function () {
+                if (Math.abs(wheelAccumulator) > 30) {
                     if (wheelAccumulator > 0 && currentSection < totalSections - 1) {
                         goToSection(currentSection + 1);
                     } else if (wheelAccumulator < 0 && currentSection > 0) {
@@ -1803,7 +1785,7 @@
             passive: false
         });
 
-        document.addEventListener('keydown', function(e) {
+        document.addEventListener('keydown', function (e) {
             if (e.key === 'ArrowDown' || e.key === 'PageDown') {
                 e.preventDefault();
                 if (currentSection < totalSections - 1) goToSection(currentSection + 1);
@@ -1819,7 +1801,7 @@
             }
         });
 
-        scrollContainer.addEventListener('touchmove', function(e) {
+        scrollContainer.addEventListener('touchmove', function (e) {
             var sliderTrack = document.getElementById('sliderTrack');
             if (sliderTrack && sliderTrack.contains(e.target)) return;
         }, {
@@ -1828,12 +1810,12 @@
 
         updateVisibleSection();
 
-        window.addEventListener('resize', function() {
+        window.addEventListener('resize', function () {
             var offset = -currentSection * window.innerHeight;
             scrollContainer.style.transition = 'none';
             scrollContainer.style.transform = 'translateY(' + offset + 'px)';
-            setTimeout(function() {
-                scrollContainer.style.transition = 'transform 0.7s cubic-bezier(0.16, 1, 0.3, 1)';
+            setTimeout(function () {
+                scrollContainer.style.transition = 'transform 0.45s cubic-bezier(0.25, 0.46, 0.45, 0.94)';
             }, 50);
         });
 
@@ -1848,7 +1830,7 @@
             var t = document.getElementById('sliderTrack');
             var d = document.querySelectorAll('.slider-dot');
             if (t) t.style.transform = 'translateX(-' + (currentSlide * 100) + '%)';
-            d.forEach(function(dot, i) {
+            d.forEach(function (dot, i) {
                 dot.classList.toggle('active', i === currentSlide);
             });
         }
@@ -1866,7 +1848,7 @@
         }
 
         function startAutoSlide() {
-            if (totalSlides > 1) autoSlideTimer = setInterval(function() {
+            if (totalSlides > 1) autoSlideTimer = setInterval(function () {
                 currentSlide = (currentSlide + 1) % totalSlides;
                 updateSlider();
             }, 4000);
@@ -1878,18 +1860,18 @@
         }
         if (totalSlides > 1) startAutoSlide();
 
-        (function() {
+        (function () {
             var s = document.getElementById('photoSlider');
             if (!s) return;
             var sx = 0,
                 ex = 0;
-            s.addEventListener('touchstart', function(e) {
+            s.addEventListener('touchstart', function (e) {
                 sx = e.changedTouches[0].screenX;
                 e.stopPropagation();
             }, {
                 passive: true
             });
-            s.addEventListener('touchend', function(e) {
+            s.addEventListener('touchend', function (e) {
                 ex = e.changedTouches[0].screenX;
                 if (Math.abs(sx - ex) > 50) {
                     slidePhoto(sx > ex ? 1 : -1);
@@ -1898,10 +1880,10 @@
             });
         })();
 
-        window.addEventListener('load', function() {
+        window.addEventListener('load', function () {
             document.body.style.opacity = '0';
             document.body.style.transition = 'opacity 0.4s ease';
-            requestAnimationFrame(function() {
+            requestAnimationFrame(function () {
                 document.body.style.opacity = '1';
             });
         });
