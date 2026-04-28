@@ -543,7 +543,7 @@
             transform: scale(0.97);
         }
 
-        /* === SECTION 2: QUOTES - FULLSCREEN WITH VIDEO BACKGROUND === */
+        /* === SECTION 2: QUOTES - FULLSCREEN WITH IMAGE BACKGROUND === */
         .section-quotes {
             text-align: center;
             position: relative;
@@ -551,16 +551,7 @@
             align-items: flex-end;
             justify-content: center;
             padding-bottom: 10%;
-        }
-
-        .section-quotes-video {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            z-index: 0;
+            background: url('{{ asset('assets/img/section2.png') }}') center/cover no-repeat;
         }
 
         .section-quotes::before {
@@ -1306,9 +1297,6 @@
 
         {{-- SECTION 2: QUOTES --}}
         <div class="fullscreen-section section-quotes fade-section" data-index="1">
-            <video class="section-quotes-video" autoplay muted loop playsinline>
-                <source src="{{ asset('assets/img/section2new.mp4') }}" type="video/mp4">
-            </video>
             <div class="quotes-content">
                 <p class="quotes-main">
                     "For you formed my inward parts;<br>
