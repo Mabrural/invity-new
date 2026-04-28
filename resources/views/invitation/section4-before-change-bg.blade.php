@@ -870,25 +870,9 @@
             }
         }
 
-        /* === SECTION 4: DETAILS - FULLSCREEN WITH IMAGE BACKGROUND === */
+        /* === SECTION 4: DETAILS - FULLSCREEN === */
         .section-details {
-            position: relative;
-            background: url('{{ asset('assets/img/section4.png') }}') center/cover no-repeat;
-        }
-
-        .section-details::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(135deg,
-                    rgba(45, 27, 78, 0.75) 0%,
-                    rgba(26, 10, 46, 0.7) 30%,
-                    rgba(74, 45, 122, 0.65) 60%,
-                    rgba(26, 10, 46, 0.75) 100%);
-            z-index: 1;
+            background: radial-gradient(ellipse at center, rgba(45, 27, 78, 0.4) 0%, rgba(26, 10, 46, 0.6) 100%);
         }
 
         .details-grid {
@@ -898,8 +882,6 @@
             width: 100%;
             max-width: 750px;
             padding: 20px;
-            position: relative;
-            z-index: 2;
         }
 
         .detail-card {
