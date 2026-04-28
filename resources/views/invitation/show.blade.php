@@ -602,7 +602,7 @@
         .quotes-main {
             font-family: 'Big Caslon', 'Libre Caslon Text', serif;
             font-size: clamp(1.2rem, 2.8vw, 1.6rem);
-            font-style: italic;
+            font-style: normal;
             color: var(--ice-white);
             line-height: 1.8;
             margin-bottom: 20px;
