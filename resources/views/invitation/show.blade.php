@@ -990,7 +990,8 @@
         }
 
         .rsvp-title {
-            font-family: 'Playfair Display', serif;
+            /* font-family: 'Playfair Display', serif; */
+            font-family: 'Big Caslon', 'Libre Caslon Text', serif;
             font-size: clamp(2.5rem, 5vw, 3.5rem);
             color: var(--diamond-white);
             font-weight: 700;
