@@ -1138,7 +1138,8 @@
         }
 
         .closing-name {
-            font-family: 'Playfair Display', serif;
+            /* font-family: 'Playfair Display', serif; */
+            font-family: 'Great Vibes', cursive;
             font-size: clamp(2rem, 3vw, 2.8rem);
             color: var(--diamond-white);
             font-weight: 600;
@@ -1420,7 +1421,7 @@
                 <p class="closing-text"><i class="fas fa-heart" style="margin-right:10px;font-size:0.7em;"></i>With
                     Love & Gratitude<i class="fas fa-heart" style="margin-left:10px;font-size:0.7em;"></i></p>
                 <div class="closing-divider"></div>
-                <p class="closing-name" style="font-family: 'Sloop', sans-serif;">
+                <p class="closing-name">
                     {{ $guest->event->title ?? 'Belva' }}</p>
                 <p class="closing-thanks"><i class="far fa-smile" style="margin-right:5px;"></i>Thank you for being
                     part of this special moment</p>
