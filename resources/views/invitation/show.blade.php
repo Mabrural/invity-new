@@ -642,6 +642,7 @@
         /* === SECTION 3: PHOTO SLIDER FULLSCREEN === */
         .section-photos {
             padding: 0;
+            background: radial-gradient(ellipse at center, rgba(45, 27, 78, 0.3) 0%, rgba(26, 10, 46, 0.5) 100%);
         }
 
         .photo-wrapper {
@@ -652,6 +653,7 @@
             height: 100%;
             justify-content: center;
             gap: 12px;
+            position: relative;
         }
 
         .slider-container {
@@ -662,11 +664,73 @@
             max-height: 88dvh;
             position: relative;
             overflow: hidden;
+            background: rgba(13, 0, 21, 0.5);
+            border: 1px solid rgba(167, 139, 250, 0.2);
             box-shadow:
                 0 25px 70px rgba(0, 0, 0, 0.6),
                 0 0 40px rgba(139, 92, 246, 0.2);
-            background: rgba(13, 0, 21, 0.5);
-            border: 1px solid rgba(167, 139, 250, 0.2);
+        }
+
+        /* Shadow transitions top & bottom untuk menyatu dengan background */
+        .slider-container::before,
+        .slider-container::after {
+            content: '';
+            position: absolute;
+            left: 0;
+            right: 0;
+            z-index: 12;
+            pointer-events: none;
+        }
+
+        .slider-container::before {
+            top: 0;
+            height: 80px;
+            background: linear-gradient(180deg,
+                    rgba(26, 10, 46, 0.95) 0%,
+                    rgba(26, 10, 46, 0.75) 20%,
+                    rgba(45, 27, 78, 0.45) 45%,
+                    rgba(45, 27, 78, 0.15) 70%,
+                    transparent 100%);
+        }
+
+        .slider-container::after {
+            bottom: 0;
+            height: 100px;
+            background: linear-gradient(0deg,
+                    rgba(26, 10, 46, 0.95) 0%,
+                    rgba(26, 10, 46, 0.75) 20%,
+                    rgba(45, 27, 78, 0.45) 45%,
+                    rgba(45, 27, 78, 0.15) 70%,
+                    transparent 100%);
+        }
+
+        /* Shadow tambahan pada wrapper untuk transisi yang lebih halus */
+        .photo-wrapper::before,
+        .photo-wrapper::after {
+            content: '';
+            position: absolute;
+            left: 0;
+            right: 0;
+            z-index: 13;
+            pointer-events: none;
+        }
+
+        .photo-wrapper::before {
+            top: 0;
+            height: 60px;
+            background: linear-gradient(180deg,
+                    rgba(13, 0, 21, 0.9) 0%,
+                    rgba(26, 10, 46, 0.6) 35%,
+                    transparent 100%);
+        }
+
+        .photo-wrapper::after {
+            bottom: 0;
+            height: 60px;
+            background: linear-gradient(0deg,
+                    rgba(13, 0, 21, 0.9) 0%,
+                    rgba(26, 10, 46, 0.6) 35%,
+                    transparent 100%);
         }
 
         @media (min-width: 769px) {
@@ -678,6 +742,14 @@
                 max-height: 92dvh;
                 aspect-ratio: 9 / 16;
                 border-radius: 18px;
+            }
+
+            .slider-container::before {
+                border-radius: 18px 18px 0 0;
+            }
+
+            .slider-container::after {
+                border-radius: 0 0 18px 18px;
             }
         }
 
@@ -752,7 +824,7 @@
             align-items: center;
             justify-content: center;
             cursor: pointer;
-            z-index: 10;
+            z-index: 14;
             transition: all 0.3s;
             font-size: 0.9rem;
             -webkit-tap-highlight-color: transparent;
