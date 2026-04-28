@@ -588,8 +588,19 @@
             text-shadow: 0 0 20px rgba(167, 139, 250, 0.4);
         }
 
-        .quotes-main {
+        /* .quotes-main {
             font-family: 'Cormorant Garamond', serif;
+            font-size: clamp(1.2rem, 2.8vw, 1.6rem);
+            font-style: italic;
+            color: var(--ice-white);
+            line-height: 1.8;
+            margin-bottom: 20px;
+            letter-spacing: 0.5px;
+            text-shadow: 0 0 20px rgba(200, 180, 240, 0.3);
+        } */
+
+        .quotes-main {
+            font-family: 'Big Caslon', 'Libre Caslon Text', serif;
             font-size: clamp(1.2rem, 2.8vw, 1.6rem);
             font-style: italic;
             color: var(--ice-white);
@@ -1323,7 +1334,8 @@
                 <p class="closing-text"><i class="fas fa-heart" style="margin-right:10px;font-size:0.7em;"></i>With
                     Love & Gratitude<i class="fas fa-heart" style="margin-left:10px;font-size:0.7em;"></i></p>
                 <div class="closing-divider"></div>
-                <p class="closing-name" style="font-family: 'Sloop', sans-serif;">{{ $guest->event->title ?? 'Belva' }}</p>
+                <p class="closing-name" style="font-family: 'Sloop', sans-serif;">
+                    {{ $guest->event->title ?? 'Belva' }}</p>
                 <p class="closing-thanks"><i class="far fa-smile" style="margin-right:5px;"></i>Thank you for being
                     part of this special moment</p>
             </div>
