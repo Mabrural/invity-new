@@ -628,7 +628,7 @@
             text-shadow: 0 0 20px rgba(212, 167, 116, 0.2);
         }
 
-        .quotes-author::before {
+        /* .quotes-author::before {
             content: '';
             position: absolute;
             top: 50%;
@@ -646,7 +646,7 @@
             width: 25px;
             height: 1px;
             background: rgba(167, 139, 250, 0.4);
-        }
+        } */
 
         /* === SECTION 3: PHOTO SLIDER FULLSCREEN === */
         .section-photos {
