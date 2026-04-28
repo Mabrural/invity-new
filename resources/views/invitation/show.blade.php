@@ -1461,7 +1461,7 @@
         {{-- SECTION 4: DETAILS --}}
         <div class="fullscreen-section section-details fade-section" data-index="3">
             <video class="section-details-video" autoplay muted loop playsinline>
-                <source src="{{ asset('assets/img/section-new.mp4') }}" type="video/mp4">
+                <source src="{{ asset('assets/img/section-purple.mp4') }}" type="video/mp4">
             </video>
             <div class="details-grid">
                 <div class="detail-card">
@@ -1490,7 +1490,7 @@
         {{-- SECTION 5: RSVP --}}
         <div class="fullscreen-section section-rsvp fade-section" data-index="4">
             <video class="section-rsvp-video" autoplay muted loop playsinline>
-                <source src="{{ asset('assets/img/section-new.mp4') }}" type="video/mp4">
+                <source src="{{ asset('assets/img/section-purple.mp4') }}" type="video/mp4">
             </video>
             <div class="rsvp-content">
                 <h2 class="rsvp-title">Confirm Attendance</h2>
@@ -1514,7 +1514,7 @@
         {{-- SECTION 6: CLOSING --}}
         <div class="fullscreen-section section-closing fade-section" data-index="5">
             <video class="section-closing-video" autoplay muted loop playsinline>
-                <source src="{{ asset('assets/img/section-new.mp4') }}" type="video/mp4">
+                <source src="{{ asset('assets/img/section-purple.mp4') }}" type="video/mp4">
             </video>
             <div class="closing-content">
                 <p class="closing-text"><i class="fas fa-heart" style="margin-right:10px;font-size:0.7em;"></i>With
