@@ -461,7 +461,8 @@
 
         .gate-name {
             /* font-family: 'Parisienne', 'Tangerine', 'Great Vibes', cursive; */
-            font-family: 'Sloop', sans-serif;
+            /* font-family: 'Sloop', sans-serif; */
+            font-family: 'Great Vibes', cursive;
             font-size: clamp(2.8rem, 7vw, 5.5rem);
             font-weight: 400;
             color: var(--diamond-white);
