@@ -991,28 +991,12 @@
             text-shadow: 0 0 10px rgba(200, 180, 240, 0.2);
         }
 
-        /* === SECTION 5: RSVP - FULLSCREEN WITH IMAGE BACKGROUND === */
+        /* === SECTION 5: RSVP - FULLSCREEN === */
         .section-rsvp {
             flex-direction: column;
             gap: 25px;
             text-align: center;
-            position: relative;
-            background: url('{{ asset('assets/img/section4.png') }}') center/cover no-repeat;
-        }
-
-        .section-rsvp::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(135deg,
-                    rgba(45, 27, 78, 0.75) 0%,
-                    rgba(26, 10, 46, 0.7) 30%,
-                    rgba(74, 45, 122, 0.65) 60%,
-                    rgba(26, 10, 46, 0.75) 100%);
-            z-index: 1;
+            background: radial-gradient(ellipse at center, rgba(45, 27, 78, 0.4) 0%, rgba(26, 10, 46, 0.6) 100%);
         }
 
         .rsvp-content {
@@ -1021,8 +1005,6 @@
             align-items: center;
             gap: 25px;
             padding: 40px 30px;
-            position: relative;
-            z-index: 2;
         }
 
         .rsvp-title {
@@ -1147,28 +1129,12 @@
             transform: translateY(-2px);
         }
 
-        /* === SECTION 6: CLOSING - FULLSCREEN WITH IMAGE BACKGROUND === */
+        /* === SECTION 6: CLOSING - FULLSCREEN === */
         .section-closing {
             flex-direction: column;
             text-align: center;
             gap: 25px;
-            position: relative;
-            background: url('{{ asset('assets/img/section4.png') }}') center/cover no-repeat;
-        }
-
-        .section-closing::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(135deg,
-                    rgba(45, 27, 78, 0.75) 0%,
-                    rgba(26, 10, 46, 0.7) 30%,
-                    rgba(74, 45, 122, 0.65) 60%,
-                    rgba(26, 10, 46, 0.75) 100%);
-            z-index: 1;
+            background: radial-gradient(ellipse at center, rgba(45, 27, 78, 0.4) 0%, rgba(26, 10, 46, 0.6) 100%);
         }
 
         .closing-content {
@@ -1177,8 +1143,6 @@
             align-items: center;
             gap: 20px;
             padding: 40px 30px;
-            position: relative;
-            z-index: 2;
         }
 
         .closing-text {
