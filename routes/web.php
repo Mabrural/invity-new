@@ -50,7 +50,7 @@ Route::get('/invitation/{slug}', function ($slug) {
 
     $event = $guest->event;
 
-    return view('invitation.show', compact('guest', 'event'));
+    return view('invitation.v1', compact('guest', 'event'));
 
 })->name('invitation.show');
 
