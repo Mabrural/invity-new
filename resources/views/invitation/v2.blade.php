@@ -911,9 +911,11 @@
         /* === SECTION 4: DETAILS & RSVP - FULLSCREEN WITH VIDEO BACKGROUND === */
         .section-details-rsvp {
             flex-direction: column;
-            gap: 25px;
             text-align: center;
             position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
         }
 
         .section-details-rsvp-video {
@@ -945,94 +947,136 @@
         }
 
         .details-rsvp-content {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            gap: 15px;
-            padding: 40px 30px;
             position: relative;
             z-index: 2;
             width: 100%;
-            max-width: 750px;
-        }
-
-        .detail-info {
+            max-width: 680px;
+            padding: 24px 28px;
             display: flex;
             flex-direction: column;
             align-items: center;
-            gap: 5px;
-            margin-bottom: 5px;
         }
 
-        .detail-info-icon {
-            font-size: 2.5rem;
+        /* --- DETAILS ROW --- */
+        .details-row {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 24px;
+            width: 100%;
+            margin-bottom: 24px;
+        }
+
+        .detail-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 8px;
+            flex: 1 1 140px;
+            min-width: 120px;
+            max-width: 200px;
+        }
+
+        .detail-icon-circle {
+            width: 56px;
+            height: 56px;
+            border-radius: 50%;
+            background: rgba(45, 27, 78, 0.5);
+            backdrop-filter: blur(15px);
+            -webkit-backdrop-filter: blur(15px);
+            border: 1px solid rgba(167, 139, 250, 0.2);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
             color: var(--soft-purple);
-            margin-bottom: 8px;
-            text-shadow: 0 0 20px rgba(167, 139, 250, 0.4);
+            text-shadow: 0 0 15px rgba(167, 139, 250, 0.4);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
         }
 
-        .detail-info-label {
-            font-size: 0.7rem;
+        .detail-label {
+            font-family: 'Inter', sans-serif;
+            font-size: 0.65rem;
             font-weight: 600;
-            letter-spacing: 4px;
+            letter-spacing: 3px;
             text-transform: uppercase;
             color: var(--soft-purple);
-            margin-bottom: 5px;
+            text-shadow: 0 0 10px rgba(167, 139, 250, 0.2);
         }
 
-        .detail-info-value {
-            font-family: 'Big Caslon', 'Libre Caslon Text', serif;
-            font-size: 1.2rem;
-            font-weight: 500;
+        .detail-value {
+            font-family: 'Inter', sans-serif;
+            font-size: 0.95rem;
+            font-weight: 400;
             color: var(--ice-white);
-            line-height: 1.6;
-            text-shadow: 0 0 10px rgba(200, 180, 240, 0.2);
+            line-height: 1.5;
+            text-shadow: 0 0 12px rgba(200, 180, 240, 0.2);
         }
 
+        /* --- DIVIDER WITH ORNAMENT --- */
         .details-divider {
-            width: 80px;
+            width: 140px;
             height: 1px;
-            background: linear-gradient(90deg, transparent, var(--soft-purple), transparent);
-            margin: 10px 0;
-        }
-
-        .rsvp-title {
-            /* font-family: 'Playfair Display', serif; */
-            font-family: 'Big Caslon', 'Libre Caslon Text', serif;
-            font-size: clamp(2.5rem, 5vw, 3.5rem);
-            color: var(--diamond-white);
-            font-weight: 700;
-            text-shadow:
-                0 0 30px rgba(180, 150, 240, 0.4),
-                0 0 60px rgba(140, 100, 220, 0.2);
+            background: linear-gradient(90deg,
+                    transparent,
+                    rgba(167, 139, 250, 0.3),
+                    var(--soft-purple),
+                    rgba(167, 139, 250, 0.3),
+                    transparent);
+            margin: 8px 0 20px 0;
             position: relative;
-            display: inline-block;
         }
 
-        .rsvp-title::after {
-            content: '';
+        .details-divider::after {
+            content: '❖';
             position: absolute;
-            bottom: -10px;
+            top: 50%;
             left: 50%;
-            transform: translateX(-50%);
-            width: 80px;
-            height: 1px;
-            background: linear-gradient(90deg, transparent, var(--soft-purple), transparent);
+            transform: translate(-50%, -50%);
+            font-size: 0.6rem;
+            color: var(--soft-purple);
+            background: rgba(26, 10, 46, 0.85);
+            padding: 0 12px;
+            text-shadow: 0 0 10px rgba(167, 139, 250, 0.5);
+        }
+
+        /* --- RSVP SECTION --- */
+        .rsvp-title {
+            font-family: 'Big Caslon', 'Libre Caslon Text', serif;
+            font-size: clamp(1.8rem, 4vw, 2.4rem);
+            font-weight: 600;
+            color: var(--diamond-white);
+            margin-bottom: 8px;
+            text-shadow: 0 0 30px rgba(180, 150, 240, 0.4),
+                0 0 60px rgba(140, 100, 220, 0.2);
+            letter-spacing: 1px;
         }
 
         .rsvp-subtitle {
             font-family: 'Cormorant Garamond', serif;
-            font-size: 1.2rem;
+            font-size: 1rem;
             font-style: italic;
             color: var(--pale-purple);
+            margin-bottom: 20px;
             text-shadow: 0 0 15px rgba(200, 180, 240, 0.2);
+        }
+
+        .rsvp-buttons {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 12px;
+            width: 100%;
+            max-width: 360px;
         }
 
         .btn-rsvp {
             display: inline-flex;
             align-items: center;
+            justify-content: center;
             gap: 10px;
-            padding: 20px 55px;
+            width: 100%;
+            padding: 16px 32px;
             background: linear-gradient(135deg,
                     rgba(107, 63, 160, 0.7),
                     rgba(139, 92, 246, 0.6),
@@ -1041,7 +1085,7 @@
             border: 1px solid rgba(180, 150, 240, 0.4);
             border-radius: 50px;
             font-family: 'Inter', sans-serif;
-            font-size: 0.9rem;
+            font-size: 0.8rem;
             font-weight: 600;
             letter-spacing: 3px;
             text-transform: uppercase;
@@ -1088,14 +1132,16 @@
         .btn-location-outline {
             display: inline-flex;
             align-items: center;
+            justify-content: center;
             gap: 10px;
-            padding: 18px 50px;
+            width: 100%;
+            padding: 14px 32px;
             background: transparent;
             color: var(--ice-white);
             border: 1px solid rgba(167, 139, 250, 0.4);
             border-radius: 50px;
             font-family: 'Inter', sans-serif;
-            font-size: 0.85rem;
+            font-size: 0.75rem;
             font-weight: 500;
             letter-spacing: 3px;
             text-transform: uppercase;
@@ -1403,43 +1449,62 @@
                 <source data-src="{{ asset('assets/img/section-purple.mp4') }}" type="video/mp4">
             </video>
             <div class="details-rsvp-content">
-                <div class="detail-info">
-                    <div class="detail-info-icon"><i class="far fa-calendar-alt"></i></div>
-                    <p class="detail-info-label">Date</p>
-                    <p class="detail-info-value">
-                        {{ \Carbon\Carbon::parse($guest->event->event_date ?? now())->format('d M Y') }}</p>
-                </div>
-                <div class="detail-info">
-                    <div class="detail-info-icon"><i class="fas fa-map-marker-alt"></i></div>
-                    <p class="detail-info-label">Venue</p>
-                    <p class="detail-info-value">{{ $guest->event->venue ?? 'Secret Location' }}</p>
-                    <p class="detail-info-value">{{ $guest->event->event_time ?? 'To be announced' }}</p>
-                </div>
-                @if ($guest->event->dresscode ?? false)
-                    <div class="detail-info">
-                        <div class="detail-info-icon"><i class="fas fa-tshirt"></i></div>
-                        <p class="detail-info-label">Dress Code</p>
-                        <p class="detail-info-value">{{ $guest->event->dresscode }}</p>
+                {{-- Details Row --}}
+                <div class="details-row">
+                    <div class="detail-item">
+                        <div class="detail-icon-circle">
+                            <i class="far fa-calendar-alt"></i>
+                        </div>
+                        <p class="detail-label">Date</p>
+                        <p class="detail-value">
+                            {{ \Carbon\Carbon::parse($guest->event->event_date ?? now())->format('d M Y') }}
+                        </p>
                     </div>
-                @endif
+                    <div class="detail-item">
+                        <div class="detail-icon-circle">
+                            <i class="far fa-clock"></i>
+                        </div>
+                        <p class="detail-label">Time</p>
+                        <p class="detail-value">{{ $guest->event->event_time ?? 'To be announced' }}</p>
+                    </div>
+                    <div class="detail-item">
+                        <div class="detail-icon-circle">
+                            <i class="fas fa-map-marker-alt"></i>
+                        </div>
+                        <p class="detail-label">Venue</p>
+                        <p class="detail-value">{{ $guest->event->venue ?? 'Secret Location' }}</p>
+                    </div>
+                    @if ($guest->event->dresscode ?? false)
+                        <div class="detail-item">
+                            <div class="detail-icon-circle">
+                                <i class="fas fa-tshirt"></i>
+                            </div>
+                            <p class="detail-label">Dress Code</p>
+                            <p class="detail-value">{{ $guest->event->dresscode }}</p>
+                        </div>
+                    @endif
+                </div>
 
+                {{-- Ornamental Divider --}}
                 <div class="details-divider"></div>
 
+                {{-- RSVP Section --}}
                 <h2 class="rsvp-title">Confirm Attendance</h2>
                 <p class="rsvp-subtitle">We would be honored by your presence</p>
-                @if ($guest->event->no_wa_confirmation ?? false)
-                    <a href="https://wa.me/{{ preg_replace('/[^0-9]/', '', $guest->event->no_wa_confirmation) }}?text={{ urlencode('Hello! I would like to confirm my attendance for ' . ($guest->event->title ?? 'the event') . '. - ' . $guest->name) }}"
-                        target="_blank" rel="noopener" class="btn-rsvp">
-                        <i class="fab fa-whatsapp"></i><span>RSVP via WhatsApp</span>
-                    </a>
-                @endif
-                @if ($guest->event->link_googlemaps ?? false)
-                    <a href="{{ $guest->event->link_googlemaps }}" target="_blank" rel="noopener"
-                        class="btn-location-outline">
-                        <i class="fas fa-map-marked-alt"></i><span>View Location</span><i
-                            class="fas fa-external-link-alt" style="font-size:0.7rem;"></i>
-                    </a>
-                @endif
+                <div class="rsvp-buttons">
+                    @if ($guest->event->no_wa_confirmation ?? false)
+                        <a href="https://wa.me/{{ preg_replace('/[^0-9]/', '', $guest->event->no_wa_confirmation) }}?text={{ urlencode('Hello! I would like to confirm my attendance for ' . ($guest->event->title ?? 'the event') . '. - ' . $guest->name) }}"
+                            target="_blank" rel="noopener" class="btn-rsvp">
+                            <i class="fab fa-whatsapp"></i><span>RSVP via WhatsApp</span>
+                        </a>
+                    @endif
+                    @if ($guest->event->link_googlemaps ?? false)
+                        <a href="{{ $guest->event->link_googlemaps }}" target="_blank" rel="noopener"
+                            class="btn-location-outline">
+                            <i class="fas fa-map-marked-alt"></i><span>View Location</span>
+                        </a>
+                    @endif
+                </div>
             </div>
         </div>
 
