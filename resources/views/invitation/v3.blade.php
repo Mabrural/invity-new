@@ -1388,9 +1388,6 @@
                 <source data-src="{{ asset('assets/img/section2new.mp4') }}" type="video/mp4">
             </video>
             <div class="quotes-content">
-                <div class="quotes-icon">
-                    <i class="fas fa-quote-right"></i>
-                </div>
                 <p class="quotes-main">
                     "For you formed my inward parts;<br>
                     you knitted me together in<br>
