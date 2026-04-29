@@ -559,7 +559,7 @@
             display: flex;
             align-items: flex-end;
             justify-content: center;
-            padding-bottom: 10%;
+            padding-bottom: clamp(8%, 12vh, 15%);
         }
 
         .section-quotes-video {
@@ -592,70 +592,54 @@
             position: relative;
             z-index: 2;
             max-width: 700px;
-            padding: 30px 30px 40px;
+            width: 100%;
+            padding: 30px 30px clamp(20px, 5vh, 50px);
             display: flex;
             flex-direction: column;
             align-items: center;
+            animation: quotesFadeInUp 0.8s ease-out;
+        }
+
+        @keyframes quotesFadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
         }
 
         .quotes-icon {
-            font-size: 2.5rem;
+            font-size: clamp(2rem, 5vw, 2.5rem);
             color: var(--soft-purple);
-            margin-bottom: 20px;
+            margin-bottom: clamp(16px, 4vh, 24px);
             opacity: 0.7;
             text-shadow: 0 0 20px rgba(167, 139, 250, 0.4);
         }
 
-        /* .quotes-main {
-            font-family: 'Cormorant Garamond', serif;
-            font-size: clamp(1.2rem, 2.8vw, 1.6rem);
-            font-style: italic;
-            color: var(--ice-white);
-            line-height: 1.8;
-            margin-bottom: 20px;
-            letter-spacing: 0.5px;
-            text-shadow: 0 0 20px rgba(200, 180, 240, 0.3);
-        } */
-
         .quotes-main {
             font-family: 'Big Caslon', 'Libre Caslon Text', serif;
-            font-size: clamp(1.2rem, 2.8vw, 1.6rem);
+            font-size: clamp(1.1rem, 2.5vw, 1.5rem);
             font-style: normal;
             color: var(--ice-white);
             line-height: 1.8;
-            margin-bottom: 20px;
+            margin-bottom: clamp(16px, 4vh, 24px);
             letter-spacing: 0.5px;
             text-shadow: 0 0 20px rgba(200, 180, 240, 0.3);
+            max-width: 600px;
         }
 
         .quotes-author {
             font-family: 'Great Vibes', cursive;
-            font-size: clamp(1.4rem, 2.8vw, 1.8rem);
+            font-size: clamp(1.3rem, 2.5vw, 1.7rem);
             color: var(--gold-light);
             position: relative;
             display: inline-block;
             text-shadow: 0 0 20px rgba(212, 167, 116, 0.2);
         }
-
-        /* .quotes-author::before {
-            content: '';
-            position: absolute;
-            top: 50%;
-            left: -45px;
-            width: 25px;
-            height: 1px;
-            background: rgba(167, 139, 250, 0.4);
-        }
-
-        .quotes-author::after {
-            content: '';
-            position: absolute;
-            top: 50%;
-            right: -45px;
-            width: 25px;
-            height: 1px;
-            background: rgba(167, 139, 250, 0.4);
-        } */
 
         /* === SECTION 3: PHOTO SLIDER FULLSCREEN WITH VIDEO BACKGROUND === */
         .section-photos {
@@ -1264,7 +1248,7 @@
             }
 
             .section-quotes {
-                padding-bottom: 12%;
+                padding-bottom: clamp(10%, 14vh, 18%);
             }
 
             .gate-logo {
@@ -1292,7 +1276,7 @@
 
         @media (max-width: 480px) {
             .section-quotes {
-                padding-bottom: 15%;
+                padding-bottom: clamp(12%, 16vh, 20%);
             }
 
             .gate-logo {
@@ -1321,13 +1305,27 @@
 
             .quotes-content {
                 max-width: 700px;
-                padding: 40px 40px 50px;
+                padding: 30px 40px clamp(30px, 6vh, 60px);
+            }
+
+            .section-quotes {
+                padding-bottom: clamp(5%, 10vh, 12%);
             }
         }
 
         @media (min-height: 900px) {
             .gate-content {
                 padding: 40px 30px;
+            }
+
+            .section-quotes {
+                padding-bottom: clamp(8%, 14vh, 16%);
+            }
+        }
+
+        @media (min-height: 1100px) {
+            .section-quotes {
+                padding-bottom: clamp(5%, 10vh, 12%);
             }
         }
     </style>
@@ -1390,6 +1388,9 @@
                 <source data-src="{{ asset('assets/img/section2new.mp4') }}" type="video/mp4">
             </video>
             <div class="quotes-content">
+                <div class="quotes-icon">
+                    <i class="fas fa-quote-right"></i>
+                </div>
                 <p class="quotes-main">
                     "For you formed my inward parts;<br>
                     you knitted me together in<br>
